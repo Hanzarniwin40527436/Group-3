@@ -4,9 +4,9 @@ Scope the top N populated countries in the region where N is provided by the use
 
 Level one of: Primary task
 
-Preconditions view all the top N populated region in the continent.
+Preconditions view all the top N populated countries in the region.
 
-Success End Condition the top N populated region in the continent  where N is provided by the user.
+Success End Condition the top N populated countries in the region where N is provided by the user.
 
 Failed End Condition Cannot sort the top N populated countries in the region.
 
