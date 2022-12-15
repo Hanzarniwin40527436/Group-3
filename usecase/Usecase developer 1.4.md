@@ -1,19 +1,19 @@
 USE CASE:
 CHARACTERISTIC INFORMATION
 Goal in Context
-View all the capital cities in the world organised by largest population to smallest.
+View all the  cities in the world organised by largest population to smallest.
 
 Scope
-Extract all the capital cities from database and sort largest population to smallest.
+Extract all the  cities from database and sort largest population to smallest.
 
 Level
 one of: Primary task
 
 Preconditions
-Can view all the capital cities in the world
+Can view all the  cities in the world
 
 Success End Condition
-View all the capital cities in the world organised by largest population to smallest.
+View all the  cities in the world organised by largest population to smallest.
 
 Failed End Condition
 Cannot sort largest population to smallest. 
@@ -37,6 +37,6 @@ SUB-VARIATIONS
 
 list of sub-variations
 SCHEDULE
-DUE DATE: 23.12.2022
+DUE DATE: date or release of deployment
 
 any other schedule/staffing information you need

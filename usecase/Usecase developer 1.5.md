@@ -1,25 +1,25 @@
 USE CASE:
 CHARACTERISTIC INFORMATION
 Goal in Context
-View all the capital cities in the world organised by largest population to smallest.
+All the cities in a continent organised by largest population to smallest.
 
 Scope
-Extract all the capital cities from database and sort largest population to smallest.
+Extract all the cities in a continent from database and sort largest population to smallest.
 
 Level
-one of: Primary task
+Primary task
 
 Preconditions
-Can view all the capital cities in the world
+Can view all the cities in the world
 
 Success End Condition
-View all the capital cities in the world organised by largest population to smallest.
+View all the  cities in the continent organised by largest population to smallest.
 
 Failed End Condition
 Cannot sort largest population to smallest. 
 
 Primary Actor
-Developer 3
+Developer 1
 
 Trigger
 Organization requires the reporting on the population information within 4 weeks, 4 developers are tasked with designing and implementing new system to allow easy access to population information. 
@@ -37,6 +37,6 @@ SUB-VARIATIONS
 
 list of sub-variations
 SCHEDULE
-DUE DATE: 23.12.2022
+DUE DATE: date or release of deployment
 
 any other schedule/staffing information you need
