@@ -1,42 +1,39 @@
-USE CASE:
+USE CASE: Extraction of world database
 CHARACTERISTIC INFORMATION
 Goal in Context
-All the cities in a country organised by largest population to smallest.
+Viewing All the cities in a country organised by largest population to smallest.
 
 Scope
-Extract all cities in a country from database and sort largest population to smallest.
+Organization.
 
 Level
 Primary task
 
 Preconditions
-Can view all the cities in the country
+authorize information provided by database so the user can extract required report
 
 Success End Condition
-View all the cities in the countryorganised by largest population to smallest.
+can view all the cities in the country organised by largest population to smallest.
 
 Failed End Condition
-Cannot sort largest population to smallest. 
+Cannot view largest population to smallest by country
 
 Primary Actor
-Developer 1
+Manager
 
 Trigger
-Organization requires the reporting on the population information within 4 weeks, 4 developers are tasked with designing and implementing new system to allow easy access to population information. 
+no trigger
 
 MAIN SUCCESS SCENARIO
--designing and implementing.
--to allow east access to population information.
+- manager requests countries from the database
+- a report, showing the cities in the country organised by largest population to smallest.
 
 EXTENSIONS
-put here the extensions, one at a time, each referring to the step of the main scenario
+none
 
-Condition: action of sub use case
 SUB-VARIATIONS
-*put here the sub-variations that will cause eventual branching in the scenario
+none
 
-list of sub-variations
+
 SCHEDULE
-DUE DATE: date or release of deployment
-
-any other schedule/staffing information you need
+30.12.2022

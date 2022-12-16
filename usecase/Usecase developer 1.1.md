@@ -25,7 +25,7 @@ Trigger
 no trigger
 
 MAIN SUCCESS SCENARIO
-- manager requests countries from the reports
+- manager requests countries from the database
 - a report, showing the countries in the world organised by largest population to smallest.
 
 EXTENSIONS
