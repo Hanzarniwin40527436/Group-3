@@ -1,27 +1,28 @@
-USE CASE: CHARACTERISTIC INFORMATION Goal in Context view all the top N populated countries in the region where N is provided by the user.
+USE CASE: Extraction of world database
 
-Scope the top N populated countries in the region where N is provided by the user.
+Goal in Context: Viewing the top N populated countries in the region where N is provided by the user.
 
-Level one of: Primary task
+Scope: Organization
 
-Preconditions view all the top N populated countries in the region.
+Level: Primary task
 
-Success End Condition the top N populated countries in the region where N is provided by the user.
+Preconditions: Authorize information provided by database so the user can extract required report
 
-Failed End Condition Cannot sort the top N populated countries in the region.
+Success End Condition: Can view the top N populated countries in the region  where N is provided by the user
 
-Primary Actor Developer 2
+Failed End Condition: Cannot view the top N populated countries in the region  where N is provided by the user
 
-Trigger Organization requires the reporting on the population information within 4 weeks, 4 developers are tasked with designing and implementing new system to allow easy access to population information.
+Primary Actor: Manager
 
-MAIN SUCCESS SCENARIO -designing and implementing. -to allow east access to population information.
+Trigger: No trigger
 
-EXTENSIONS put here the extensions, one at a time, each referring to the step of the main scenario
+MAIN SUCCESS SCENARIO:
+- manager requests countries from the database
+- manager have to input N (the top populated countries in the region )
+- a report, showing the top N populated countries in the region  where N is provided by the user
 
-Condition: action of sub use case SUB-VARIATIONS *put here the sub-variations that will cause eventual branching in the scenario
+EXTENSIONS: None
 
-list of sub-variations
+SUB-VARIATIONS: None
 
 SCHEDULE DUE DATE: 23.12.2022
-
-any other schedule/staffing information you need
