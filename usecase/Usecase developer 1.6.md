@@ -25,7 +25,7 @@ Trigger
 no trigger
 
 MAIN SUCCESS SCENARIO
-- manager requests countries from the database
+- manager requests cities from the database
 - a report, showing the cities in the region organised by largest population to smallest.
 
 EXTENSIONS
