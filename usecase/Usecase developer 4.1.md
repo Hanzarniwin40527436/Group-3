@@ -9,7 +9,7 @@ Primary Actor - Manager
 Trigger - no trigger
 Main Success Scenario - Manager extract the  report of the population of the world from database
                         Manager can view a report of the population of the world 
-Extensions - none
-Sub-Variations - None
+Extensions - Role doesnot exist
+Sub-Variations - none
 Schedule - Due Date: 23.12.2022 
                 
