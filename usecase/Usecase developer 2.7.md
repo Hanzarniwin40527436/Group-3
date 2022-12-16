@@ -22,6 +22,6 @@ Condition: action of sub use case SUB-VARIATIONS *put here the sub-variations th
 
 list of sub-variations
 
-SCHEDULE DUE DATE: 23.12.2022
+SCHEDULE DUE DATE: 30.12.2022
 
 any other schedule/staffing information you need
