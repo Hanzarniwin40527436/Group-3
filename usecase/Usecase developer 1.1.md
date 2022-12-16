@@ -13,7 +13,7 @@ Preconditions
 authorize information provided by database so the user can extract required report
 
 Success End Condition
- can view all the countries in the world organised by largest population to smallest.
+can view all the countries in the world organised by largest population to smallest.
 
 Failed End Condition
 Cannot view largest population to smallest by country 
