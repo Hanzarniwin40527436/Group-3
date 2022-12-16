@@ -1,4 +1,4 @@
-USE CASE:
+USE CASE:Extraction of world database
 CHARACTERISTIC INFORMATION
 Goal in Context
 view the top N populated capital cities in a region  where N is provided by the user.
@@ -10,33 +10,30 @@ Level
 one of: Primary task
 
 Preconditions
-view the top N populated capital cities in a region
+Authorize information provided by database so the user can extract required report
 
 Success End Condition
 The top N populated capital cities in a region  where N is provided by the user.
 
 Failed End Condition
-User can not provide N.
+Cannot sort the top N populated capital cities in a region.
 
 Primary Actor
-Developer 3
+Manager
 
 Trigger
-Organization requires the reporting on the population information within 4 weeks, 4 developers are tasked with designing and implementing new system to allow easy access to population information.
+no trigger
 
 MAIN SUCCESS SCENARIO
--designing and implementing.
--to allow east access to population information.
+- manager requests countries from the database
+- manager have to input N (the top populated countries in the continent)
+- a report, showing the top N populated capital cities in the world where N is provided by the user.
 
 EXTENSIONS
-put here the extensions, one at a time, each referring to the step of the main scenario
+none
 
-Condition: action of sub use case
 SUB-VARIATIONS
-*put here the sub-variations that will cause eventual branching in the scenario
+none
 
-list of sub-variations
 SCHEDULE
-DUE DATE: 30.12.2022
-
-any other schedule/staffing information you need
+30.12.2022
