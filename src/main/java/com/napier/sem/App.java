@@ -1,10 +1,33 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 
 public class App
 {
     public static void main(String[] args)
+    {
+        // Create new Application
+        App app = new App();
+
+        // Connect to database
+        app.connect();
+        //get ID
+        City cty = app.getCity(100);
+        app.displayCity(cty);
+
+        // Disconnect from database
+        app.disconnect();
+    }
+
+
+    private Connection con = null;
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect()
     {
         try
         {
@@ -17,9 +40,7 @@ public class App
             System.exit(-1);
         }
 
-        // Connection to the database
-        Connection con = null;
-        int retries = 100;
+        int retries = 10;
         for (int i = 0; i < retries; ++i)
         {
             System.out.println("Connecting to database...");
@@ -30,9 +51,6 @@ public class App
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
-                // Wait a bit
-                Thread.sleep(10000);
-                // Exit for loop
                 break;
             }
             catch (SQLException sqle)
@@ -45,7 +63,69 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+    }
 
+
+    public City getCity(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ID, Name, District, Population "
+                            + "FROM city "
+                            + "WHERE ID = " + ID;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returne
+            if (rset.next())
+            {
+                City cty = new City();
+                cty.ID=rset.getInt("ID");
+                cty.Name=rset.getString("Name");
+                cty.District=rset.getString("District");
+                cty.Population=rset.getInt("Population");
+                return cty;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displayCity(City cty)
+    {
+        if (cty != null)
+        {
+            System.out.println(
+                    cty.ID + " "
+                            + "Name:" + cty.Name+ " "
+                            + "District:" + cty.District+" "
+                            + "Population:"+ cty.Population+
+                             "\n");
+        }
+    }
+
+
+
+
+
+
+
+
+
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect()
+    {
         if (con != null)
         {
             try
