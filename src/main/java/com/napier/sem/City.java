@@ -15,6 +15,8 @@ public class City
      */
     public String Name;
 
+    public String CountryCode;
+
     /**
      * City's District
      */
@@ -28,7 +30,7 @@ public class City
     /**
      * City's code
      */
-    public int CountryCode;
+
 
 
 
