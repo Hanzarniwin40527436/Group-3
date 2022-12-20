@@ -33,7 +33,7 @@ public class Testingazrael
             Statement stmt = con.createStatement();
             String strSelect =
                     "SELECT ID, Name, District, Population "
-                            + "FROM city "+ "WHERE ID = " ;
+                            + "FROM city "+ "WHERE ID = ID" ;
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> city = new ArrayList<City>();
             if (rset.next())
