@@ -33,19 +33,19 @@ public class Testingazrael
             Statement stmt = con.createStatement();
             String strSelect =
                     "SELECT ID, Name, District, Population "
-                            + "FROM city "+ "WHERE ID = ID" ;
+                            + "FROM city " ;
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> city = new ArrayList<City>();
-            if (rset.next())
+            ArrayList<City> world = new ArrayList<City>();
+            while (rset.next())
             {
                 City cty = new City();
                 cty.ID=rset.getInt("ID");
                 cty.Name=rset.getString("Name");
                 cty.District=rset.getString("District");
                 cty.Population=rset.getInt("Population");
-                city.add(cty);
+                world.add(cty);
             }
-            return city;
+            return world;
         }
         catch (Exception e)
         {
