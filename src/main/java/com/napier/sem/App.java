@@ -14,11 +14,8 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        ArrayList<City> cty = app.getAllPopulation();
-
-
-        app.printPopulation(cty);
-
+        ArrayList<City> city = app.getCity();
+        System.out.println(city.size());
         // Disconnect from database
         app.disconnect();
     }
@@ -66,6 +63,89 @@ public class App
             }
         }
     }
+    public ArrayList<City> getCity()
+    {
+        try {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT ID, Name, District, Population "
+                            + "FROM city ";
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> city = new ArrayList<City>();
+            if (rset.next())
+            {
+                City cty = new City();
+                cty.ID=rset.getInt("ID");
+                cty.Name=rset.getString("Name");
+                cty.District=rset.getString("District");
+                cty.Population=rset.getInt("Population");
+                city.add(cty);
+            }
+                return city;
+            }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+    /**
+
+    public City getCity(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ID, Name, District, Population "
+                            + "FROM city "
+                            + "WHERE ID = " + ID;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returne
+            if (rset.next())
+            {
+                City cty = new City();
+                cty.ID=rset.getInt("ID");
+                cty.Name=rset.getString("Name");
+                cty.District=rset.getString("District");
+                cty.Population=rset.getInt("Population");
+                return cty;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displayCity(City cty)
+    {
+        if (cty != null)
+        {
+            System.out.println(
+                    cty.ID + " "
+                            + "Name:" + cty.Name+ " "
+                            + "District:" + cty.District+" "
+                            + "Population:"+ cty.Population+
+                            "\n");
+        }
+    }
+
+
+
+
+     */
+
+
+
 
     /**
      * Disconnect from the MySQL database.
@@ -85,59 +165,6 @@ public class App
             }
         }
     }
-
-
-    public ArrayList<City> getAllPopulation()
-    {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT ID, Name, District, Population "
-                            + "FROM city "
-                            + "WHERE ID = ";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> cty = new ArrayList<City>();
-            while (rset.next()) {
-                City ct = new City();
-                ct.ID = rset.getInt("ID");
-                ct.Name = rset.getString("Name");
-                ct.District = rset.getString("District");
-                ct.Population = rset.getInt("Population");
-                cty.add(ct);
-            }
-            return cty;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-    }
-    public void printPopulation(ArrayList<City> cty)
-    {
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-        // Loop over all employees in the list
-        for (City ct : cty)
-        {
-            String ct_string =
-                    String.format("%-10s %-15s %-20s %-8s",
-                            ct.ID, ct.Name, ct.District, ct.Population);
-            System.out.println(ct_string);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
 }
+
 
