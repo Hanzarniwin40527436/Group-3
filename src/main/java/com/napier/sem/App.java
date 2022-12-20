@@ -14,7 +14,7 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        City cty= app.getCity(1000);
+        City cty= app.getCity(1);
         app.displayCity(cty);
 
         // Disconnect from database
@@ -52,7 +52,7 @@ public class App
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get City info");
             return null;
         }
     }
