@@ -120,7 +120,7 @@ public class App
     }
     public void displayCity(ArrayList<City> cty)
     {
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "CountryCode", "District", "Population"));
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "Country Code", "District", "Population"));
         // Loop over all employees in the list
         for (City ct : cty)
         {
