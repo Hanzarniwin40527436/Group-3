@@ -14,7 +14,7 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        City cty = app.getCity();
+        ArrayList<City> cty = app.getCity();
         app.displayCity(cty);
 
         // Disconnect from database
@@ -84,7 +84,7 @@ public class App
     }
 
 
-    public City getCity()
+    public ArrayList<City> getCity()
     {
         try
         {
@@ -97,18 +97,18 @@ public class App
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returne
+
+            ArrayList<City> cty = new ArrayList<City>();
             while (rset.next())
             {
-                City cty = new City();
-                cty.ID=rset.getInt("ID");
-                cty.Name=rset.getString("Name");
-                cty.District=rset.getString("District");
-                cty.Population=rset.getInt("Population");
-                return cty;
+                City ct = new City();
+                ct.ID=rset.getInt("ID");
+                ct.Name=rset.getString("Name");
+                ct.District=rset.getString("District");
+                ct.Population=rset.getInt("Population");
+                cty.add(ct);
             }
-            return null;
+            return cty;
         }
         catch (Exception e)
         {
@@ -117,17 +117,18 @@ public class App
             return null;
         }
     }
-    public void displayCity(City cty)
+    public void displayCity(ArrayList<City> cty)
     {
-        if (cty != null)
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+        // Loop over all employees in the list
+        for (City ct : cty)
         {
-            System.out.println(
-                            "ID: " + cty.ID+ " "
-                            + "Name:" + cty.Name+ " "
-                            + "District:" + cty.District+" "
-                            + "Population:"+ cty.Population+
-                            "\n");
+            String emp_string =
+                    String.format("%-10s %-15s %-20s %-8s",
+                            ct.ID, ct.Name, ct.District, ct.Population);
+            System.out.println(emp_string);
         }
+
     }
 
 
