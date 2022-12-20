@@ -99,7 +99,7 @@ public class App
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returne
-            if (rset.next())
+            while (rset.next())
             {
                 City cty = new City();
                 cty.ID=rset.getInt("ID");
@@ -108,8 +108,7 @@ public class App
                 cty.Population=rset.getInt("Population");
                 return cty;
             }
-            else
-                return null;
+            return null;
         }
         catch (Exception e)
         {
