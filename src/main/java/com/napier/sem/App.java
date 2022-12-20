@@ -92,7 +92,7 @@ public class App
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ID, Name, CountryCode, District, Population "
+                    "SELECT ID, Name, District, Population "
                             + "FROM city "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
@@ -104,7 +104,6 @@ public class App
                 City ct = new City();
                 ct.ID=rset.getInt("ID");
                 ct.Name=rset.getString("Name");
-                ct.CountryCode=rset.getString("CountryCode");
                 ct.District=rset.getString("District");
                 ct.Population=rset.getInt("Population");
                 cty.add(ct);
@@ -120,13 +119,13 @@ public class App
     }
     public void displayCity(ArrayList<City> cty)
     {
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "Country Code", "District", "Population"));
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "District", "Population"));
         // Loop over all employees in the list
         for (City ct : cty)
         {
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
-                            ct.ID, ct.Name, ct.CountryCode, ct.District, ct.Population);
+                            ct.ID, ct.Name, ct.District, ct.Population);
             System.out.println(emp_string);
         }
 
