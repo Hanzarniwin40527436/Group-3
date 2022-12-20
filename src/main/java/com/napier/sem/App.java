@@ -14,29 +14,11 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        app.getCity();
-
+        City cty = app.getCity();
+        app.displayCity(cty);
 
         // Disconnect from database
         app.disconnect();
-    }
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect()
-    {
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
     }
 
 
@@ -82,6 +64,24 @@ public class App
             }
         }
     }
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect()
+    {
+        if (con != null)
+        {
+            try
+            {
+                // Close connection
+                con.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
 
 
     public City getCity()
@@ -94,22 +94,22 @@ public class App
             String strSelect =
                     "SELECT ID, Name, District, Population "
                             + "FROM city "
-                            + "WHERE ID = ";
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returne
-            while (rset.next())
+            if (rset.next())
             {
-
-                int ID=rset.getInt("ID");
-                String Name=rset.getString("Name");
-                String District=rset.getString("District");
-                int Population=rset.getInt("Population");
-                System.out.format("%s, %s, %s, %s, %s, %s\n", ID, Name, District, Population);
+                City cty = new City();
+                cty.ID=rset.getInt("ID");
+                cty.Name=rset.getString("Name");
+                cty.District=rset.getString("District");
+                cty.Population=rset.getInt("Population");
+                return cty;
             }
-            stmt.close();
-
+            else
+                return null;
         }
         catch (Exception e)
         {
@@ -117,8 +117,26 @@ public class App
             System.out.println("Failed to get City details");
             return null;
         }
-        return null;
     }
+    public void displayCity(City cty)
+    {
+        if (cty != null)
+        {
+            System.out.println(
+                            "ID: " + cty.ID+ " "
+                            + "Name:" + cty.Name+ " "
+                            + "District:" + cty.District+" "
+                            + "Population:"+ cty.Population+
+                            "\n");
+        }
+    }
+
+
+
+
+
+
+
 
 
 
