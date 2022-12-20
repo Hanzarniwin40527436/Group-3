@@ -14,13 +14,29 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        ArrayList<City> cty = app.getAllPopulation();
+        City cty = app.getCity();
 
-
-        app.printPopulation(cty);
 
         // Disconnect from database
         app.disconnect();
+    }
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect()
+    {
+        if (con != null)
+        {
+            try
+            {
+                // Close connection
+                con.close();
+            }
+            catch (Exception e)
+            {
+                System.out.println("Error closing connection to database");
+            }
+        }
     }
 
 
@@ -67,29 +83,11 @@ public class App
         }
     }
 
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect()
+
+    public City getCity()
     {
-        if (con != null)
+        try
         {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
-
-    public ArrayList<City> getAllPopulation()
-    {
-        try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
@@ -99,16 +97,19 @@ public class App
                             + "WHERE ID = ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> cty = new ArrayList<City>();
-            while (rset.next()) {
-                City ct = new City();
-                ct.ID = rset.getInt("ID");
-                ct.Name = rset.getString("Name");
-                ct.District = rset.getString("District");
-                ct.Population = rset.getInt("Population");
-                cty.add(ct);
+            // Return new employee if valid.
+            // Check one is returne
+            while (rset.next())
+            {
+
+                int ID=rset.getInt("ID");
+                String Name=rset.getString("Name");
+                String District=rset.getString("District");
+                int Population=rset.getInt("Population");
+                System.out.format("%s, %s, %s, %s, %s, %s\n", ID, Name, District, Population);
             }
-            return cty;
+            stmt.close();
+
         }
         catch (Exception e)
         {
@@ -116,26 +117,8 @@ public class App
             System.out.println("Failed to get City details");
             return null;
         }
+        return null;
     }
-    public void printPopulation(ArrayList<City> cty)
-    {
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
-        // Loop over all employees in the list
-        for (City ct : cty)
-        {
-            String ct_string =
-                    String.format("%-10s %-15s %-20s %-8s",
-                            ct.ID, ct.Name, ct.District, ct.Population);
-            System.out.println(ct_string);
-        }
-    }
-
-
-
-
-
-
-
 
 
 
