@@ -14,7 +14,7 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        City cty= app.getCity(2);
+        City cty= app.getCity();
         app.displayCity(cty);
 
         // Disconnect from database
@@ -22,7 +22,7 @@ public class App
     }
 
 
-    public City getCity(int ID)
+    public City getCity()
     {
         try
         {
