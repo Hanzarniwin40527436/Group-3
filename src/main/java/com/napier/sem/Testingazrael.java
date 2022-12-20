@@ -14,8 +14,8 @@ public class Testingazrael
         // Connect to database
         app.connect();
         //get ID
-        ArrayList<City> city = app.getCity();
-        System.out.println(city.size());
+        ArrayList<City> world = app.getCity();
+        System.out.println(world.size());
         // Disconnect from database
         app.disconnect();
     }
@@ -33,7 +33,7 @@ public class Testingazrael
             Statement stmt = con.createStatement();
             String strSelect =
                     "SELECT ID, Name, District, Population "
-                            + "FROM city " ;
+                            + "FROM city "+ "ORDER BY ID" ;
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> world = new ArrayList<City>();
             while (rset.next())
