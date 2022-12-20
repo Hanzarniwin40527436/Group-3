@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class App
+public class Testingazrael
 {
     public static void main(String[] args)
     {
@@ -33,7 +33,7 @@ public class App
             Statement stmt = con.createStatement();
             String strSelect =
                     "SELECT ID, Name, District, Population "
-                            + "FROM city ";
+                            + "FROM city "+ "WHERE ID = " ;
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> city = new ArrayList<City>();
             if (rset.next())
@@ -45,8 +45,8 @@ public class App
                 cty.Population=rset.getInt("Population");
                 city.add(cty);
             }
-                return city;
-            }
+            return city;
+        }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
@@ -56,52 +56,52 @@ public class App
     }
     /**
 
-    public City getCity(int ID)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT ID, Name, District, Population "
-                            + "FROM city "
-                            + "WHERE ID = " + ID;
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returne
-            if (rset.next())
-            {
-                City cty = new City();
-                cty.ID=rset.getInt("ID");
-                cty.Name=rset.getString("Name");
-                cty.District=rset.getString("District");
-                cty.Population=rset.getInt("Population");
-                return cty;
-            }
-            else
-                return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-    }
-    public void displayCity(City cty)
-    {
-        if (cty != null)
-        {
-            System.out.println(
-                    cty.ID + " "
-                            + "Name:" + cty.Name+ " "
-                            + "District:" + cty.District+" "
-                            + "Population:"+ cty.Population+
-                            "\n");
-        }
-    }
+     public City getCity(int ID)
+     {
+     try
+     {
+     // Create an SQL statement
+     Statement stmt = con.createStatement();
+     // Create string for SQL statement
+     String strSelect =
+     "SELECT ID, Name, District, Population "
+     + "FROM city "
+     + "WHERE ID = " + ID;
+     // Execute SQL statement
+     ResultSet rset = stmt.executeQuery(strSelect);
+     // Return new employee if valid.
+     // Check one is returne
+     if (rset.next())
+     {
+     City cty = new City();
+     cty.ID=rset.getInt("ID");
+     cty.Name=rset.getString("Name");
+     cty.District=rset.getString("District");
+     cty.Population=rset.getInt("Population");
+     return cty;
+     }
+     else
+     return null;
+     }
+     catch (Exception e)
+     {
+     System.out.println(e.getMessage());
+     System.out.println("Failed to get City details");
+     return null;
+     }
+     }
+     public void displayCity(City cty)
+     {
+     if (cty != null)
+     {
+     System.out.println(
+     cty.ID + " "
+     + "Name:" + cty.Name+ " "
+     + "District:" + cty.District+" "
+     + "Population:"+ cty.Population+
+     "\n");
+     }
+     }
 
 
 
