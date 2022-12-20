@@ -14,7 +14,7 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        City cty = app.getCity();
+        app.getCity();
 
 
         // Disconnect from database
