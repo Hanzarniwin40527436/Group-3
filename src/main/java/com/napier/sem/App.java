@@ -14,12 +14,62 @@ public class App
         // Connect to database
         app.connect();
         //get ID
-        City cty = app.getCity();
-
+        City cty= app.getCity(2);
+        app.displayCity(cty);
 
         // Disconnect from database
         app.disconnect();
     }
+
+
+    public City getCity(int ID)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ID, Name, District, Population "
+                            + "FROM city ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returne
+            if (rset.next())
+            {
+                City cty = new City();
+                cty.ID=rset.getInt("city.ID");
+                cty.Name=rset.getString("city.Name");
+                cty.District=rset.getString("city.District");
+                cty.Population=rset.getInt("city.Population");
+                return cty;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displayCity(City cty)
+    {
+        if (cty != null)
+        {
+            System.out.println(
+                    cty.ID + " "
+                            + "Name:" + cty.Name+ " "
+                            + "District:" + cty.District+" "
+                            + "Population:"+ cty.Population+
+                            "\n");
+        }
+    }
+
+
+
     /**
      * Disconnect from the MySQL database.
      */
@@ -82,45 +132,7 @@ public class App
             }
         }
     }
-
-
-    public City getCity()
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT ID, Name, District, Population "
-                            + "FROM city "
-                            + "WHERE ID = ";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returne
-            while (rset.next())
-            {
-
-                int ID=rset.getInt("ID");
-                String Name=rset.getString("Name");
-                String District=rset.getString("District");
-                int Population=rset.getInt("Population");
-                System.out.format("%s, %s, %s, %s, %s, %s\n", ID, Name, District, Population);
-            }
-            stmt.close();
-
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-        return null;
-    }
-
-
-
 }
+
+
 
