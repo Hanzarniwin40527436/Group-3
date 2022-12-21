@@ -12,7 +12,7 @@ public class App {
         // Connect to database
         app.connect();
         //get ID
-        ArrayList<City> cty = app.getCity();
+            ArrayList<City> cty = app.getCity();
         app.displayCity(cty);
 
         // Disconnect from database
@@ -98,9 +98,17 @@ public class App {
     }
 
     public void displayCity(ArrayList<City> cty) {
+        if (cty == null)
+        {
+            System.out.println("No City");
+            return;
+        }
         System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "District", "Population"));
         // Loop over all employees in the list
         for (City ct : cty) {
+            if(ct==null)
+                continue;
+
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
                             ct.ID, ct.Name, ct.District, ct.Population);

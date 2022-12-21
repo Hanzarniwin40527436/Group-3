@@ -17,7 +17,19 @@ public class AppTest {
         app = new App();
     }
 
+    @Test
+    void displaycity(){
+        ArrayList<City> cty = new ArrayList<City>();
+        City ct=new City();
+        ct.ID=2331;
+        ct.Name="Seoul";
+        ct.District="Seoul";
+        ct.Population=998161;
+        cty.add(ct);
 
+        app.displayCity(cty);
+
+    }
 
 
 }
