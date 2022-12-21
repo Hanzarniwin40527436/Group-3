@@ -17,12 +17,7 @@ public class AppTest {
         app = new App();
     }
 
-    @Test
-    void getcity(){
-        ArrayList<City> cty = app.getCity();
-        app.displayCity(cty);
 
-    }
 
 
 }
