@@ -1,8 +1,4 @@
 package com.napier.sem;
-
-/**
- * Represents an employee
- */
 public class City
 {
     /**
@@ -28,7 +24,7 @@ public class City
     /**
      * City's code
      */
-    public int CountryCode;
+    public String CountryCode;
 
 
 
