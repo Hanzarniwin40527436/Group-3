@@ -27,9 +27,9 @@ public class App {
 
 
         //get ID for capitalcity
-        ArrayList<City> cty = app.getcapitalcitiesintheregion();
+        //ArrayList<City> cty = app.getcapitalcitiesintheregion();
         //displaycapital city
-        app.displaycapitalcity(cty);
+        //app.displaycapitalcity(cty);
 
 
         // Disconnect from database
