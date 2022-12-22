@@ -12,61 +12,19 @@ public class App {
         // Connect to database
         app.connect();
         //get ID
-            ArrayList<City> cty = app.getCity();
+        ArrayList<City> cty = app.getCity();
         app.displayCity(cty);
+        //get ID for capitalcity
 
+        //displaycapital city
+        ArrayList<City> capty = app.getcapitalcities();
+        app.displaycapitalcities(capty);
         // Disconnect from database
         app.disconnect();
     }
 
 
     private Connection con = null;
-
-    /**
-     * Connect to the MySQL database.
-     */
-    public void connect() {
-        try {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
-            try {
-                // Wait a bit for db to start
-                Thread.sleep(30000);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
-                break;
-            } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-    }
-
-    /**
-     * Disconnect from the MySQL database.
-     */
-    public void disconnect() {
-        if (con != null) {
-            try {
-                // Close connection
-                con.close();
-            } catch (Exception e) {
-                System.out.println("Error closing connection to database");
-            }
-        }
-    }
-
 
     public ArrayList<City> getCity() {
         try {
@@ -116,4 +74,98 @@ public class App {
         }
 
     }
+
+    public ArrayList<City> getcapitalcities() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT world.ID, world.Name, world.population"
+                            + "FROM city, country "+
+                            "WHERE city.ID=country.Capital"
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> capty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.ID = rset.getInt("city.ID");
+                ct.Name = rset.getString("city.Name");
+                ct.Population = rset.getInt("city.Population");
+                capty.add(ct);
+            }
+            return capty;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displaycapitalcities(ArrayList<City> capty) {
+        if (capty == null)
+        {
+            System.out.println("No Capital City");
+            return;
+        }
+        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name","Population"));
+        // Loop over all employees in the list
+        for (City ct : capty) {
+            if(ct==null)
+                continue;
+
+            String emp_string =
+                    String.format("%-10s %-15s %-20s %-8s",
+                            ct.ID, ct.Name, ct.Population);
+            System.out.println(emp_string);
+        }
+
+    }
+
+    /**
+     * Connect to the MySQL database.
+     */
+    public void connect() {
+        try {
+            // Load Database driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Could not load SQL driver");
+            System.exit(-1);
+        }
+
+        int retries = 10;
+        for (int i = 0; i < retries; ++i) {
+            System.out.println("Connecting to database...");
+            try {
+                // Wait a bit for db to start
+                Thread.sleep(30000);
+                // Connect to database
+                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                System.out.println("Successfully connected");
+                break;
+            } catch (SQLException sqle) {
+                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println(sqle.getMessage());
+            } catch (InterruptedException ie) {
+                System.out.println("Thread interrupted? Should not happen.");
+            }
+        }
+    }
+
+    /**
+     * Disconnect from the MySQL database.
+     */
+    public void disconnect() {
+        if (con != null) {
+            try {
+                // Close connection
+                con.close();
+            } catch (Exception e) {
+                System.out.println("Error closing connection to database");
+            }
+        }
+    }
+
 }
