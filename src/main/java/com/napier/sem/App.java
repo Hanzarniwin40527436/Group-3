@@ -138,8 +138,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.ID, city.Name, city.Population"
-                            + "FROM city, country"
-                            + "WHERE city.ID = country.Capital AND city.CountryCode = country.Code"
+                            + "FROM city"
+                            + "WHERE country.Capital= city.ID AND country.Code= city.CountryCode "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
