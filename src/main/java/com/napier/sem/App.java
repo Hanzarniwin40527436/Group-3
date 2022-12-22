@@ -10,19 +10,26 @@ public class App {
         App app = new App();
 
         // Connect to database
-        app.connect();
+
+        if(args.length < 1){
+            app.connect("localhost:33060", 30000);
+        }else{
+            app.connect(args[0], Integer.parseInt(args[1]));
+        }
+
+
         //All the countries in the world organised by largest population to smallest.
         //ArrayList<Country> cou = app.getCountryWorld();
         //app.displayCountry(cou);
         //All the cities in the world organised by largest population to smallest.
-        //ArrayList<City> cty = app.getCityWorld();
-        // app.displayCity(cty);
+        ArrayList<City> cty = app.getCityWorld();
+        app.displayCity(cty);
 
 
         //get ID for capitalcity
-        ArrayList<City> cty = app.getcapitalcitiesintheworld();
+        //ArrayList<City> cty = app.getcapitalcitiesintheregion();
         //displaycapital city
-        app.displaycapitalcity(cty);
+        //app.displaycapitalcity(cty);
 
 
         // Disconnect from database
@@ -55,6 +62,41 @@ public class App {
                 cou.add(ct);
             }
             return cou;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    /**
+     *
+     * @return All the countries in the continent organised by largest population to smallest.
+     */
+    public ArrayList<Country> getCountryContinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country"
+                            + "WHERE Continent = 'Europe'"
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> couContinent = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setCode(rset.getString("Code"));
+                ct.setName(rset.getString("Name"));
+                ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Population"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
+                couContinent.add(ct);
+            }
+            return couContinent;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
@@ -184,7 +226,7 @@ public class App {
             String strSelect =
                     "SELECT city.population, city.Name ,country.Name "+
                             "FROM city, country"+
-                            "WHERE country.Continent='Europe'"+
+                            "WHERE city.ID= country.Capital AND country.Continent='Europe'"+
                             "ORDER BY city.Population DESC";
 
             // Execute SQL statement
@@ -215,10 +257,8 @@ public class App {
             String strSelect =
                     "SELECT city.population, city.Name ,country.Name "+
                             "FROM city, country"+
-                            "WHERE country.Region='Southern Europe'"+
+                            "WHERE city.ID= country.Capital AND country.Region='Southern Europe'"+
                             "ORDER BY city.Population DESC";
-
-
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cty = new ArrayList<City>();
@@ -246,7 +286,7 @@ public class App {
     /**
      * Connect to the MySQL database.
      */
-    public void connect() {
+    public void connect(String location, int delay) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -260,13 +300,15 @@ public class App {
             System.out.println("Connecting to database...");
             try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(delay);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location
+                                + "/world?allowPublicKeyRetrieval=true&useSSL=false",
+                        "root", "example");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
+                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
