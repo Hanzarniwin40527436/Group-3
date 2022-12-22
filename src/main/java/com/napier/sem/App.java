@@ -86,8 +86,8 @@ public class App {
             String strSelect =
                     "SELECT city.ID, city.Name, city.Population"
                             + "FROM city, country"
-                            + "WHERE city.CountryCode= country.Code AND city.ID= country.Capital"
-                            + "ORDER BY city.Population DESC";
+                            + "WHERE city.ID = country.Capital AND city.CountryCode = country.Code"
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cty = new ArrayList<City>();
