@@ -40,7 +40,7 @@ public class App {
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
                             + "GROUP BY Continent"
-                            + "ORDER BY Population DESC";
+                            ;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
