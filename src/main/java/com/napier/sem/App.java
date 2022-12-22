@@ -39,8 +39,8 @@ public class App {
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country"
-                            + "WHERE Continent = 'Asia'"
-                            + "ORDER BY Population DESC";
+                            + "GROUP BY Region";
+
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
