@@ -11,18 +11,15 @@ public class App {
 
         // Connect to database
         app.connect();
-        System.out.println("Hello checking");
-        //get ID
-       //ArrayList<City> cty = app.getCity();
-        //app.displayCity(cty);
+        //get city in the world by largest population to smallest population
+       ArrayList<City> cty = app.getCityWorld();
+       app.displayCity(cty);
 
 
         //get ID for capitalcity
-       ArrayList<City> capty = app.getcapitalcities();
-        System.out.println("Hello array list");
+       //ArrayList<City> capty = app.getcapitalcities();
         //displaycapital city
-        app.displaycapitalcities(capty);
-        System.out.println("Hello array list display");
+        //app.displaycapitalcities(capty);
 
 
         // Disconnect from database
@@ -32,7 +29,7 @@ public class App {
 
     private Connection con = null;
 
-    public ArrayList<City> getCity() {
+    public ArrayList<City> getCityWorld() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -73,15 +70,16 @@ public class App {
             if(ct==null)
                 continue;
 
-            String emp_string =
+            String city_string =
                     String.format("%-10s %-15s %-20s %-8s",
                             ct.getID(), ct.getName(), ct.getDistrict(), ct.getPopulation());
-            System.out.println(emp_string);
+            System.out.println(city_string);
         }
 
 
 
     }
+    /**
     //get capital cities in the world
     public ArrayList<City> getcapitalcities() {
         try {
@@ -89,18 +87,18 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.Population"
-                            + "FROM city, country "
-                            + "WHERE city.ID=country.Capital AND city.CountryCode=country.Code "
+                    "SELECT city.ID, city.Name, city.population, country.Capital"
+                            + "FROM city, country "+
+                            "WHERE city.ID=country.Capital"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> capty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
-                ct.setID(rset.getInt("city.ID"));
-                ct.setName(rset.getString("city.Name"));
-                ct.setPopulation(rset.getInt("city.Population"));
+                ct.ID = rset.getInt("city.ID");
+                ct.Name = rset.getString("city.Name");
+                ct.Population = rset.getInt("city.Population");
                 capty.add(ct);
             }
             return capty;
@@ -123,12 +121,16 @@ public class App {
         for (City ct : capty) {
             if(ct==null)
                 continue;
+
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
-                            ct.getID(), ct.getName(), ct.getPopulation());
+                            ct.ID, ct.Name, ct.Population);
             System.out.println(emp_string);
         }
+
     }
+    */
+
 
     /**
      * Connect to the MySQL database.
