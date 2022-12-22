@@ -11,18 +11,16 @@ public class App {
 
         // Connect to database
         app.connect();
-        System.out.println("Hello checking");
         //get ID
        //ArrayList<City> cty = app.getCity();
         //app.displayCity(cty);
 
 
         //get ID for capitalcity
-      ArrayList<City> capty = app.getcapitalcities();
-        System.out.println("Hello array list");
+      ArrayList<City> cty = app.getcapitalcities();
         //displaycapital city
-       app.displaycapitalcities(capty);
-        System.out.println("Hello array list display");
+       app.displaycapitalcities(cty);
+
 
 
         // Disconnect from database
@@ -92,15 +90,15 @@ public class App {
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> capty = new ArrayList<City>();
+            ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
                 ct.setID(rset.getInt("city.ID"));
                 ct.setName(rset.getString("city.Name"));
                 ct.setPopulation(rset.getInt("city.Population"));
-                capty.add(ct);
+                cty.add(ct);
             }
-            return capty;
+            return cty;
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -109,15 +107,15 @@ public class App {
         }
     }
     //display capital cities in the world
-    public void displaycapitalcities(ArrayList<City> capty) {
-        if (capty == null)
+    public void displaycapitalcities(ArrayList<City> cty) {
+        if (cty == null)
         {
             System.out.println("No Capital City");
             return;
         }
         System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name","Population"));
         // Loop over all employees in the list
-        for (City ct : capty) {
+        for (City ct : cty) {
             if(ct==null)
                 continue;
             String emp_string =
