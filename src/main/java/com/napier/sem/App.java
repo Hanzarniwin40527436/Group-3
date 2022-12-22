@@ -15,8 +15,8 @@ public class App {
         ArrayList<Country> cou = app.getCountryWorld();
         app.displayCountry(cou);
         //get city in the world by largest population to smallest population
-        //ArrayList<City> cty = app.getCityWorld();
-        //app.displayCity(cty);
+        ArrayList<City> cty = app.getCityWorld();
+        app.displayCity(cty);
 
 
         //get ID for capitalcity
