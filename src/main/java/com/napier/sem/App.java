@@ -40,8 +40,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
-                            + "ORDER BY Continent"
+                            + "FROM country"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -60,7 +59,7 @@ public class App {
             return cou;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Country details");
             return null;
         }
     }
