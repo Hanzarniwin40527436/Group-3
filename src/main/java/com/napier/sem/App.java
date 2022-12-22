@@ -74,7 +74,7 @@ public class App {
         }
 
     }
-
+    //get capital cities in the world
     public ArrayList<City> getcapitalcities() {
         try {
             // Create an SQL statement
@@ -103,6 +103,7 @@ public class App {
             return null;
         }
     }
+    //display capital cities in the world
     public void displaycapitalcities(ArrayList<City> capty) {
         if (capty == null)
         {
