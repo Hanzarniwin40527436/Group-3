@@ -37,8 +37,7 @@ public class App {
             String strSelect =
                     "SELECT ID, Name, District, Population "
                             + "FROM city "
-                            + "GROUP BY District"
-                            + "ORDER BY Population DESC";
+                            + "GROUP BY District";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
