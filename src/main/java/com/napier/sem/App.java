@@ -71,10 +71,10 @@ public class App {
             if(ct==null)
                 continue;
 
-            String emp_string =
+            String city_string =
                     String.format("%-10s %-15s %-20s %-8s",
                             ct.getID(), ct.getName(), ct.getDistrict(), ct.getPopulation());
-            System.out.println(emp_string);
+            System.out.println(city_string);
         }
 
 
