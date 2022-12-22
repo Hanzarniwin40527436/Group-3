@@ -137,9 +137,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.Population"
+                    "SELECT ID, Name, Population"
                             + "FROM city, country"
-                            + "WHERE ID=country.Capital AND CountryCode= country.Code"
+                            + "WHERE city.ID=country.Capital AND city.CountryCode= country.Code"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
