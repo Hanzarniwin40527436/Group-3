@@ -84,10 +84,10 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ID, Name, Population"
+                    "SELECT city.ID, city.Name, city.Population"
                             + "FROM city, country"
-                            + "WHERE city.CountryCode=country.Code"
-                            + "ORDER BY Population DESC";
+                            + "WHERE city.CountryCode= country.Code AND city.ID= country.Capital"
+                            + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cty = new ArrayList<City>();
