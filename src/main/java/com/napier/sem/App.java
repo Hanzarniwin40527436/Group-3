@@ -20,7 +20,7 @@ public class App {
 
 
         //get ID for capitalcity
-        ArrayList<City> cty = app.getcapitalcities();
+        ArrayList<City> cty = app.getcapitalcitiesintheworld();
         //displaycapital city
         app.displaycapitalcities(cty);
 
@@ -131,7 +131,7 @@ public class App {
         }
     }
         //get capital cities in the world
-    public ArrayList<City> getcapitalcities() {
+    public ArrayList<City> getcapitalcitiesintheworld() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -139,7 +139,37 @@ public class App {
             String strSelect =
                     "SELECT city.ID, city.Name, city.Population"
                             + "FROM city, country"
-                            + "WHERE city.CountryCode = country.Code";
+                            + "WHERE city.CountryCode = country.Code AND city.ID=country.Code"
+                            + "ORDER BY country.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setID(rset.getInt("city.ID"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+
+    public ArrayList<City> getcapitalcitiesinthecontinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.Population"
+                            + "FROM city, country"
+                            + "WHERE city.CountryCode = country.Code"
+                            + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cty = new ArrayList<City>();
