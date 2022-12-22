@@ -2,6 +2,7 @@ name: Group-3 World APP
 on:
   push:
     branches:
+      - master
       - develop
 jobs:
   UnitTests:

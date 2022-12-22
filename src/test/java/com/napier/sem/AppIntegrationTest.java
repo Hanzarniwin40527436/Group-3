@@ -25,6 +25,7 @@ public class AppIntegrationTest
         ArrayList<Country> cou = new ArrayList<Country>();
         app.displayCountry(cou);
     }
+    @Test
     void displaycity() {
         ArrayList<City> cty = new ArrayList<City>();
         app.displayCity(cty);
