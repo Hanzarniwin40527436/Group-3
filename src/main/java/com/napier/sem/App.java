@@ -22,14 +22,14 @@ public class App {
         //ArrayList<Country> cou = app.getCountryWorld();
         //app.displayCountry(cou);
         //All the cities in the world organised by largest population to smallest.
-        ArrayList<City> cty = app.getCityWorld();
-        app.displayCity(cty);
+       // ArrayList<City> cty = app.getCityWorld();
+        //app.displayCity(cty);
 
 
         //get ID for capitalcity
-        //ArrayList<City> cty = app.getcapitalcitiesintheregion();
+        ArrayList<City> cty = app.getcapitalcitiesintheregion();
         //displaycapital city
-        //app.displaycapitalcity(cty);
+        app.displaycapitalcity(cty);
 
 
         // Disconnect from database
