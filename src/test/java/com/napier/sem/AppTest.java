@@ -23,6 +23,9 @@ public class AppTest {
         app.displayCity(cty);
 
     }
-
-
+    @Test
+    void displaycountry() {
+        ArrayList<Country> cou = new ArrayList<Country>();
+        app.displayCountry(cou);
+    }
 }

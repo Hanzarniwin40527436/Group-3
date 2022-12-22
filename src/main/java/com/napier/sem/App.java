@@ -82,7 +82,7 @@ public class App {
 
 
     }
-    /**
+
     public ArrayList<City> getCityWorld() {
         try {
             // Create an SQL statement
