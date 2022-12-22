@@ -11,9 +11,12 @@ public class App {
 
         // Connect to database
         app.connect();
+        //get country in the world by largest population to smallest
+        ArrayList<Country> cou = app.getCountryWorld();
+        app.displayCountry(cou);
         //get city in the world by largest population to smallest population
-       ArrayList<City> cty = app.getCityWorld();
-       app.displayCity(cty);
+        //ArrayList<City> cty = app.getCityWorld();
+        //app.displayCity(cty);
 
 
         //get ID for capitalcity
@@ -28,7 +31,58 @@ public class App {
 
 
     private Connection con = null;
+    public ArrayList<Country> getCountryWorld() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country "
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
 
+            ArrayList<Country> cou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setCode(rset.getString("Code"));
+                ct.setName(rset.getString("Name"));
+                ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Population"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
+                cou.add(ct);
+            }
+            return cou;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displayCountry(ArrayList<Country> cou) {
+        if (cou == null)
+        {
+            System.out.println("No City");
+            return;
+        }
+        System.out.println(String.format("%-10s %-15s %-20s %-8s %-10s %-10s", "Code", "Name", "Continent", "Region", "Capital", "Population"));
+        //
+        for (Country ct : cou) {
+            if(ct==null)
+                continue;
+
+            String city_string =
+                    String.format("%-10s %-15s %-20s %-8s %-10s %-10s",
+                            ct.getCode(), ct.getName(), ct.getContinent(), ct.getRegion(), ct.getCapital(), ct.getPopulation());
+            System.out.println(city_string);
+        }
+
+
+
+    }
+    /**
     public ArrayList<City> getCityWorld() {
         try {
             // Create an SQL statement
@@ -57,6 +111,7 @@ public class App {
             return null;
         }
     }
+
 
     public void displayCity(ArrayList<City> cty) {
         if (cty == null)
