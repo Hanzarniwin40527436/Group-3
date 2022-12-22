@@ -11,6 +11,7 @@ public class App {
 
         // Connect to database
         app.connect();
+        System.out.println("Hello checking");
         //get ID
        //ArrayList<City> cty = app.getCity();
         //app.displayCity(cty);
@@ -18,8 +19,10 @@ public class App {
 
         //get ID for capitalcity
        ArrayList<City> capty = app.getcapitalcities();
+        System.out.println("Hello array list");
         //displaycapital city
         app.displaycapitalcities(capty);
+        System.out.println("Hello array list display");
 
 
         // Disconnect from database
@@ -86,9 +89,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.population, country.Capital"
-                            + "FROM city, country "+
-                            "WHERE city.ID=country.Capital AND city.CountryCode=country.Code "
+                    "SELECT city.ID, city.Name, city.Population"
+                            + "FROM city, country "
+                            + "WHERE city.ID=country.Capital AND city.CountryCode=country.Code "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
