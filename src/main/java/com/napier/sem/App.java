@@ -12,13 +12,14 @@ public class App {
         // Connect to database
         app.connect();
         //get ID
-        ArrayList<City> cty = app.getCity();
-        app.displayCity(cty);
+       // ArrayList<City> cty = app.getCity();
+       // app.displayCity(cty);
         //get ID for capitalcity
-
-        //displaycapital city
         ArrayList<City> capty = app.getcapitalcities();
+        //displaycapital city
         app.displaycapitalcities(capty);
+
+
         // Disconnect from database
         app.disconnect();
     }
@@ -81,7 +82,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT world.ID, world.Name, world.population"
+                    "SELECT city.ID, city.Name, city.population, country.Capital"
                             + "FROM city, country "+
                             "WHERE city.ID=country.Capital"
                             + "ORDER BY Population DESC";
