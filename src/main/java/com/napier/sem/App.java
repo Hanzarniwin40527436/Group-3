@@ -8,13 +8,16 @@ public class App {
     public static void main(String[] args) {
         // Create new Application
         App app = new App();
-
         // Connect to database
         app.connect();
-        //get country in the world by largest population to smallest
+        // Disconnect from database
+        app.disconnect();
+
+
+        //All the countries in the world organised by largest population to smallest.
         ArrayList<Country> cou = app.getCountryWorld();
         app.displayCountry(cou);
-        //get city in the world by largest population to smallest population
+        //All the cities in the world organised by largest population to smallest.
         ArrayList<City> cty = app.getCityWorld();
         app.displayCity(cty);
 
@@ -25,8 +28,7 @@ public class App {
         //app.displaycapitalcities(capty);
 
 
-        // Disconnect from database
-        app.disconnect();
+
     }
 
 
@@ -39,6 +41,7 @@ public class App {
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
+                            + "ORDER BY Continent"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -64,7 +67,7 @@ public class App {
     public void displayCountry(ArrayList<Country> cou) {
         if (cou == null)
         {
-            System.out.println("No City");
+            System.out.println("No Country found");
             return;
         }
         System.out.println(String.format("%-10s %-15s %-20s %-8s %-10s %-10s", "Code", "Name", "Continent", "Region", "Capital", "Population"));
