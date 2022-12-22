@@ -11,9 +11,9 @@ public class App {
 
         // Connect to database
         app.connect();
-        //get ID
-       ArrayList<City> cty = app.getCity();
-        app.displayCity(cty);
+        //get city in the world by largest population to smallest population
+       ArrayList<City> cty = app.getCityWorld();
+       app.displayCity(cty);
 
 
         //get ID for capitalcity
@@ -29,7 +29,7 @@ public class App {
 
     private Connection con = null;
 
-    public ArrayList<City> getCity() {
+    public ArrayList<City> getCityWorld() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -37,6 +37,7 @@ public class App {
             String strSelect =
                     "SELECT ID, Name, District, Population "
                             + "FROM city "
+                            + "GROUP BY District"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);

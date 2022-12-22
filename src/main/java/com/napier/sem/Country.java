@@ -4,7 +4,7 @@ public class Country {
 
     public String Code;
     public String Name;
-    public String Conrinent;
+    public String Continent;
     public String Region;
 
 
