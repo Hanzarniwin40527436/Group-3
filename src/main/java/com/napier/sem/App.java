@@ -136,7 +136,7 @@ public class App {
             String strSelect =
                     "SELECT city.population, city.Name ,country.Name "+
                     "FROM city, country"+
-                    "WHERE city.CountryCode = country.Code"+
+                    "WHERE city.ID= country.Capital"+
                     "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -182,10 +182,11 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.Population"+
-                        "FROM city, country"+
-                        "WHERE country.Continent='Europe'"+
-                        "ORDER BY country.Population DESC";
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country"+
+                            "WHERE country.Continent='Europe'"+
+                            "ORDER BY city.Population DESC";
+
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<City> cty = new ArrayList<City>();
@@ -212,10 +213,11 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.Population"+
-                    "FROM city, country"+
-                    "WHERE country.Region='Southern Europe'"+
-                    "ORDER BY country.Population DESC";
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country"+
+                            "WHERE country.Region='Southern Europe'"+
+                            "ORDER BY city.Population DESC";
+
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
