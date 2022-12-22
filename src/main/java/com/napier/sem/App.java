@@ -138,7 +138,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.ID, city.Name, city.Population"
-                            + "FROM city"
+                            + "FROM city, country"
                             + "WHERE country.Capital= city.ID AND country.Code= city.CountryCode "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
