@@ -12,12 +12,14 @@ public class App {
         // Connect to database
         app.connect();
         //get ID
-       // ArrayList<City> cty = app.getCity();
-       // app.displayCity(cty);
+       ArrayList<City> cty = app.getCity();
+        app.displayCity(cty);
+
+
         //get ID for capitalcity
-        ArrayList<City> capty = app.getcapitalcities();
+       //ArrayList<City> capty = app.getcapitalcities();
         //displaycapital city
-        app.displaycapitalcities(capty);
+        //app.displaycapitalcities(capty);
 
 
         // Disconnect from database
@@ -42,10 +44,10 @@ public class App {
             ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
-                ct.ID = rset.getInt("ID");
-                ct.Name = rset.getString("Name");
-                ct.District = rset.getString("District");
-                ct.Population = rset.getInt("Population");
+                ct.setID(rset.getInt("ID"));
+                ct.setName(rset.getString("Name"));
+                ct.setDistrict(rset.getString("District"));
+                ct.setPopulation(rset.getInt("Population"));
                 cty.add(ct);
             }
             return cty;
@@ -63,18 +65,21 @@ public class App {
             return;
         }
         System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "District", "Population"));
-        // Loop over all employees in the list
+        //
         for (City ct : cty) {
             if(ct==null)
                 continue;
 
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
-                            ct.ID, ct.Name, ct.District, ct.Population);
+                            ct.getID(), ct.getName(), ct.getDistrict(), ct.getPopulation());
             System.out.println(emp_string);
         }
 
+
+
     }
+    /**
     //get capital cities in the world
     public ArrayList<City> getcapitalcities() {
         try {
@@ -124,6 +129,8 @@ public class App {
         }
 
     }
+    */
+
 
     /**
      * Connect to the MySQL database.
