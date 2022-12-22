@@ -108,16 +108,9 @@ public class App {
     }
     //display capital cities in the world
     public void displaycapitalcities(ArrayList<City> cty) {
-        if (cty == null)
-        {
-            System.out.println("No Capital City");
-            return;
-        }
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name","Population"));
+        System.out.println(String.format("%-10s %-15s %-20s", "ID", "Name","Population"));
         // Loop over all employees in the list
         for (City ct : cty) {
-            if(ct==null)
-                continue;
             String emp_string =
                     String.format("%-10s %-15s %-20s %-8s",
                             ct.getID(), ct.getName(), ct.getPopulation());
