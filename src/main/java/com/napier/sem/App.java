@@ -8,12 +8,9 @@ public class App {
     public static void main(String[] args) {
         // Create new Application
         App app = new App();
+
         // Connect to database
         app.connect();
-        // Disconnect from database
-        app.disconnect();
-
-
         //All the countries in the world organised by largest population to smallest.
         ArrayList<Country> cou = app.getCountryWorld();
         app.displayCountry(cou);
@@ -28,7 +25,8 @@ public class App {
         //app.displaycapitalcities(capty);
 
 
-
+        // Disconnect from database
+        app.disconnect();
     }
 
 
@@ -40,7 +38,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country"
+                            + "FROM country "
+                            + "ORDER BY Continent"
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -59,7 +58,7 @@ public class App {
             return cou;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Country details");
+            System.out.println("Failed to get City details");
             return null;
         }
     }
