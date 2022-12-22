@@ -17,7 +17,12 @@ public class AppTest {
         app = new App();
     }
 
+    @Test
+    void displaycity(){
+        ArrayList<City> cty = new ArrayList<City>();
+        app.displayCity(cty);
 
+    }
 
 
 }
