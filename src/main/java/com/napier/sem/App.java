@@ -19,11 +19,15 @@ public class App {
 
 
         //All the countries in the world organised by largest population to smallest.
-        ArrayList<Country> cou = app.getCountryContinent();
-        app.displayCountry(cou);
+        //ArrayList<Country> cou = app.getCountryContinent();
+        //app.displayCountry(cou);
+
+
+
+
         //All the cities in the world organised by largest population to smallest.
-       // ArrayList<City> cty = app.getCityWorld();
-        //app.displayCity(cty);
+        ArrayList<City> cty = app.getCityWorld();
+        app.displayCity(cty);
 
 
         //get ID for capitalcity
@@ -38,6 +42,11 @@ public class App {
 
 
     private Connection con = null;
+
+    /**
+     *
+     * @return All the countries in the world organised by largest population to smallest.
+     */
     public ArrayList<Country> getCountryWorld() {
         try {
             // Create an SQL statement
@@ -68,6 +77,7 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return All the countries in the continent organised by largest population to smallest.
@@ -85,7 +95,7 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
-            ArrayList<Country> couContinent = new ArrayList<Country>();
+            ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("Code"));
@@ -94,12 +104,48 @@ public class App {
                 ct.setRegion(rset.getString("Population"));
                 ct.setPopulation(rset.getInt("Population"));
                 ct.setCapital(rset.getInt("Capital"));
-                couContinent.add(ct);
+                cou.add(ct);
             }
-            return couContinent;
+            return cou;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the countries in the region organised by largest population to smallest.
+     */
+    public ArrayList<Country> getCountryRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Continent, Region, Population, Capital "
+                            + "FROM country"
+                            + "WHERE Region = 'Central Europe'"
+                            + "ORDER BY Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<Country> cou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setCode(rset.getString("Code"));
+                ct.setName(rset.getString("Name"));
+                ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Population"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
+                cou.add(ct);
+            }
+            return cou;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country with region details");
             return null;
         }
     }
@@ -121,7 +167,11 @@ public class App {
             System.out.println(city_string);
         }
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the cities in the world organised by largest population to smallest.
+     */
     public ArrayList<City> getCityWorld() {
         try {
             // Create an SQL statement
