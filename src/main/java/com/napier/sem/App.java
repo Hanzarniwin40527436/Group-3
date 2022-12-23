@@ -19,8 +19,8 @@ public class App {
 
 
         //All the countries in the world organised by largest population to smallest.
-        ArrayList<Country> cou = app.getCountryContinent();
-        app.displayCountry(cou);
+        //ArrayList<Country> cou = app.getCountryContinent();
+        //app.displayCountry(cou);
 
 
 
@@ -31,9 +31,9 @@ public class App {
 
 
         //get ID for capitalcity
-        //ArrayList<City> cty = app.getcapitalcitiesintheregion();
+        ArrayList<City> cty = app.getcapitalcitiesintheworld();
         //displaycapital city
-        //app.displaycapitalcity(cty);
+        app.displaycapitalcity(cty);
 
 
         // Disconnect from database
