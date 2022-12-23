@@ -19,7 +19,7 @@ public class App {
 
 
         //All the countries in the world organised by largest population to smallest.
-        ArrayList<Country> cou = app.getCountryWorld();
+        ArrayList<Country> cou = app.getCountryContinent();
         app.displayCountry(cou);
         //All the cities in the world organised by largest population to smallest.
        // ArrayList<City> cty = app.getCityWorld();
@@ -46,7 +46,6 @@ public class App {
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country"
-                            + "WHERE Region = 'Central Africa' "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
