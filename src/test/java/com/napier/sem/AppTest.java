@@ -28,4 +28,9 @@ public class AppTest {
         ArrayList<Country> cou = new ArrayList<Country>();
         app.displayCountry(cou);
     }
+    @Test
+    void displaycapitalcity() {
+        ArrayList<City> capty = new ArrayList<City>();
+        app.displaycapitalcity(capty);
+    }
 }

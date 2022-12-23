@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-        // Create new Application
+        /** Create new Application */
         App app = new App();
 
-        // Connect to database
+        /** Connect to database */
 
         if(args.length < 1){
             app.connect("localhost:33060", 30000);
@@ -18,29 +18,44 @@ public class App {
         }
 
 
-        //All the countries in the world organised by largest population to smallest.
+        /** All the countries in the world organised by largest population to smallest. */
+        //ArrayList<Country> cou = app.getCountryWorld();
         //ArrayList<Country> cou = app.getCountryContinent();
+        //ArrayList<Country> cou = app.getCountryRegion();
+
+
+        /** All the cities in the world organised by largest population to smallest. */
+        //ArrayList<City> cty = app.getCityWorld();
+
+
+
+        /** All the capital cities in the world organized by largest population to smallest */
+        //ArrayList<City> capty = app.getcapitalcitiesintheworld();
+        //ArrayList<City> capty = app.getcapitalcitiesinthecontinent();
+        //ArrayList<City> capty = app.getcapitalcitiesintheregion();
+
+        /** the top N populated capital cities in the world where N is provided by the user. */
+        //ArrayList<City> capty = app.getTOPNcapitalcitiesintheworld();
+        //ArrayList<City> capty = app.getTOPNcapitalcitiesinthecontinent();
+        //ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
+
+
+        /** display country */
         //app.displayCountry(cou);
 
+        /** display city */
+       // app.displayCity(cty);
+
+        /** display capital city */
+        //app.displaycapitalcity(capty);
 
 
-
-        //All the cities in the world organised by largest population to smallest.
-        //ArrayList<City> cty = app.getCityWorld();
-        //app.displayCity(cty);
-
-
-        //get ID for capitalcity
-        ArrayList<City> cty = app.getcapitalcitiesintheworld();
-        //displaycapital city
-        app.displaycapitalcity(cty);
-
-
-        // Disconnect from database
+        /** Disconnect from database */
         app.disconnect();
     }
 
-
+    //-------------------------------------------------------------------------------------------------------------------
+    /** Connection */
     private Connection con = null;
 
     /**
@@ -149,23 +164,32 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * Display Country function
+     */
     public void displayCountry(ArrayList<Country> cou) {
         if (cou == null)
         {
             System.out.println("No Country found");
             return;
         }
-        System.out.println(String.format("%-10s %-15s %-20s %-8s %-10s %-10s", "Code", "Name", "Continent", "Region", "Capital", "Population"));
+        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-10s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
+        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
         //
         for (Country ct : cou) {
             if(ct==null)
                 continue;
 
             String city_string =
-                    String.format("%-10s %-15s %-20s %-8s %-10s %-10s",
-                            ct.getCode(), ct.getName(), ct.getContinent(), ct.getRegion(), ct.getCapital(), ct.getPopulation());
+                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-10s %-1s %-8s %-1s %-12s %-1s",
+                            "|",ct.getCode(), "|",ct.getName(), "|",ct.getContinent(),"|",ct.getRegion(), "|",ct.getCapital(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
+
         }
+        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -200,7 +224,11 @@ public class App {
             return null;
         }
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * Display city function
+     */
     public void displayCity(ArrayList<City> cty) {
         if (cty == null) {
             System.out.println("No City");
@@ -219,7 +247,10 @@ public class App {
         }
     }
     //-------------------------------------------------------------------------------------------------------------------
-        //get capital cities in the world
+    /**
+     *
+     * @return All the capital cities in the world organised by largest population to smallest.
+     */
     public ArrayList<City> getcapitalcitiesintheworld() {
         try {
             // Create an SQL statement
@@ -248,26 +279,12 @@ public class App {
             return null;
         }
     }
-    public void displaycapitalcity(ArrayList<City> cty) {
-        if (cty == null)
-        {
-            System.out.println("No Capital City");
-            return;
-        }
-        System.out.println(String.format("%-10s %-15s %-20s", "Population", "Name","Country"));
-        // Loop over all employees in the list
-        for (City ct : cty) {
-            if(ct==null)
-                continue;
-            String emp_string =
-                    String.format("%-10s %-15s %-20s ",
-                            ct.getPopulation(), ct.getName(), ct.getCountryCode());
-            System.out.println(emp_string);
-        }
-    }
 
-
-    //-----------------------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the capital cities in the continent organised by largest population to smallest.
+     */
     public ArrayList<City> getcapitalcitiesinthecontinent() {
         try {
             // Create an SQL statement
@@ -284,9 +301,9 @@ public class App {
             ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
-                ct.setID(rset.getInt("city.ID"));
                 ct.setName(rset.getString("city.Name"));
                 ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
                 cty.add(ct);
             }
             return cty;
@@ -299,6 +316,10 @@ public class App {
     }
 
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the capital cities in the region organised by largest population to smallest.
+     */
     public ArrayList<City> getcapitalcitiesintheregion() {
         try {
             // Create an SQL statement
@@ -314,9 +335,9 @@ public class App {
             ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
-                ct.setID(rset.getInt("city.ID"));
                 ct.setName(rset.getString("city.Name"));
                 ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
                 cty.add(ct);
             }
             return cty;
@@ -327,10 +348,132 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the top N populated capital cities in the world where N is provided by the user.
+     */
+    public ArrayList<City> getTOPNcapitalcitiesintheworld() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country "+
+                            "WHERE city.ID= country.Capital "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                cty.add(ct);
+            }
+            return cty;
 
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the top N populated capital cities in the region where N is provided by the user.
+     */
+    public ArrayList<City> getTOPNcapitalcitiesintheregion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country "+
+                            "WHERE city.ID= country.Capital AND country.Region='Southern Europe' "+
+                            "ORDER BY city.Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                cty.add(ct);
+            }
+            return cty;
 
-    //-----------------------------------------------------------------------------------------------------------------------------------
-    //display capital cities in the world
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the top N populated capital cities in the continent where N is provided by the user.
+     */
+    public ArrayList<City> getTOPNcapitalcitiesinthecontinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country "+
+                            "WHERE city.ID= country.Capital AND country.Continent='Europe' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                cty.add(ct);
+            }
+            return cty;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * Display capital city
+     */
+    public void displaycapitalcity(ArrayList<City> cty) {
+        if (cty == null)
+        {
+            System.out.println("No Capital City");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Population","|","City","|","Country","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (City ct : cty) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
+                            "|",ct.getPopulation(),"|",ct.getName(),"|",ct.getCountryCode(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
 
 //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -365,6 +508,7 @@ public class App {
             }
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
 
     /**
      * Disconnect from the MySQL database.

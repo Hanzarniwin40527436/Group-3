@@ -30,4 +30,10 @@ public class AppIntegrationTest
         ArrayList<City> cty = new ArrayList<City>();
         app.displayCity(cty);
     }
+    @Test
+    void displaycapitalcity() {
+        ArrayList<City> capty = new ArrayList<City>();
+        app.displaycapitalcity(capty);
+    }
+
 }
