@@ -19,15 +19,15 @@ public class App {
 
 
         //All the countries in the world organised by largest population to smallest.
-        //ArrayList<Country> cou = app.getCountryContinent();
-        //app.displayCountry(cou);
+        ArrayList<Country> cou = app.getCountryContinent();
+        app.displayCountry(cou);
 
 
 
 
         //All the cities in the world organised by largest population to smallest.
-        ArrayList<City> cty = app.getCityWorld();
-        app.displayCity(cty);
+        //ArrayList<City> cty = app.getCityWorld();
+        //app.displayCity(cty);
 
 
         //get ID for capitalcity
@@ -90,7 +90,7 @@ public class App {
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
-                            + "WHERE Continent = 'Europe' "
+                            + "WHERE Continent = 'North America' "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
