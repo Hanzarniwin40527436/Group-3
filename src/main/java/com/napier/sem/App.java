@@ -237,7 +237,7 @@ public class App {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
                 ct.setPopulation(rset.getInt("city.Population"));
-                ct.setCountryCode(rset.getString("city.CountryCode"));
+                ct.setCountryCode(rset.getString("country.Name"));
                 cty.add(ct);
             }
             return cty;
