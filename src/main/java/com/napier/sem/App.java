@@ -46,7 +46,7 @@ public class App {
         //ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
         ArrayList<Country> wcou = app.WorldPopulation();
         ArrayList<Country> ccou = app.ContinentPoupulation();
-
+        ArrayList<Country> recou = app.RegionPoupulation();
         /** display country */
         //app.displayCountry(cou);
 
@@ -58,6 +58,7 @@ public class App {
 
         app.displayPopulation(wcou);
         app.displayContinentPopulation(ccou);
+        app.displayRegionPopulation(recou);
 
 
         /** Disconnect from database */
@@ -695,7 +696,7 @@ public class App {
     public void displayContinentPopulation(ArrayList<Country> ccou){
         if (ccou == null)
         {
-            System.out.println("No Capital City");
+            System.out.println("No Population");
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -708,6 +709,52 @@ public class App {
             String emp_string =
                     String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
                             "|",ct.getContinent(),"|",ct.getPopulation(),"|","|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
+    public ArrayList<Country> RegionPoupulation(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Region, SUM(Population) "+ "FROM country "+ "GROUP BY Region";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> recou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setRegion(rset.getString("Region"));
+                ct.setPopulation(rset.getInt("Population"));
+                recou.add(ct);
+            }
+            return recou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Region Population details");
+            return null;
+        }
+    }
+    public void displayRegionPopulation(ArrayList<Country> recou){
+        if (recou == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Region","|","Population","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (Country ct : recou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
+                            "|",ct.getRegion(),"|",ct.getPopulation(),"|","|");
             System.out.println(emp_string);
 
         }
