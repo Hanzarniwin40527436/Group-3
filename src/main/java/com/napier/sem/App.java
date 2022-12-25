@@ -167,6 +167,136 @@ public class App {
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
+     * @return The top N populated countries in the world where N is provided by the user.
+     */
+    public ArrayList<Country> getTopNPopulatedCountriesInTheWorld() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Population, Country, Continent"+
+                            "FROM Country "+
+                            "ORDER BY Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> cou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setCode(rset.getString("Code"));
+                ct.setName(rset.getString("Name"));
+                ct.setContinent(rset.getString("Continent"));
+                ct.setPopulation(rset.getInt("Population"));
+                cou.add(ct);
+            }
+            return cou;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated countries in the world");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return The top N populated countries in a continent where N is provided by the user.
+     */
+    public ArrayList<Country> getTopNPopulatedCountriesInTheContinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Population, Country, Continent"+
+                            "FROM Country "+
+                            "From Continent "+
+                            "ORDER BY Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> cou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setCode(rset.getString("Code"));
+                ct.setName(rset.getString("Name"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setContinent(rset.getString("Continent"));
+                cou.add(ct);
+            }
+            return cou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated countries in the contient");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated countries in a region where N is provided by the user..
+     */
+    public ArrayList<Country> getTopNPopulatedCountriesInTheRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Population, Country, Continent, Region "+
+                            "FROM Region "+
+                            "ORDER BY Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> cou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setName(rset.getString("Name"));
+                ct.setCode(rset.getString("Code"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Region"));
+                cou.add(ct);
+            }
+            return cou;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated countries in the region");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the world where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheWorld() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Population, Country, City "+
+                            "FROM City"+
+                            "ORDER BY Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cou = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("Name"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCountry(rset.getString("Country"));
+                cou.add(ct);
+            }
+            return cou;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
      * Display Country function
      */
     public void displayCountry(ArrayList<Country> cou) {
