@@ -21,7 +21,7 @@ public class App {
         //ArrayList<Country> cou = app.getCountryContinent();
         //ArrayList<Country> cou = app.getCountryRegion();
 
-        /** the top N populated countries in the world where N is provided by the user. */
+        /** the top N populated countries by the user. */
         //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheWorld();
        //<Country> cou = app.getTopNPopulatedCountriesInTheContinent();
         //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheRegion();
@@ -29,6 +29,9 @@ public class App {
 
         /** All the cities in the world organised by largest population to smallest. */
         //ArrayList<City> cty = app.getCityWorld();
+
+        /** The top N populated cities provided by the user*/
+        //ArrayList<City> cty = app.getTopNPopulatedCityInTheWorld();
 
 
 
@@ -344,20 +347,22 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Population, Country, City "+
-                            "FROM City "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT ID, Name, Population, District "+
+                            "FROM city " +
+                            "ORDER BY Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> cou = new ArrayList<City>();
+
+            ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
+                ct.setID(rset.getInt("ID"));
                 ct.setName(rset.getString("Name"));
+                ct.setDistrict(rset.getString("District"));
                 ct.setPopulation(rset.getInt("Population"));
-
-                cou.add(ct);
+                cty.add(ct);
             }
-            return cou;
+            return cty;
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get details of populated cities in the world");
