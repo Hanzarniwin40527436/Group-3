@@ -16,11 +16,15 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
-
         /** All the countries in the world organised by largest population to smallest. */
-        ArrayList<Country> cou = app.getCountryWorld();
+        //ArrayList<Country> cou = app.getCountryWorld();
         //ArrayList<Country> cou = app.getCountryContinent();
         //ArrayList<Country> cou = app.getCountryRegion();
+
+        /** the top N populated countries in the world where N is provided by the user. */
+        //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheWorld();
+       //<Country> cou = app.getTopNPopulatedCountriesInTheContinent();
+        //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world organised by largest population to smallest. */
@@ -40,10 +44,10 @@ public class App {
 
 
         /** display country */
-        app.displayCountry(cou);
+        //app.displayCountry(cou);
 
         /** display city */
-       // app.displayCity(cty);
+       //app.displayCity(cty);
 
         /** display capital city */
         //app.displaycapitalcity(capty);
@@ -168,24 +172,28 @@ public class App {
      *
      * @return The top N populated countries in the world where N is provided by the user.
      */
-    public ArrayList<Country> getTopNPopulatedCountriesInTheWorld() {
+    public ArrayList<Country> getTopNPopulatedCountriesInTheWorld()
+    {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Population, Country, Continent"+
-                            "FROM Country "+
+                    "SELECT Code, Name, Continent, Region, Population, Capital "+
+                            "FROM country "+
                             "ORDER BY Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("Code"));
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Region"));
                 ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
             return cou;
@@ -206,9 +214,8 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Population, Country, Continent"+
-                            "FROM Country "+
-                            "From Continent "+
+                    "SELECT Code, Name, Continent, Region, Population, Capital "+
+                            "FROM country "+"WHERE Continent = 'North America' "+
                             "ORDER BY Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -217,8 +224,10 @@ public class App {
                 Country ct = new Country();
                 ct.setCode(rset.getString("Code"));
                 ct.setName(rset.getString("Name"));
-                ct.setPopulation(rset.getInt("Population"));
                 ct.setContinent(rset.getString("Continent"));
+                ct.setRegion(rset.getString("Region"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
             return cou;
@@ -240,19 +249,20 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Population, Country, Continent, Region "+
-                            "FROM Region "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT Code, Name, Continent, Region, Population, Capital "+
+                            "FROM country "+"WHERE Region='Southern Europe' "+ "ORDER BY Population DESC "+
+                             "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setName(rset.getString("Name"));
                 ct.setCode(rset.getString("Code"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
+                ct.setPopulation(rset.getInt("Population"));
+                ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
             return cou;
@@ -262,37 +272,7 @@ public class App {
             return null;
         }
     }
-    //-------------------------------------------------------------------------------------------------------------------
-    /**
-     *
-     * The top N populated cities in the world where N is provided by the user.
-     */
-    public ArrayList<City> getTopNPopulatedCityInTheWorld() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Code, Name, Population, Country, City "+
-                            "FROM City"+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> cou = new ArrayList<City>();
-            while (rset.next()) {
-                City ct = new City();
-                ct.setName(rset.getString("Name"));
-                ct.setPopulation(rset.getInt("Population"));
-                ct.setCountry(rset.getString("Country"));
-                cou.add(ct);
-            }
-            return cou;
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get details of populated cities in the world");
-            return null;
-        }
-    }
+
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -356,6 +336,37 @@ public class App {
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
+     * The top N populated cities in the world where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheWorld() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Code, Name, Population, Country, City "+
+                            "FROM City "+
+                            "ORDER BY Population DESC "+ "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cou = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("Name"));
+                ct.setPopulation(rset.getInt("Population"));
+
+                cou.add(ct);
+            }
+            return cou;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
      * Display city function
      */
     public void displayCity(ArrayList<City> cty) {
@@ -404,7 +415,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
@@ -439,7 +450,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
@@ -473,7 +484,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
@@ -506,7 +517,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
@@ -539,7 +550,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
@@ -572,7 +583,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
+            System.out.println("Failed to get Capital Cities details");
             return null;
         }
     }
