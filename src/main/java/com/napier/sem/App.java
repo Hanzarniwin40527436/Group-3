@@ -10,7 +10,6 @@ public class App {
         App app = new App();
 
         /** Connect to database */
-
         if(args.length < 1){
             app.connect("localhost:33060", 30000);
         }else{
@@ -19,7 +18,7 @@ public class App {
 
 
         /** All the countries in the world organised by largest population to smallest. */
-        //ArrayList<Country> cou = app.getCountryWorld();
+        ArrayList<Country> cou = app.getCountryWorld();
         //ArrayList<Country> cou = app.getCountryContinent();
         //ArrayList<Country> cou = app.getCountryRegion();
 
@@ -41,7 +40,7 @@ public class App {
 
 
         /** display country */
-        //app.displayCountry(cou);
+        app.displayCountry(cou);
 
         /** display city */
        // app.displayCity(cty);
@@ -80,7 +79,7 @@ public class App {
                 ct.setCode(rset.getString("Code"));
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Population"));
+                ct.setRegion(rset.getString("Region"));
                 ct.setPopulation(rset.getInt("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
@@ -116,7 +115,7 @@ public class App {
                 ct.setCode(rset.getString("Code"));
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Population"));
+                ct.setRegion(rset.getString("Region"));
                 ct.setPopulation(rset.getInt("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
@@ -152,7 +151,7 @@ public class App {
                 ct.setCode(rset.getString("Code"));
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Population"));
+                ct.setRegion(rset.getString("Region"));
                 ct.setPopulation(rset.getInt("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
@@ -305,21 +304,21 @@ public class App {
             System.out.println("No Country found");
             return;
         }
-        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-10s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
-        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
         //
         for (Country ct : cou) {
             if(ct==null)
                 continue;
 
             String city_string =
-                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-10s %-1s %-8s %-1s %-12s %-1s",
+                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s",
                             "|",ct.getCode(), "|",ct.getName(), "|",ct.getContinent(),"|",ct.getRegion(), "|",ct.getCapital(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
 
         }
-        System.out.println("|---------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
