@@ -16,7 +16,7 @@ public class AppTest {
     {
         app = new App();
     }
-
+    /** Unit Testing City */
     @Test
     void displaycityEmpty(){
         ArrayList<City> cty = new ArrayList<City>();
@@ -45,6 +45,8 @@ public class AppTest {
         cty.add(city);
         app.displayCity(cty);
     }
+    //------------------------------------------------------------------------------------------------------------------
+    /** Unit Testing Country */
     @Test
     void displaycountryEmpty(){
         ArrayList<Country> cou = new ArrayList<Country>();
@@ -76,7 +78,8 @@ public class AppTest {
         cou.add(couty);
         app.displayCountry(cou);
     }
-
+    //------------------------------------------------------------------------------------------------------------------
+    /** Unit Testing Capital cities */
     @Test
     void displaycapitalcityEmpty(){
         ArrayList<City> capty = new ArrayList<City>();

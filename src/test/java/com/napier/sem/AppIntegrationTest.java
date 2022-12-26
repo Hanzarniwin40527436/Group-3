@@ -21,8 +21,9 @@ public class AppIntegrationTest
 
     }
 
+    /** Integration Testing Country in the world */
     @Test
-    void testprintcountryTest() {
+    void testworldcountryTest() {
         ArrayList<Country> cou=app.getCountryWorld();
         Country cty= cou.get(0);
         assertEquals(cty.getCode(),"CHN");
@@ -30,8 +31,10 @@ public class AppIntegrationTest
         assertEquals(cty.getContinent(),"Asia");
         assertEquals(cty.getRegion(),"Eastern Asia");
     }
+
+    /** Integration Testing City in the world */
     @Test
-    void testgetcity() {
+    void testworldcityTest() {
         ArrayList<City> cty = app.getCityWorld();
         City city = cty.get(0);
         assertEquals(city.getID(),1024);
@@ -39,8 +42,10 @@ public class AppIntegrationTest
         assertEquals(city.getDistrict(),"Maharashtra");
         assertEquals(city.getPopulation(),10500000);
     }
+
+    /** Integration Testing Capital Cities in the world */
     @Test
-    void testprintcapitalcitiesTest() {
+    void testworldcapitalcitiesTest() {
         ArrayList<City> capty = app.getcapitalcitiesintheworld();
         City capt=capty.get(0);
         assertEquals(capt.getName(),"Seoul");
