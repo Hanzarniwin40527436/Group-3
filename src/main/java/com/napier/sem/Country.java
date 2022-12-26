@@ -7,13 +7,22 @@ public class Country {
     private String Continent;
     private String Region;
     private Integer Capital;
-    private Integer Population;
+    private Long Population;
 
-    public Integer getPopulation() {
+    public Long getPopulation() {
         return Population;
     }
 
-    public void setPopulation(Integer population) {
+    public void setPopulation(Long population) {
+        Population = population;
+    }
+
+    public Country(String code, String name, String continent, String region, Integer capital, Long population) {
+        Code = code;
+        Name = name;
+        Continent = continent;
+        Region = region;
+        Capital = capital;
         Population = population;
     }
 
@@ -30,14 +39,7 @@ public class Country {
     }
 
 
-    public Country(String code, String name, String continent, String region, Integer capital, Integer population) {
-        Code = code;
-        Name = name;
-        Continent = continent;
-        Region = region;
-        Capital = capital;
-        Population = population;
-    }
+
 
     public String getCode() {
         return Code;

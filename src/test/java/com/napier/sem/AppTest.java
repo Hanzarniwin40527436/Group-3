@@ -33,4 +33,6 @@ public class AppTest {
         ArrayList<City> capty = new ArrayList<City>();
         app.displaycapitalcity(capty);
     }
+
+    //all method need to test
 }

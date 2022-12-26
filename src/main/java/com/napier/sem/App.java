@@ -44,9 +44,13 @@ public class App {
         //ArrayList<City> capty = app.getTOPNcapitalcitiesintheworld();
         //ArrayList<City> capty = app.getTOPNcapitalcitiesinthecontinent();
         //ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
+
+        /** Population from World/Continent/Region  */
         ArrayList<Country> wcou = app.WorldPopulation();
         ArrayList<Country> ccou = app.ContinentPoupulation();
         ArrayList<Country> recou = app.RegionPoupulation();
+
+
         /** display country */
         //app.displayCountry(cou);
 
@@ -56,6 +60,7 @@ public class App {
         /** display capital city */
         //app.displaycapitalcity(capty);
 
+        /** display population */
         app.displayPopulation(wcou);
         app.displayContinentPopulation(ccou);
         app.displayRegionPopulation(recou);
@@ -92,7 +97,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -128,7 +133,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -164,7 +169,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -200,7 +205,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -234,7 +239,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -269,7 +274,7 @@ public class App {
                 ct.setName(rset.getString("Name"));
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("Population"));
                 ct.setCapital(rset.getInt("Capital"));
                 cou.add(ct);
             }
@@ -623,7 +628,7 @@ public class App {
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<Country> WorldPopulation(){
         try {
             // Create an SQL statement
@@ -636,18 +641,18 @@ public class App {
             ArrayList<Country> wcou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
                 wcou.add(ct);
             }
             return wcou;
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Capital Cities details");
+            System.out.println("Failed to get World population details");
             return null;
         }
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public void displayPopulation(ArrayList<Country> wcou){
         if (wcou == null)
         {
@@ -655,7 +660,7 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format( "%-35s","Population"));
+        System.out.println(String.format( "%-35s","Total Population of the World"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Country ct : wcou) {
@@ -669,20 +674,21 @@ public class App {
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<Country> ContinentPoupulation(){
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Continent, SUM(Population) "+ "FROM country "+ "GROUP BY Continent";
+                    "SELECT Continent ,SUM(Population) "+ "FROM country "+ "GROUP BY Continent ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> ccou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setContinent(rset.getString("Continent"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
                 ccou.add(ct);
             }
             return ccou;
@@ -693,6 +699,7 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public void displayContinentPopulation(ArrayList<Country> ccou){
         if (ccou == null)
         {
@@ -700,35 +707,35 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Continent","|","Population","|"));
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s","|","Continent","|","Total Population","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Country ct : ccou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
-                            "|",ct.getContinent(),"|",ct.getPopulation(),"|","|");
+                    String.format("%-1s %-35s %-1s %-38s %-1s",
+                            "|",ct.getContinent(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<Country> RegionPoupulation(){
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Region, SUM(Population) "+ "FROM country "+ "GROUP BY Region";
+                    "SELECT Region ,SUM(Population) "+ "FROM country "+ "GROUP BY Region";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> recou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
                 recou.add(ct);
             }
             return recou;
@@ -739,6 +746,7 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public void displayRegionPopulation(ArrayList<Country> recou){
         if (recou == null)
         {
@@ -746,15 +754,15 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Region","|","Population","|"));
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Region","|","Total Population","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Country ct : recou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
-                            "|",ct.getRegion(),"|",ct.getPopulation(),"|","|");
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getRegion(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
