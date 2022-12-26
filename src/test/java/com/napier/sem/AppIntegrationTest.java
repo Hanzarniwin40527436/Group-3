@@ -20,17 +20,10 @@ public class AppIntegrationTest
 
     }
 
-    @Test
-    void testgetcity(){
-        ArrayList<City> cty = new ArrayList<>();
-        City city = new City();
-        city.setID(23232);
-        city.setName("Seoul");
-        city.setDistrict("Seoul");
-        city.setPopulation(9981619);
-        cty.add(city);
-        app.displayCity(cty);
-}
+
+
+
+
     @Test
     void testprintcountryTest() {
         ArrayList<Country> cou = new ArrayList<Country>();
@@ -39,12 +32,27 @@ public class AppIntegrationTest
         couty.setName("Aru-ba");
         couty.setContinent("North America");
         couty.setRegion("Caribbean");
-        couty.setPopulation(2342223L);
-        couty.setCapital(23);
+
         cou.add(couty);
-        app.displayCountry(cou);
-
-
+        cou=app.getCountryWorld();
+        assertEquals(couty.getCode(),"ABW");
+        assertEquals(couty.getName(),"Aru-ba");
+        assertEquals(couty.getContinent(),"North America");
+        assertEquals(couty.getRegion(),"Caribbean");
+    }
+    @Test
+    void testgetcity() {
+        ArrayList<City> cty = new ArrayList<>();
+        City city = new City();
+        city.setID(23232);
+        city.setName("Seoul");
+        city.setDistrict("Seoul");
+        city.setPopulation(9981619);
+        cty.add(city);
+        cty=app.getCityWorld();
+        assertEquals(city.getID(),23232);
+        assertEquals(city.getName(),"Seoul");
+        assertEquals(city.getPopulation(),9981619);
     }
     @Test
     void testprintcapitalcitiesTest() {
@@ -54,6 +62,11 @@ public class AppIntegrationTest
         capt.setPopulation(1231233);
         capt.setCountryCode("Dubai");
         capty.add(capt);
-        app.displaycapitalcity(capty);
+       capty=app.getcapitalcitiesintheworld();
+        assertEquals(capt.getName(),"Jarcata");
+        assertEquals(capt.getPopulation(),1231233);
+        assertEquals(capt.getCountryCode(),"Dubai");
+
     }
+
 }
