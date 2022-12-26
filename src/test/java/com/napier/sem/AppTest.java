@@ -76,4 +76,34 @@ public class AppTest {
         cou.add(couty);
         app.displayCountry(cou);
     }
+
+    @Test
+    void displaycapitalcityEmpty(){
+        ArrayList<City> capty = new ArrayList<City>();
+        app.displaycapitalcity(capty);
+    }
+
+    @Test
+    void printcapitalcityNullTest() {
+        app.displaycapitalcity(null);
+    }
+    @Test
+    void printcapitalcityTestContainsNull() {
+        ArrayList<City> capty = new ArrayList<City>();
+        capty.add(null);
+        app.displaycapitalcity(capty);
+    }
+
+    @Test
+    void printcapitalcityTest() {
+        ArrayList<City> capty = new ArrayList<City>();
+       City capt=new City();
+        capt.setName("Jarcata");
+        capt.setPopulation(1231233);
+        capt.setCountryCode("Dubai");
+        capty.add(capt);
+        app.displaycapitalcity(capty);
+    }
+
+
 }

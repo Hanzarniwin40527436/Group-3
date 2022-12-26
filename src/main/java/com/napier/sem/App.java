@@ -302,10 +302,10 @@ public class App {
             return;
 
         }
-        if(cou.contains(null)){
+       /** if(cou.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        }
+        } */
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
@@ -403,10 +403,10 @@ public class App {
             return;
 
         }
-        if(cty.contains(null)){
+       /** if(cty.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        }
+        }*/
         System.out.println("|--------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-20s %-1s %-10s %-1s", "|", "ID", "|", "Name", "|", "District", "|", "Population", "|"));
         System.out.println("|--------------------------------------------------------------------------------------|");
@@ -639,10 +639,10 @@ public class App {
             return;
 
         }
-        if(cty.contains(null)){
+       /** if(cty.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        }
+        } */
         System.out.println("|-------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Population","|","City","|","Country","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -659,6 +659,10 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the World.
+     */
     public ArrayList<Country> WorldPopulation(){
         try {
             // Create an SQL statement
@@ -683,6 +687,10 @@ public class App {
         }
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the World Display.
+     */
     public void displayPopulation(ArrayList<Country> wcou){
         if (wcou == null)
         {
@@ -705,6 +713,10 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Continent.
+     */
     public ArrayList<Country> ContinentPoupulation(){
         try {
             // Create an SQL statement
@@ -730,6 +742,10 @@ public class App {
         }
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Continent display.
+     */
     public void displayContinentPopulation(ArrayList<Country> ccou){
         if (ccou == null)
         {
@@ -752,6 +768,10 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Region.
+     */
     public ArrayList<Country> RegionPoupulation(){
         try {
             // Create an SQL statement
@@ -777,6 +797,10 @@ public class App {
         }
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Region display.
+     */
     public void displayRegionPopulation(ArrayList<Country> recou){
         if (recou == null)
         {
