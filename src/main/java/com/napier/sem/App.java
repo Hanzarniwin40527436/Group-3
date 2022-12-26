@@ -16,7 +16,7 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        /** All the countries in the in the world/continent/region organised by largest population to smallest. */
+        /** All the countries in the world/continent/region organised by largest population to smallest. */
         ArrayList<Country> cou = app.getCountryWorld();
         //ArrayList<Country> cou = app.getCountryContinent();
         //ArrayList<Country> cou = app.getCountryRegion();
@@ -55,7 +55,7 @@ public class App {
         app.displayCountry(cou);
 
         /** display city */
-       app.displayCity(cty);
+        app.displayCity(cty);
 
         /** display capital city */
         app.displaycapitalcity(capty);
