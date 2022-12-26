@@ -20,10 +20,6 @@ public class AppIntegrationTest
 
     }
 
-
-
-
-
     @Test
     void testprintcountryTest() {
         ArrayList<Country> cou = new ArrayList<Country>();
@@ -32,7 +28,6 @@ public class AppIntegrationTest
         couty.setName("Aru-ba");
         couty.setContinent("North America");
         couty.setRegion("Caribbean");
-
         cou.add(couty);
         cou=app.getCountryWorld();
         assertEquals(couty.getCode(),"ABW");
@@ -66,7 +61,5 @@ public class AppIntegrationTest
         assertEquals(capt.getName(),"Jarcata");
         assertEquals(capt.getPopulation(),1231233);
         assertEquals(capt.getCountryCode(),"Dubai");
-
     }
-
 }
