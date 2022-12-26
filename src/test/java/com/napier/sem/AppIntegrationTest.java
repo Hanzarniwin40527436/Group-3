@@ -43,8 +43,17 @@ public class AppIntegrationTest
         couty.setCapital(23);
         cou.add(couty);
         app.displayCountry(cou);
+
+
     }
-
-
-
+    @Test
+    void testprintcapitalcitiesTest() {
+        ArrayList<City> capty = new ArrayList<City>();
+        City capt=new City();
+        capt.setName("Jarcata");
+        capt.setPopulation(1231233);
+        capt.setCountryCode("Dubai");
+        capty.add(capt);
+        app.displaycapitalcity(capty);
+    }
 }

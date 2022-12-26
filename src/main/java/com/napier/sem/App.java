@@ -18,52 +18,80 @@ public class App {
 
         /** All the countries in the world/continent/region organised by largest population to smallest. */
         ArrayList<Country> cou = app.getCountryWorld();
-        //ArrayList<Country> cou = app.getCountryContinent();
-        //ArrayList<Country> cou = app.getCountryRegion();
+        ArrayList<Country> cou1 = app.getCountryContinent();
+        ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
-        //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheWorld();
-       //<Country> cou = app.getTopNPopulatedCountriesInTheContinent();
-        //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheRegion();
+        ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+        ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+        ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world organised by largest population to smallest. */
         ArrayList<City> cty = app.getCityWorld();
 
         /** The top N populated cities provided by the user*/
-        //ArrayList<City> cty = app.getTopNPopulatedCityInTheWorld();
-
-
+        ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
-      //  ArrayList<City> capty = app.getcapitalcitiesintheworld();
-        //ArrayList<City> capty = app.getcapitalcitiesinthecontinent();
-        //ArrayList<City> capty = app.getcapitalcitiesintheregion();
+        ArrayList<City> capty = app.getcapitalcitiesintheworld();
+        ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
+        ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
 
         /** the top N populated capital cities in the world/continent/region where N is provided by the user. */
-        //ArrayList<City> capty = app.getTOPNcapitalcitiesintheworld();
-        //ArrayList<City> capty = app.getTOPNcapitalcitiesinthecontinent();
-        //ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
+        ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
+        ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
+        ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
 
         /** Population from World/Continent/Region  */
-       // ArrayList<Country> wcou = app.WorldPopulation();
-        //ArrayList<Country> ccou = app.ContinentPoupulation();
-       // ArrayList<Country> recou = app.RegionPoupulation();
+        ArrayList<Country> wcou = app.WorldPopulation();
+        ArrayList<Country> ccou = app.ContinentPoupulation();
+        ArrayList<Country> recou = app.RegionPoupulation();
 
 
         /** display country */
-        //app.displayCountry(cou);
+        System.out.println("1# Display country in the world");
+        app.displayCountry(cou);
+        System.out.println("2# Display country in the continent");
+        app.displayCountry(cou1);
+        System.out.println("3# Display country in the region");
+        app.displayCountry(cou2);
+        System.out.println("4# Top N populated countries in the world");
+        app.displayCountry(coun);
+        System.out.println("4# Top N populated countries in the continent");
+        app.displayCountry(coun1);
+        System.out.println("5# Top N populated countries in the region");
+        app.displayCountry(coun2);
+
 
         /** display city */
+        System.out.println("# Display city in the world");
         app.displayCity(cty);
+        System.out.println("# Top N populated cities in the world");
+        app.displayCity(ctyn);
+
 
         /** display capital city */
-       // app.displaycapitalcity(capty);
+        System.out.println("# Display capital city in the world");
+       app.displaycapitalcity(capty);
+        System.out.println("# Display capital city in the Continent");
+        app.displaycapitalcity(capty1);
+        System.out.println("# Display capital city in the Region");
+        app.displaycapitalcity(capty2);
+        System.out.println("# Top N populated capital cities in the world");
+        app.displaycapitalcity(captyn);
+        System.out.println("# Top N populated capital cities in the Continent");
+        app.displaycapitalcity(captyn1);
+        System.out.println("# Top N populated capital cities in the Region");
+        app.displaycapitalcity(captyn2);
 
         /** display population */
-        //app.displayPopulation(wcou);
-        //app.displayContinentPopulation(ccou);
-       // app.displayRegionPopulation(recou);
+        System.out.println("# World Population");
+        app.displayPopulation(wcou);
+        System.out.println("# Continent Population");
+        app.displayContinentPopulation(ccou);
+        System.out.println("# Region Population");
+       app.displayRegionPopulation(recou);
 
 
         /** Disconnect from database */
@@ -157,7 +185,7 @@ public class App {
             String strSelect =
                     "SELECT Code, Name, Continent, Region, Population, Capital "
                             + "FROM country "
-                            + "WHERE Region = 'Central Europe' "
+                            + "WHERE Region = 'Southern Europe' "
                             + "ORDER BY Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
