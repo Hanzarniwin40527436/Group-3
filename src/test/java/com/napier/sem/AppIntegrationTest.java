@@ -21,19 +21,30 @@ public class AppIntegrationTest
     }
 
     @Test
-    void displaycountry() {
+    void testgetcity(){
+        ArrayList<City> cty = new ArrayList<>();
+        City city = new City();
+        city.setID(23232);
+        city.setName("Seoul");
+        city.setDistrict("Seoul");
+        city.setPopulation(9981619);
+        cty.add(city);
+        app.displayCity(cty);
+}
+    @Test
+    void testprintcountryTest() {
         ArrayList<Country> cou = new ArrayList<Country>();
+        Country couty=new Country();
+        couty.setCode("ABW");
+        couty.setName("Aru-ba");
+        couty.setContinent("North America");
+        couty.setRegion("Caribbean");
+        couty.setPopulation(2342223L);
+        couty.setCapital(23);
+        cou.add(couty);
         app.displayCountry(cou);
     }
-    @Test
-    void displaycity() {
-        ArrayList<City> cty = new ArrayList<City>();
-        app.displayCity(cty);
-    }
-    @Test
-    void displaycapitalcity() {
-        ArrayList<City> capty = new ArrayList<City>();
-        app.displaycapitalcity(capty);
-    }
+
+
 
 }

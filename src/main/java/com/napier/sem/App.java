@@ -36,7 +36,7 @@ public class App {
 
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
-        ArrayList<City> capty = app.getcapitalcitiesintheworld();
+      //  ArrayList<City> capty = app.getcapitalcitiesintheworld();
         //ArrayList<City> capty = app.getcapitalcitiesinthecontinent();
         //ArrayList<City> capty = app.getcapitalcitiesintheregion();
 
@@ -52,13 +52,13 @@ public class App {
 
 
         /** display country */
-        app.displayCountry(cou);
+        //app.displayCountry(cou);
 
         /** display city */
         app.displayCity(cty);
 
         /** display capital city */
-        app.displaycapitalcity(capty);
+       // app.displaycapitalcity(capty);
 
         /** display population */
         //app.displayPopulation(wcou);
@@ -297,6 +297,15 @@ public class App {
             System.out.println("No Country found");
             return;
         }
+        if(cou.isEmpty()){
+            System.out.println("Array List is Empty");
+            return;
+
+        }
+        if(cou.contains(null)){
+            System.out.println("Array List contain Null");
+            return;
+        }
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
@@ -389,17 +398,29 @@ public class App {
             System.out.println("No City");
             return;
         }
-        System.out.println(String.format("%-10s %-15s %-20s %-8s", "ID", "Name", "District", "Population"));
+        if(cty.isEmpty()){
+            System.out.println("Array List is Empty");
+            return;
+
+        }
+        if(cty.contains(null)){
+            System.out.println("Array List contain Null");
+            return;
+        }
+        System.out.println("|--------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-20s %-1s %-10s %-1s", "|", "ID", "|", "Name", "|", "District", "|", "Population", "|"));
+        System.out.println("|--------------------------------------------------------------------------------------|");
         //
         for (City ct : cty) {
             if (ct == null)
                 continue;
 
             String city_string =
-                    String.format("%-10s %-15s %-20s %-8s",
-                            ct.getID(), ct.getName(), ct.getDistrict(), ct.getPopulation());
+                    String.format("%-1s %-10s %-1s %-35s %-1s %-20s %-1s %-10s %-1s",
+                            "|", ct.getID(),"|", ct.getName(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
         }
+        System.out.println("|--------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -611,6 +632,15 @@ public class App {
         if (cty == null)
         {
             System.out.println("No Capital City");
+            return;
+        }
+        if(cty.isEmpty()){
+            System.out.println("Array List is Empty");
+            return;
+
+        }
+        if(cty.contains(null)){
+            System.out.println("Array List contain Null");
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
