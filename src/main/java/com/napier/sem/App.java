@@ -16,54 +16,54 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        /** All the countries in the world organised by largest population to smallest. */
-        //ArrayList<Country> cou = app.getCountryWorld();
+        /** All the countries in the in the world/continent/region organised by largest population to smallest. */
+        ArrayList<Country> cou = app.getCountryWorld();
         //ArrayList<Country> cou = app.getCountryContinent();
         //ArrayList<Country> cou = app.getCountryRegion();
 
-        /** the top N populated countries by the user. */
+        /** the top N populated countries in the world/continent/region by the user. */
         //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheWorld();
        //<Country> cou = app.getTopNPopulatedCountriesInTheContinent();
         //ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world organised by largest population to smallest. */
-        //ArrayList<City> cty = app.getCityWorld();
+        ArrayList<City> cty = app.getCityWorld();
 
         /** The top N populated cities provided by the user*/
         //ArrayList<City> cty = app.getTopNPopulatedCityInTheWorld();
 
 
 
-        /** All the capital cities in the world organized by largest population to smallest */
-        //ArrayList<City> capty = app.getcapitalcitiesintheworld();
+        /** All the capital cities in the world/continent/region organized by largest population to smallest */
+        ArrayList<City> capty = app.getcapitalcitiesintheworld();
         //ArrayList<City> capty = app.getcapitalcitiesinthecontinent();
         //ArrayList<City> capty = app.getcapitalcitiesintheregion();
 
-        /** the top N populated capital cities in the world where N is provided by the user. */
+        /** the top N populated capital cities in the world/continent/region where N is provided by the user. */
         //ArrayList<City> capty = app.getTOPNcapitalcitiesintheworld();
         //ArrayList<City> capty = app.getTOPNcapitalcitiesinthecontinent();
         //ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
 
         /** Population from World/Continent/Region  */
-        ArrayList<Country> wcou = app.WorldPopulation();
-        ArrayList<Country> ccou = app.ContinentPoupulation();
-        ArrayList<Country> recou = app.RegionPoupulation();
+       // ArrayList<Country> wcou = app.WorldPopulation();
+        //ArrayList<Country> ccou = app.ContinentPoupulation();
+       // ArrayList<Country> recou = app.RegionPoupulation();
 
 
         /** display country */
-        //app.displayCountry(cou);
+        app.displayCountry(cou);
 
         /** display city */
-       //app.displayCity(cty);
+       app.displayCity(cty);
 
         /** display capital city */
-        //app.displaycapitalcity(capty);
+        app.displaycapitalcity(capty);
 
         /** display population */
-        app.displayPopulation(wcou);
-        app.displayContinentPopulation(ccou);
-        app.displayRegionPopulation(recou);
+        //app.displayPopulation(wcou);
+        //app.displayContinentPopulation(ccou);
+       // app.displayRegionPopulation(recou);
 
 
         /** Disconnect from database */
