@@ -112,9 +112,9 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "
-                            + "FROM country "
-                            + "ORDER BY Population DESC";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
+                            + "FROM country, city "
+                            + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -126,7 +126,7 @@ public class App {
                 ct.setContinent(rset.getString("Continent"));
                 ct.setRegion(rset.getString("Region"));
                 ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCapital(rset.getInt("city.Name"));
                 cou.add(ct);
             }
             return cou;
