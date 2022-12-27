@@ -114,7 +114,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
-                            + "FROM country, city "+ "WHERE city.ID= country.Capital "
+                            + "FROM country, city "
+                            + "WHERE city.ID= country.Capital "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -149,8 +150,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
-                            + "FROM country, city "+ "WHERE city.ID= country.Capital "
-                            + "WHERE Continent = 'North America' "
+                            + "FROM country, city "
+                            + "WHERE city.ID= country.Capital AND Continent = 'North America' "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -185,8 +186,8 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
-                            + "FROM country, city "+ "WHERE city.ID= country.Capital "
-                            + "WHERE Region = 'Southern Europe' "
+                            + "FROM country, city "
+                            + "WHERE city.ID= country.Capital AND Region = 'Southern Europe' "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
