@@ -6,7 +6,7 @@ public class Country {
     private String Name;
     private String Continent;
     private String Region;
-    private Integer Capital;
+    private String Capital;
     private Long Population;
 
     public Long getPopulation() {
@@ -17,7 +17,15 @@ public class Country {
         Population = population;
     }
 
-    public Country(String code, String name, String continent, String region, Integer capital, Long population) {
+
+
+
+
+    public String getCode() {
+        return Code;
+    }
+
+    public Country(String code, String name, String continent, String region, String capital, Long population) {
         Code = code;
         Name = name;
         Continent = continent;
@@ -26,23 +34,12 @@ public class Country {
         Population = population;
     }
 
-    public Country(Integer capital) {
-        Capital = capital;
-    }
-
-    public Integer getCapital() {
+    public String getCapital() {
         return Capital;
     }
 
-    public void setCapital(Integer capital) {
+    public void setCapital(String capital) {
         Capital = capital;
-    }
-
-
-
-
-    public String getCode() {
-        return Code;
     }
 
     public void setCode(String code) {

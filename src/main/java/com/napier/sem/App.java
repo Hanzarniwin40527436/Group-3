@@ -18,13 +18,13 @@ public class App {
 
         /** All the countries in the world/continent/region organised by largest population to smallest. */
         ArrayList<Country> cou = app.getCountryWorld();
-        ArrayList<Country> cou1 = app.getCountryContinent();
-        ArrayList<Country> cou2 = app.getCountryRegion();
+       // ArrayList<Country> cou1 = app.getCountryContinent();
+       //ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
-        ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
-        ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
-        ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
+       // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+       // ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+      //  ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world organised by largest population to smallest. */
@@ -53,15 +53,15 @@ public class App {
         System.out.println("1# Display country in the world");
         app.displayCountry(cou);
         System.out.println("2# Display country in the continent");
-        app.displayCountry(cou1);
+        //app.displayCountry(cou1);
         System.out.println("3# Display country in the region");
-        app.displayCountry(cou2);
+        //app.displayCountry(cou2);
         System.out.println("4# Top N populated countries in the world");
-        app.displayCountry(coun);
+       //app.displayCountry(coun);
         System.out.println("4# Top N populated countries in the continent");
-        app.displayCountry(coun1);
+       // app.displayCountry(coun1);
         System.out.println("5# Top N populated countries in the region");
-        app.displayCountry(coun2);
+        //app.displayCountry(coun2);
 
 
         /** display city */
@@ -113,7 +113,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
-                            + "FROM country, city "
+                            + "FROM country, city "+ "WHERE city.ID= country.Capital "
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -121,12 +121,12 @@ public class App {
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("city.Name"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
@@ -140,7 +140,7 @@ public class App {
     /**
      *
      * @return All the countries in the continent organised by largest population to smallest.
-     */
+
     public ArrayList<Country> getCountryContinent() {
         try {
             // Create an SQL statement
@@ -171,12 +171,12 @@ public class App {
             System.out.println("Failed to get City details");
             return null;
         }
-    }
+    }  */
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return All the countries in the region organised by largest population to smallest.
-     */
+
     public ArrayList<Country> getCountryRegion() {
         try {
             // Create an SQL statement
@@ -207,12 +207,12 @@ public class App {
             System.out.println("Failed to get Country with region details");
             return null;
         }
-    }
+    } */
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return The top N populated countries in the world where N is provided by the user.
-     */
+
     public ArrayList<Country> getTopNPopulatedCountriesInTheWorld()
     {
         try {
@@ -243,12 +243,12 @@ public class App {
             System.out.println("Failed to get details of populated countries in the world");
             return null;
         }
-    }
+    }  */
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return The top N populated countries in a continent where N is provided by the user.
-     */
+
     public ArrayList<Country> getTopNPopulatedCountriesInTheContinent() {
         try {
             // Create an SQL statement
@@ -278,12 +278,12 @@ public class App {
             System.out.println("Failed to get details of populated countries in the contient");
             return null;
         }
-    }
+    }  */
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * The top N populated countries in a region where N is provided by the user..
-     */
+
     public ArrayList<Country> getTopNPopulatedCountriesInTheRegion() {
         try {
             // Create an SQL statement
@@ -313,7 +313,7 @@ public class App {
             return null;
         }
     }
-
+     */
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -334,21 +334,21 @@ public class App {
             System.out.println("Array List contain Null");
             return;
         } */
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-28s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
         //
         for (Country ct : cou) {
             if(ct==null)
                 continue;
 
             String city_string =
-                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-8s %-1s %-12s %-1s",
+                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-28s %-1s %-12s %-1s",
                             "|",ct.getCode(), "|",ct.getName(), "|",ct.getContinent(),"|",ct.getRegion(), "|",ct.getCapital(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
 
         }
-        System.out.println("|------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
