@@ -30,6 +30,7 @@ public class AppIntegrationTest
         assertEquals(cty.getName(),"China");
         assertEquals(cty.getContinent(),"Asia");
         assertEquals(cty.getRegion(),"Eastern Asia");
+        assertEquals(cty.getCapital(),"Peking");
     }
 
     /** Integration Testing City in the world */

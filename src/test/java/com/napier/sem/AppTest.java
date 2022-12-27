@@ -73,7 +73,7 @@ public class AppTest {
         couty.setContinent("North America");
         couty.setRegion("Caribbean");
         couty.setPopulation(2342223L);
-        couty.setCapital(23);
+        couty.setCapital("jakata");
 
         cou.add(couty);
         app.displayCountry(cou);
