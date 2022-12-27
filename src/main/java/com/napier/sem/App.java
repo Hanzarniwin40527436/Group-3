@@ -851,6 +851,57 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
 
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the report of the population of people, people living in cities, and people not living in cities in each continent.
+     */
+    public ArrayList<City> peopleliveincitiesincontinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.population, city.Name ,country.Name "+
+                            "FROM city, country "+
+                            "WHERE city.ID= country.Capital AND country.Continent='Europe' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                cty.add(ct);
+            }
+            return cty;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital Cities details");
+            return null;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the report of the population of people, people living in cities, and people not living in cities in each region.
+     */
+
+
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the report of the population of people, people living in cities, and people not living in cities in each country.
+     */
+
+
+
+
+
 //-------------------------------------------------------------------------------------------------------------------
     /**
      * Connect to the MySQL database.
