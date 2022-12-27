@@ -35,28 +35,28 @@ public class App {
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
-        ArrayList<City> capty = app.getcapitalcitiesintheworld();
-        ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
-        ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
+        //ArrayList<City> capty = app.getcapitalcitiesintheworld();
+        //ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
+        //ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
 
         /** the top N populated capital cities in the world/continent/region where N is provided by the user. */
-        ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
-        ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
-        ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
+        //ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
+        //ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
+        //ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
 
         /** Population from World/Continent/Region  */
-        ArrayList<Country> wcou = app.WorldPopulation();
-        ArrayList<Country> ccou = app.ContinentPoupulation();
-        ArrayList<Country> recou = app.RegionPoupulation();
+        //ArrayList<Country> wcou = app.WorldPopulation();
+        //ArrayList<Country> ccou = app.ContinentPoupulation();
+        //ArrayList<Country> recou = app.RegionPoupulation();
 
 
         /** display country */
         System.out.println("1# Display country in the world");
         app.displayCountry(cou);
         System.out.println("2# Display country in the continent");
-        //app.displayCountry(cou1);
+        app.displayCountry(cou1);
         System.out.println("3# Display country in the region");
-        //app.displayCountry(cou2);
+        app.displayCountry(cou2);
         System.out.println("4# Top N populated countries in the world");
        //app.displayCountry(coun);
         System.out.println("4# Top N populated countries in the continent");
@@ -74,25 +74,25 @@ public class App {
 
         /** display capital city */
         System.out.println("# Display capital city in the world");
-       app.displaycapitalcity(capty);
+        //app.displaycapitalcity(capty);
         System.out.println("# Display capital city in the Continent");
-        app.displaycapitalcity(capty1);
+        //app.displaycapitalcity(capty1);
         System.out.println("# Display capital city in the Region");
-        app.displaycapitalcity(capty2);
+        //app.displaycapitalcity(capty2);
         System.out.println("# Top N populated capital cities in the world");
-        app.displaycapitalcity(captyn);
+        //app.displaycapitalcity(captyn);
         System.out.println("# Top N populated capital cities in the Continent");
-        app.displaycapitalcity(captyn1);
+        //app.displaycapitalcity(captyn1);
         System.out.println("# Top N populated capital cities in the Region");
-        app.displaycapitalcity(captyn2);
+        //app.displaycapitalcity(captyn2);
 
         /** display population */
         System.out.println("# World Population");
-        app.displayPopulation(wcou);
+        //app.displayPopulation(wcou);
         System.out.println("# Continent Population");
-        app.displayContinentPopulation(ccou);
+        //app.displayContinentPopulation(ccou);
         System.out.println("# Region Population");
-       app.displayRegionPopulation(recou);
+        //app.displayRegionPopulation(recou);
 
 
         /** Disconnect from database */
