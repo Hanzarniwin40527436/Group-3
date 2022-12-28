@@ -1062,9 +1062,11 @@ public class App {
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
+            long livingincity=(populat.getPopulationin()/populat.getPopulationtotal())*100;
+            long notlivingincity=(populat.getPopulationout()/populat.getPopulationtotal())*100;
             String emp_string =
                     String.format("%-15s %-35s  %-38s  %-18s ",
-                           "Asis", populat.getPopulationtotal(),populat.getPopulationin()/populat.getPopulationtotal()*100 ,populat.getPopulationout()/populat.getPopulationtotal()*100);
+                           "Asis", populat.getPopulationtotal(), livingincity,notlivingincity);
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
