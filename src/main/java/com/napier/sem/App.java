@@ -109,7 +109,9 @@ public class App {
 
 
         ArrayList<Populationcities> pop=app.peopleliveincitiesincontinent();
-        app.displaypopulationlivingincitiesornot(pop);
+        ArrayList<Populationcities> pop1=app.peopleliveincitiesinregion();
+        app.displaypopulationlivingincitiesornotcontinent(pop);
+        app.displaypopulationlivingincitiesornotregion(pop1);
 
         /** Disconnect from database */
         app.disconnect();
@@ -1049,14 +1051,74 @@ public class App {
             return null;
         }
     }
-    public void displaypopulationlivingincitiesornot(ArrayList<Populationcities> popul){
+
+    public ArrayList<Populationcities> peopleliveincitiesinregion() {
+        try {
+            // Create an SQL statement
+            Statement stmt1 = con.createStatement();
+            Statement stmt2 = con.createStatement();
+            // Create string for SQL statement
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Region='North America'";
+            String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region='North America'";
+
+            // Execute SQL statement
+            ResultSet rset1 = stmt1.executeQuery(strSelect1);
+            ResultSet rset2 = stmt2.executeQuery(strSelect2);
+
+            ArrayList<Populationcities> pop = new ArrayList<>();
+            long citytotal=0;
+            long cityin=0;
+
+            while (rset1.next()) {
+                citytotal=rset1.getLong("SUM(Population)");
+            }
+            while (rset2.next()) {
+                cityin=rset2.getLong("SUM(city.Population)");
+            }
+            long cityout= citytotal-cityin;
+
+            Populationcities popul=new Populationcities();
+            popul.setPopulationtotal(citytotal);
+            popul.setPopulationin(cityin);
+            popul.setPopulationout(cityout);
+
+            pop.add(popul);
+            return  pop;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities living in population details");
+            return null;
+        }
+    }
+    public void displaypopulationlivingincitiesornotregion(ArrayList<Populationcities> popul){
         if (popul == null)
         {
             System.out.println("No Population");
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities %%","People not living in cities %%"));
+        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Region","Population Total","People living in Cities","People not living in cities "));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (Populationcities populat : popul) {
+            if(populat==null)
+                continue;
+
+            String emp_string =
+                    String.format("%-15s %-23s  %-23s  %-18s ",
+                            "North America", populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+            System.out.println(emp_string);
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+    public void displaypopulationlivingincitiesornotcontinent(ArrayList<Populationcities> popul){
+        if (popul == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities","People not living in cities "));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Populationcities populat : popul) {
