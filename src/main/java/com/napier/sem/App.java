@@ -114,9 +114,9 @@ public class App {
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
         ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
         ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
-        //app.displaypopulationlivingincitiesornotcountry(pop2);
-        //app.displaypopulationlivingincitiesornotcontinent(pop);
-        //app.displaypopulationlivingincitiesornotregion(pop1);
+        app.displaypopulationlivingincitiesornotcountry(pop2);
+        app.displaypopulationlivingincitiesornotcontinent(pop);
+        app.displaypopulationlivingincitiesornotregion(pop1);
 
 
         /** Disconnect from database */
@@ -137,8 +137,8 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population "
                             + "FROM city, country "
-                            + "WHERE city.CountryCode = country.Code AND city.CountryCode='CHN' "
-                            + "Limit 7";
+                            + "WHERE city.CountryCode = country.Code "
+                            + "Limit 10";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
@@ -1094,8 +1094,8 @@ public class App {
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "GROUP By Continent";
-            String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent='Asia'";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent='Asia'";
+            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent='Asia'";
 
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
@@ -1104,19 +1104,25 @@ public class App {
             ArrayList<Populationcities> pop = new ArrayList<>();
             long citytotal=0;
             long cityin=0;
+            String conti="";
 
             while (rset1.next()) {
                 citytotal=rset1.getLong("SUM(Population)");
+
             }
             while (rset2.next()) {
                 cityin=rset2.getLong("SUM(city.Population)");
+                conti=rset2.getString("Country.Continent");
+
             }
             long cityout= citytotal-cityin;
 
             Populationcities popul=new Populationcities();
+           popul.setContinent(conti);
             popul.setPopulationtotal(citytotal);
             popul.setPopulationin(cityin);
             popul.setPopulationout(cityout);
+
 
             pop.add(popul);
             return  pop;
@@ -1125,6 +1131,27 @@ public class App {
             System.out.println("Failed to get cities living in population details");
             return null;
         }
+    }
+    public void displaypopulationlivingincitiesornotcontinent(ArrayList<Populationcities> popul){
+        if (popul == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities","People not living in cities "));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (Populationcities populat : popul) {
+            if(populat==null)
+                continue;
+
+            String emp_string =
+                    String.format("%-15s %-23s  %-23s  %-18s ",
+                             populat.getContinent(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+            System.out.println(emp_string);
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -1138,7 +1165,7 @@ public class App {
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
             String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Region='North America'";
-            String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region='North America'";
+            String strSelect2 = "SELECT country.Region, SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region='North America'";
 
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
@@ -1147,16 +1174,18 @@ public class App {
             ArrayList<Populationcities> pop = new ArrayList<>();
             long citytotal=0;
             long cityin=0;
-
+            String regi="";
             while (rset1.next()) {
                 citytotal=rset1.getLong("SUM(Population)");
             }
             while (rset2.next()) {
                 cityin=rset2.getLong("SUM(city.Population)");
+                regi=rset2.getString("country.Region");
             }
             long cityout= citytotal-cityin;
 
             Populationcities popul=new Populationcities();
+            popul.setRegion(regi);
             popul.setPopulationtotal(citytotal);
             popul.setPopulationin(cityin);
             popul.setPopulationout(cityout);
@@ -1182,7 +1211,7 @@ public class App {
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
             String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Name='China'";
-            String strSelect2 = "SELECT sum(city.Population) "+"FROM city,country "+"WHERE city.CountryCode = country.Code AND country.Name='China'";
+            String strSelect2 = "SELECT country.Name,sum(city.Population) "+"FROM city,country "+"WHERE city.CountryCode = country.Code AND country.Name='China'";
 
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
@@ -1191,16 +1220,18 @@ public class App {
             ArrayList<Populationcities> pop = new ArrayList<>();
             long citytotal=0;
             long cityin=0;
-
+            String ctname="";
             while (rset1.next()) {
                 citytotal=rset1.getLong("SUM(Population)");
             }
             while (rset2.next()) {
                 cityin=rset2.getLong("SUM(city.Population)");
+                ctname=rset2.getString("country.Name");
             }
             long cityout= citytotal-cityin;
 
             Populationcities popul=new Populationcities();
+            popul.setName(ctname);
             popul.setPopulationtotal(citytotal);
             popul.setPopulationin(cityin);
             popul.setPopulationout(cityout);
@@ -1229,7 +1260,7 @@ public class App {
 
             String emp_string =
                     String.format("%-15s %-23s  %-23s  %-18s ",
-                            "China", populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+                            populat.getName(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -1250,32 +1281,12 @@ public class App {
 
             String emp_string =
                     String.format("%-15s %-23s  %-23s  %-18s ",
-                            "North America", populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+                            populat.getRegion(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
-    public void displaypopulationlivingincitiesornotcontinent(ArrayList<Populationcities> popul){
-        if (popul == null)
-        {
-            System.out.println("No Population");
-            return;
-        }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities","People not living in cities "));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
-        for (Populationcities populat : popul) {
-            if(populat==null)
-                continue;
 
-            String emp_string =
-                    String.format("%-15s %-23s  %-23s  %-18s ",
-                           "Asia", populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
-            System.out.println(emp_string);
-        }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-    }
 
 
 
