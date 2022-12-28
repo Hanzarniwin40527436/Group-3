@@ -1014,14 +1014,15 @@ public class App {
     public ArrayList<Populationcities> peopleliveincitiesincontinent() {
         try {
             // Create an SQL statement
-            Statement stmt = con.createStatement();
+            Statement stmt1 = con.createStatement();
+            Statement stmt2 = con.createStatement();
             // Create string for SQL statement
             String strSelect1 = "SELECT SUM(Population) " + "FROM country ";
             String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent='Asia'";
 
             // Execute SQL statement
-            ResultSet rset1 = stmt.executeQuery(strSelect1);
-            ResultSet rset2 = stmt.executeQuery(strSelect2);
+            ResultSet rset1 = stmt1.executeQuery(strSelect1);
+            ResultSet rset2 = stmt2.executeQuery(strSelect2);
 
             ArrayList<Populationcities> pop = new ArrayList<>();
             long citytotal=0;
