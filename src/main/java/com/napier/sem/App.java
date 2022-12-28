@@ -1094,7 +1094,7 @@ public class App {
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Continent='Asia'";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "GROUP By Continent";
             String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent='Asia'";
 
             // Execute SQL statement
