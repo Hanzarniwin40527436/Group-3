@@ -17,9 +17,9 @@ public class App {
         }
 
         /** All the countries in the world/continent/region organised by largest population to smallest. */
-        ArrayList<Country> cou = app.getCountryWorld();
-        ArrayList<Country> cou1 = app.getCountryContinent();
-        ArrayList<Country> cou2 = app.getCountryRegion();
+      //ArrayList<Country> cou = app.getCountryWorld();
+        //ArrayList<Country> cou1 = app.getCountryContinent();
+        //ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
        // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
@@ -28,11 +28,15 @@ public class App {
 
 
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
-        ArrayList<City> cty = app.getCityWorld();
-        ArrayList<City> cty1 = app.getCityContinent();
+       // ArrayList<City> cty = app.getCityWorld();
+        //ArrayList<City> cty1 = app.getCityContinent();
 
         /** The top N populated cities provided by the user*/
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
+        ArrayList<City> ctyn1 = app.getTopNPopulatedCityInTheContinent();
+        ArrayList<City> ctyn2 = app.getTopNPopulatedCityInTheRegion();
+        ArrayList<City> ctyn3 = app.getTopNPopulatedCityInTheCountry();
+        ArrayList<City> ctyn4 = app.getTopNPopulatedCityInTheDistrict();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
         //ArrayList<City> capty = app.getcapitalcitiesintheworld();
@@ -52,11 +56,11 @@ public class App {
 
         /** display country */
         System.out.println("1# Display country in the world");
-        app.displayCountry(cou);
+       // app.displayCountry(cou);
         System.out.println("2# Display country in the continent");
-        app.displayCountry(cou1);
+        //app.displayCountry(cou1);
         System.out.println("3# Display country in the region");
-        app.displayCountry(cou2);
+        //app.displayCountry(cou2);
         System.out.println("4# Top N populated countries in the world");
        //app.displayCountry(coun);
         System.out.println("4# Top N populated countries in the continent");
@@ -67,9 +71,18 @@ public class App {
 
         /** display city */
         System.out.println("# Display city in the world");
-        app.displayCity(cty);
+        //app.displayCity(cty);
         System.out.println("# Top N populated cities in the world");
         app.displayCity(ctyn);
+        System.out.println("# Top N populated cities in the continent");
+        app.displayCity(ctyn1);
+        System.out.println("# Top N populated cities in the region");
+        app.displayCity(ctyn2);
+        System.out.println("# Top N populated cities in the country ");
+        app.displayCity(ctyn3);
+        System.out.println("# Top N populated cities in the district ");
+        app.displayCity(ctyn4);
+
 
 
         /** display capital city */
@@ -450,6 +463,143 @@ public class App {
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the continent where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheContinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.Population, city.District, country.Code, city.CountryCode, country.Continent "+
+                            "FROM city, country " +
+                            "WHERE country.Code = city.CountryCode and country.Continent= 'Asia' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setID(rset.getInt("city.ID"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the continent");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     * The top N populated cities in the region where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.Population, city.District, country.Code, city.CountryCode, country.Region "+
+                            "FROM city, country " +
+                            "WHERE country.Code = city.CountryCode and country.Region = 'Eastern Asia' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setID(rset.getInt("city.ID"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the Region");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the country where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheCountry() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.Population, city.District, country.Code, city.CountryCode, country.Name "+
+                            "FROM city, country " +
+                            "WHERE country.Code = city.CountryCode and country.Name = 'China' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setID(rset.getInt("city.ID"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the Country");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the district where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheDistrict() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.Population, city.District, country.Code, city.CountryCode, city.District "+
+                            "FROM city, country " +
+                            "WHERE country.Code = city.CountryCode and city.District = 'Aichi' "+
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setID(rset.getInt("city.ID"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the District");
             return null;
         }
     }
