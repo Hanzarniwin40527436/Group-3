@@ -110,8 +110,11 @@ public class App {
 
         ArrayList<Populationcities> pop=app.peopleliveincitiesincontinent();
         ArrayList<Populationcities> pop1=app.peopleliveincitiesinregion();
+        ArrayList<Populationcities> pop2=app.peopleliveincitiesincountry();
+        app.displaypopulationlivingincitiesornotcountry(pop2);
         app.displaypopulationlivingincitiesornotcontinent(pop);
         app.displaypopulationlivingincitiesornotregion(pop1);
+
 
         /** Disconnect from database */
         app.disconnect();
