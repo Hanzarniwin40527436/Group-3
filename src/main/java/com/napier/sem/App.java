@@ -1064,7 +1064,7 @@ public class App {
                 continue;
             String emp_string =
                     String.format("%-15s %-35s  %-38s  %-18s ",
-                           "Asis", populat.getPopulationtotal(),(populat.getPopulationin()/populat.getPopulationtotal())*100 ,(populat.getPopulationout()/populat.getPopulationtotal())*100);
+                           "Asis", populat.getPopulationtotal(),populat.getPopulationin()/populat.getPopulationtotal()*100 ,populat.getPopulationout()/populat.getPopulationtotal()*100);
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
