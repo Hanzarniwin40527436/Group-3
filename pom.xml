@@ -30,7 +30,7 @@
 
     <build>
         <plugins>
-        <plugins>
+
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
