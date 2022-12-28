@@ -53,7 +53,9 @@ public class App {
         //ArrayList<Country> recou = app.RegionPoupulation();
 
 
-        /** display country */
+
+
+        /** display country
         System.out.println("1# Display country in the world");
         app.displayCountry(cou);
         System.out.println("2# Display country in the continent");
@@ -65,10 +67,10 @@ public class App {
         System.out.println("4# Top N populated countries in the continent");
        // app.displayCountry(coun1);
         System.out.println("5# Top N populated countries in the region");
-        //app.displayCountry(coun2);
+        //app.displayCountry(coun2);*/
 
 
-        /** display city */
+        /** display city
         System.out.println("# Display city in the world");
         app.displayCity(cty);
         System.out.println("# Display city in a continent");
@@ -80,21 +82,21 @@ public class App {
         System.out.println("# Display city in a district");
         app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
-        app.displayCity(ctyn);
+        app.displayCity(ctyn); */
 
 
         /** display capital city */
-        System.out.println("# Display capital city in a world");
+        //System.out.println("# Display capital city in a world");
         //app.displaycapitalcity(capty);
-        System.out.println("# Display capital city in the Continent");
+        //System.out.println("# Display capital city in the Continent");
         //app.displaycapitalcity(capty1);
-        System.out.println("# Display capital city in the Region");
+       // System.out.println("# Display capital city in the Region");
         //app.displaycapitalcity(capty2);
-        System.out.println("# Top N populated capital cities in the world");
+      // System.out.println("# Top N populated capital cities in the world");
         //app.displaycapitalcity(captyn);
-        System.out.println("# Top N populated capital cities in the Continent");
+       // System.out.println("# Top N populated capital cities in the Continent");
         //app.displaycapitalcity(captyn1);
-        System.out.println("# Top N populated capital cities in the Region");
+       // System.out.println("# Top N populated capital cities in the Region");
         //app.displaycapitalcity(captyn2);
 
         /** display population */
@@ -105,6 +107,9 @@ public class App {
         System.out.println("# Region Population");
         //app.displayRegionPopulation(recou);
 
+
+        ArrayList<Populationcities> pop=app.peopleliveincitiesincontinent();
+        app.displaypopulationlivingincitiesornot(pop);
 
         /** Disconnect from database */
         app.disconnect();
@@ -1006,33 +1011,62 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each continent.
      */
-    public ArrayList<City> peopleliveincitiesincontinent() {
+    public ArrayList<Populationcities> peopleliveincitiesincontinent() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect =
-                    "SELECT city.population, city.Name ,country.Name "+
-                            "FROM city, country "+
-                            "WHERE city.ID= country.Capital AND country.Continent='Europe' "+
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            ArrayList<City> cty = new ArrayList<City>();
-            while (rset.next()) {
-                City ct = new City();
-                ct.setName(rset.getString("city.Name"));
-                ct.setPopulation(rset.getInt("city.Population"));
-                ct.setCountryCode(rset.getString("country.Name"));
-                cty.add(ct);
-            }
-            return cty;
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country ";
+            String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent='Asia'";
 
+            // Execute SQL statement
+            ResultSet rset1 = stmt.executeQuery(strSelect1);
+            ResultSet rset2 = stmt.executeQuery(strSelect2);
+
+            ArrayList<Populationcities> pop = new ArrayList<>();
+            long citytotal=0;
+            long cityin=0;
+
+            while (rset1.next()) {
+                citytotal=rset1.getLong("SUM(Population)");
+            }
+            while (rset2.next()) {
+                cityin=rset2.getLong("SUM(city.Population)");
+            }
+            long cityout= citytotal-cityin;
+
+            Populationcities popul=new Populationcities();
+            popul.setPopulationtotal(citytotal);
+            popul.setPopulationin(cityin);
+            popul.setPopulationout(cityout);
+
+            pop.add(popul);
+            return  pop;
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Capital Cities details");
+            System.out.println("Failed to get cities living in population details");
             return null;
         }
+    }
+    public void displaypopulationlivingincitiesornot(ArrayList<Populationcities> popul){
+        if (popul == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format(" %-35s  %-38s  %-18s ","Total","IN","Out"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (Populationcities populat : popul) {
+            if(populat==null)
+                continue;
+            String emp_string =
+                    String.format("%-35s  %-38s  %-18s ",
+                            populat.getPopulationtotal(),populat.getPopulationin(),populat.getPopulationout());
+            System.out.println(emp_string);
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
     }
 
     //-------------------------------------------------------------------------------------------------------------------

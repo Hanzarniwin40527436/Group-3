@@ -29,13 +29,5 @@ public class Populationcities {
         this.populationout = populationout;
     }
 
-    public Populationcities(long populationtotal, long populationin, long populationout) {
-        this.populationtotal = populationtotal;
-        this.populationin = populationin;
-        this.populationout = populationout;
-    }
 
-    public  Populationcities(){
-
-    }
 }
