@@ -84,7 +84,7 @@ public class App {
 
 
         /** display capital city */
-        System.out.println("# Display capital city in the world");
+        System.out.println("# Display capital city in a world");
         //app.displaycapitalcity(capty);
         System.out.println("# Display capital city in the Continent");
         //app.displaycapitalcity(capty1);
