@@ -38,14 +38,14 @@ public class App {
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
-        //ArrayList<City> capty = app.getcapitalcitiesintheworld();
-        //ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
-        //ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
+        ArrayList<City> capty = app.getcapitalcitiesintheworld();
+        ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
+        ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
 
         /** the top N populated capital cities in the world/continent/region where N is provided by the user. */
-        //ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
-        //ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
-        //ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
+        ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
+        ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
+        ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
 
         /** Population from World/Continent/Region  */
         //ArrayList<Country> wcou = app.WorldPopulation();
@@ -55,49 +55,49 @@ public class App {
 
 
 
-        /** display country
-        System.out.println("1# Display country in the world");
+        /** display country*/
+        //System.out.println("1# Display country in the world");
         app.displayCountry(cou);
-        System.out.println("2# Display country in the continent");
-        app.displayCountry(cou1);
-        System.out.println("3# Display country in the region");
-        app.displayCountry(cou2);
-        System.out.println("4# Top N populated countries in the world");
+        //System.out.println("2# Display country in the continent");
+        //app.displayCountry(cou1);
+        //System.out.println("3# Display country in the region");
+        //app.displayCountry(cou2);
+        //System.out.println("4# Top N populated countries in the world");
        //app.displayCountry(coun);
-        System.out.println("4# Top N populated countries in the continent");
+        //System.out.println("4# Top N populated countries in the continent");
        // app.displayCountry(coun1);
-        System.out.println("5# Top N populated countries in the region");
-        //app.displayCountry(coun2);*/
+        //System.out.println("5# Top N populated countries in the region");
+        //app.displayCountry(coun2);
 
 
-        /** display city
+        /** display city*/
         System.out.println("# Display city in the world");
         app.displayCity(cty);
         System.out.println("# Display city in a continent");
-        app.displayCity(cty1);
+       // app.displayCity(cty1);
         System.out.println("# Display city in a region");
-        app.displayCity(cty2);
+       // app.displayCity(cty2);
         System.out.println("# Display city in a country");
-        app.displayCity(cty3);
+        //app.displayCity(cty3);
         System.out.println("# Display city in a district");
-        app.displayCity(cty4);
+       //app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
-        app.displayCity(ctyn); */
+        //app.displayCity(ctyn);
 
 
         /** display capital city */
         //System.out.println("# Display capital city in a world");
-        //app.displaycapitalcity(capty);
+        app.displaycapitalcity(capty);
         //System.out.println("# Display capital city in the Continent");
-        //app.displaycapitalcity(capty1);
+       app.displaycapitalcity(capty1);
        // System.out.println("# Display capital city in the Region");
-        //app.displaycapitalcity(capty2);
+        app.displaycapitalcity(capty2);
       // System.out.println("# Top N populated capital cities in the world");
-        //app.displaycapitalcity(captyn);
+        app.displaycapitalcity(captyn);
        // System.out.println("# Top N populated capital cities in the Continent");
-        //app.displaycapitalcity(captyn1);
+        app.displaycapitalcity(captyn1);
        // System.out.println("# Top N populated capital cities in the Region");
-        //app.displaycapitalcity(captyn2);
+        app.displaycapitalcity(captyn2);
 
         /** display population */
         System.out.println("# World Population");
@@ -1017,7 +1017,7 @@ public class App {
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country ";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Continent='Asia'";
             String strSelect2 = "SELECT SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent='Asia'";
 
             // Execute SQL statement
@@ -1056,15 +1056,15 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format(" %-35s  %-38s  %-18s ","Total","IN","Out"));
+        System.out.println(String.format("%-15s %-35s  %-38s  %-18s ","Continent","Population Total","People living in Cities %%","People not living in cities %%"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
             String emp_string =
-                    String.format("%-35s  %-38s  %-18s ",
-                            populat.getPopulationtotal(),populat.getPopulationin(),populat.getPopulationout());
+                    String.format("%-15s %-35s  %-38s  %-18s ",
+                           "Asis", populat.getPopulationtotal(),(populat.getPopulationin()/populat.getPopulationtotal())*100 ,(populat.getPopulationout()/populat.getPopulationtotal())*100);
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
