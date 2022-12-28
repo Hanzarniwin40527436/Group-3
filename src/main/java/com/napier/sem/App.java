@@ -1056,17 +1056,16 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-35s  %-38s  %-18s ","Continent","Population Total","People living in Cities %%","People not living in cities %%"));
+        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities %%","People not living in cities %%"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
-            long livingincity=(populat.getPopulationin()/populat.getPopulationtotal())*100;
-            long notlivingincity=(populat.getPopulationout()/populat.getPopulationtotal())*100;
+
             String emp_string =
-                    String.format("%-15s %-35s  %-38s  %-18s ",
-                           "Asis", populat.getPopulationtotal(), livingincity,notlivingincity);
+                    String.format("%-15s %-23s  %-23s  %-18s ",
+                           "Asia", populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
