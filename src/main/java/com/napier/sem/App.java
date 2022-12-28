@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.io.*;
 
 
 public class App {
@@ -10,21 +11,25 @@ public class App {
         App app = new App();
 
         /** Connect to database */
-        if(args.length < 1){
+        if (args.length < 1) {
             app.connect("localhost:33060", 30000);
-        }else{
+        } else {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
+        ArrayList<City> ctya = app.outputcity();
+        app.displayoutput(ctya,"City.md");
+
+
         /** All the countries in the world/continent/region organised by largest population to smallest. */
-        ArrayList<Country> cou = app.getCountryWorld();
-        ArrayList<Country> cou1 = app.getCountryContinent();
-        ArrayList<Country> cou2 = app.getCountryRegion();
+       // ArrayList<Country> cou = app.getCountryWorld();
+       // ArrayList<Country> cou1 = app.getCountryContinent();
+      //  ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
-       // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
-       // ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
-      //  ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
+        // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+        // ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+        //  ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
@@ -53,51 +58,49 @@ public class App {
         //ArrayList<Country> recou = app.RegionPoupulation();
 
 
-
-
         /** display country*/
         //System.out.println("1# Display country in the world");
-        app.displayCountry(cou);
+        //app.displayCountry(cou);
         //System.out.println("2# Display country in the continent");
         //app.displayCountry(cou1);
         //System.out.println("3# Display country in the region");
         //app.displayCountry(cou2);
         //System.out.println("4# Top N populated countries in the world");
-       //app.displayCountry(coun);
+        //app.displayCountry(coun);
         //System.out.println("4# Top N populated countries in the continent");
-       // app.displayCountry(coun1);
+        // app.displayCountry(coun1);
         //System.out.println("5# Top N populated countries in the region");
         //app.displayCountry(coun2);
 
 
         /** display city*/
         System.out.println("# Display city in the world");
-        app.displayCity(cty);
+       // app.displayCity(cty);
         System.out.println("# Display city in a continent");
-       // app.displayCity(cty1);
+        // app.displayCity(cty1);
         System.out.println("# Display city in a region");
-       // app.displayCity(cty2);
+        // app.displayCity(cty2);
         System.out.println("# Display city in a country");
         //app.displayCity(cty3);
         System.out.println("# Display city in a district");
-       //app.displayCity(cty4);
+        //app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
         //app.displayCity(ctyn);
 
 
         /** display capital city */
         //System.out.println("# Display capital city in a world");
-        app.displaycapitalcity(capty);
+        //app.displaycapitalcity(capty);
         //System.out.println("# Display capital city in the Continent");
-       app.displaycapitalcity(capty1);
-       // System.out.println("# Display capital city in the Region");
-        app.displaycapitalcity(capty2);
-      // System.out.println("# Top N populated capital cities in the world");
-        app.displaycapitalcity(captyn);
-       // System.out.println("# Top N populated capital cities in the Continent");
-        app.displaycapitalcity(captyn1);
-       // System.out.println("# Top N populated capital cities in the Region");
-        app.displaycapitalcity(captyn2);
+       // app.displaycapitalcity(capty1);
+        // System.out.println("# Display capital city in the Region");
+       // app.displaycapitalcity(capty2);
+        /// System.out.println("# Top N populated capital cities in the world");
+        //app.displaycapitalcity(captyn);
+        // System.out.println("# Top N populated capital cities in the Continent");
+        //app.displaycapitalcity(captyn1);
+        // System.out.println("# Top N populated capital cities in the Region");
+       // app.displaycapitalcity(captyn2);
 
         /** display population */
         System.out.println("# World Population");
@@ -108,12 +111,12 @@ public class App {
         //app.displayRegionPopulation(recou);
 
 
-        ArrayList<Populationcities> pop=app.peopleliveincitiesincontinent();
-        ArrayList<Populationcities> pop1=app.peopleliveincitiesinregion();
-        ArrayList<Populationcities> pop2=app.peopleliveincitiesincountry();
-        app.displaypopulationlivingincitiesornotcountry(pop2);
-        app.displaypopulationlivingincitiesornotcontinent(pop);
-        app.displaypopulationlivingincitiesornotregion(pop1);
+        ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
+        ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
+        ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
+        //app.displaypopulationlivingincitiesornotcountry(pop2);
+        //app.displaypopulationlivingincitiesornotcontinent(pop);
+        //app.displaypopulationlivingincitiesornotregion(pop1);
 
 
         /** Disconnect from database */
@@ -121,8 +124,75 @@ public class App {
     }
 
     //-------------------------------------------------------------------------------------------------------------------
-    /** Connection */
+    /**
+     * Connection
+     */
     private Connection con = null;
+
+    public ArrayList<City> outputcity() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code AND city.CountryCode='CHN' "
+                            + "Limit 7";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    public void displayoutput(ArrayList<City> cty,String filename) {
+        if (cty == null) {
+            System.out.println("No City");
+            return;
+        }
+        if(cty.isEmpty()){
+            System.out.println("Array List is Empty");
+            return;
+
+        }
+        /** if(cty.contains(null)){
+         System.out.println("Array List contain Null");
+         return;
+         }*/
+        System.out.println(String.format("%-1s %-31s %-1s %-38s %-1s %-20s %-1s %-10s %-1s", "|", "Name", "|", "Country", "|", "District", "|", "Population", "|"));
+
+        //
+        for (City ct : cty) {
+            if (ct == null)
+                continue;
+            String city_string =
+                    String.format("%-1s %-31s %-1s %-38s %-1s %-20s %-1s %-10s %-1s",
+                            "|", ct.getName(),"|", ct.getCountryCode(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
+            System.out.println(city_string);
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(cty.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      *
@@ -159,6 +229,8 @@ public class App {
             return null;
         }
     }
+
+
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
