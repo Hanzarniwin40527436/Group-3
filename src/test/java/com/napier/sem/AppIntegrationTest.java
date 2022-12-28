@@ -62,7 +62,6 @@ public class AppIntegrationTest
         assertEquals(capt.getPopulation(),3386667 );
         assertEquals(capt.getCountryCode(),"Germany");
     }
-
     @Test
     void Testregioncapitalcities(){
         ArrayList<City> capty = app.getcapitalcitiesintheregion();
