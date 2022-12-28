@@ -587,14 +587,14 @@ public class App {
         }*/
         System.out.println("|-----------------------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-31s %-1s %-35s %-1s %-20s %-1s %-10s %-1s", "|", "Name", "|", "Country", "|", "District", "|", "Population", "|"));
-        System.out.println("|------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|-----------------------------------------------------------------------------------------------------------|");
         //
         for (City ct : cty) {
             if (ct == null)
                 continue;
 
             String city_string =
-                    String.format("%-1s %-23s %-1s %-35s %-1s %-20s %-1s %-10s %-1s",
+                    String.format("%-1s %-31s %-1s %-35s %-1s %-20s %-1s %-10s %-1s",
                             "|", ct.getName(),"|", ct.getCountryCode(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
         }
