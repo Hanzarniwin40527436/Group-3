@@ -30,6 +30,9 @@ public class App {
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
         ArrayList<City> cty = app.getCityWorld();
         ArrayList<City> cty1 = app.getCityContinent();
+        ArrayList<City> cty2 = app.getCityRegion();
+        ArrayList<City> cty3 = app.getCityCountry();
+        ArrayList<City> cty4 = app.getCityDistrict();
 
         /** The top N populated cities provided by the user*/
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
@@ -68,6 +71,14 @@ public class App {
         /** display city */
         System.out.println("# Display city in the world");
         app.displayCity(cty);
+        System.out.println("# Display city in a continent");
+        app.displayCity(cty1);
+        System.out.println("# Display city in a region");
+        app.displayCity(cty2);
+        System.out.println("# Display city in a country");
+        app.displayCity(cty3);
+        System.out.println("# Display city in a district");
+        app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
         app.displayCity(ctyn);
 
@@ -365,7 +376,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population "
                             + "FROM city, country "
-                            + "WHERE city.ID = country.Capital "
+                            + "WHERE city.CountryCode = country.Code "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -399,7 +410,109 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.District, city.Population "
                             + "FROM city, country "
-                            + "WHERE city.ID = country.Capital AND country.Continent = 'Asia' "
+                            + "WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the cities in a region organised by largest population to smallest.
+     */
+    public ArrayList<City> getCityRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the cities in a district organised by largest population to smallest.
+     */
+    public ArrayList<City> getCityCountry() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital AND country.Name = 'United States' "
+                            + "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return All the cities in a district organised by largest population to smallest.
+     */
+    public ArrayList<City> getCityDistrict() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.Population "
+                            + "FROM city, country "
+                            + "WHERE city.ID = country.Capital AND city.District = 'Buenos Aires' "
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
