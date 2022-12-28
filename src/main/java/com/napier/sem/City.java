@@ -11,6 +11,7 @@ public class City
      */
     private String Name;
 
+
     /**
      * City's District
      */

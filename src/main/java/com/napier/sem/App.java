@@ -336,21 +336,21 @@ public class App {
             System.out.println("Array List contain Null");
             return;
         } */
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-28s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-38s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------------|");
         //
         for (Country ct : cou) {
             if(ct==null)
                 continue;
 
             String city_string =
-                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-28s %-1s %-12s %-1s",
+                    String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-38s %-1s %-12s %-1s",
                             "|",ct.getCode(), "|",ct.getName(), "|",ct.getContinent(),"|",ct.getRegion(), "|",ct.getCapital(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
 
         }
-        System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------|");
+        System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -374,7 +374,7 @@ public class App {
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
-                ct.setName(rset.getString("country.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
                 ct.setDistrict(rset.getString("city.District"));
                 ct.setPopulation(rset.getInt("city.Population"));
                 cty.add(ct);
@@ -408,7 +408,7 @@ public class App {
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
-                ct.setName(rset.getString("country.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
                 ct.setDistrict(rset.getString("city.District"));
                 ct.setPopulation(rset.getInt("city.Population"));
                 cty.add(ct);
@@ -482,7 +482,7 @@ public class App {
 
             String city_string =
                     String.format("%-1s %-10s %-1s %-35s %-1s %-20s %-1s %-10s %-1s",
-                            "|", ct.getName(),"|", ct.getName(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
+                            "|", ct.getName(),"|", ct.getCountryCode(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
             System.out.println(city_string);
         }
         System.out.println("|--------------------------------------------------------------------------------------|");
