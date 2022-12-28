@@ -22,9 +22,9 @@ public class App {
         //ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
-       // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
-       // ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
-      //  ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
+       ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+       ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+       ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
@@ -32,11 +32,11 @@ public class App {
         //ArrayList<City> cty1 = app.getCityContinent();
 
         /** The top N populated cities provided by the user*/
-        ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
-        ArrayList<City> ctyn1 = app.getTopNPopulatedCityInTheContinent();
-        ArrayList<City> ctyn2 = app.getTopNPopulatedCityInTheRegion();
-        ArrayList<City> ctyn3 = app.getTopNPopulatedCityInTheCountry();
-        ArrayList<City> ctyn4 = app.getTopNPopulatedCityInTheDistrict();
+        //ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
+        //ArrayList<City> ctyn1 = app.getTopNPopulatedCityInTheContinent();
+        //ArrayList<City> ctyn2 = app.getTopNPopulatedCityInTheRegion();
+        //ArrayList<City> ctyn3 = app.getTopNPopulatedCityInTheCountry();
+        //ArrayList<City> ctyn4 = app.getTopNPopulatedCityInTheDistrict();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
         //ArrayList<City> capty = app.getcapitalcitiesintheworld();
@@ -62,26 +62,26 @@ public class App {
         System.out.println("3# Display country in the region");
         //app.displayCountry(cou2);
         System.out.println("4# Top N populated countries in the world");
-       //app.displayCountry(coun);
+       app.displayCountry(coun);
         System.out.println("4# Top N populated countries in the continent");
-       // app.displayCountry(coun1);
+        app.displayCountry(coun1);
         System.out.println("5# Top N populated countries in the region");
-        //app.displayCountry(coun2);
+        app.displayCountry(coun2);
 
 
         /** display city */
         System.out.println("# Display city in the world");
         //app.displayCity(cty);
         System.out.println("# Top N populated cities in the world");
-        app.displayCity(ctyn);
+        //app.displayCity(ctyn);
         System.out.println("# Top N populated cities in the continent");
-        app.displayCity(ctyn1);
+        //app.displayCity(ctyn1);
         System.out.println("# Top N populated cities in the region");
-        app.displayCity(ctyn2);
+        //app.displayCity(ctyn2);
         System.out.println("# Top N populated cities in the country ");
-        app.displayCity(ctyn3);
+        //app.displayCity(ctyn3);
         System.out.println("# Top N populated cities in the district ");
-        app.displayCity(ctyn4);
+        //app.displayCity(ctyn4);
 
 
 
@@ -227,7 +227,7 @@ public class App {
     /**
      *
      * @return The top N populated countries in the world where N is provided by the user.
-
+*/
     public ArrayList<Country> getTopNPopulatedCountriesInTheWorld()
     {
         try {
@@ -235,21 +235,22 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.CountryCode, city.Name "+
+                            "FROM country, city "+
+                            " WHERE city.ID = country.Capital " +
+                            "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.name"));
                 cou.add(ct);
             }
             return cou;
@@ -258,67 +259,68 @@ public class App {
             System.out.println("Failed to get details of populated countries in the world");
             return null;
         }
-    }  */
+    }
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return The top N populated countries in a continent where N is provided by the user.
-
+*/
     public ArrayList<Country> getTopNPopulatedCountriesInTheContinent() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+"WHERE Continent = 'North America' "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.CountryCode, city.Name "+
+                            "FROM country,city "+"WHERE city.ID = country.Capital and country.Continent = 'Asia' "+
+                            "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get details of populated countries in the contient");
+            System.out.println("Failed to get details of populated countries in the continent");
             return null;
         }
-    }  */
+    }
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * The top N populated countries in a region where N is provided by the user..
-
+*/
     public ArrayList<Country> getTopNPopulatedCountriesInTheRegion() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+"WHERE Region='Southern Europe' "+ "ORDER BY Population DESC "+
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.CountryCode, city.Name "+
+                            "FROM country,city "+"WHERE city.ID = country.Capital and country.Region = 'Southeast Asia' "+
+                            "ORDER BY country.Population DESC "+
                              "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
@@ -328,7 +330,7 @@ public class App {
             return null;
         }
     }
-     */
+
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
