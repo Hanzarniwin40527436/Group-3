@@ -1116,13 +1116,14 @@ public class App {
 
             }
             long cityout= citytotal-cityin;
+            int percentin=(int)(cityin*100/citytotal);
+            int percentout=100-percentin;
 
             Populationcities popul=new Populationcities();
            popul.setContinent(conti);
             popul.setPopulationtotal(citytotal);
-            popul.setPopulationin(cityin);
-            popul.setPopulationout(cityout);
-
+            popul.setPopulationin(percentin);
+            popul.setPopulationout(percentout);
 
             pop.add(popul);
             return  pop;
@@ -1147,8 +1148,8 @@ public class App {
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-23s  %-18s ",
-                             populat.getContinent(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+                    String.format("%-15s %-23s  %-3s%% %20s %-3s%% ",
+                             populat.getContinent(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -1183,12 +1184,14 @@ public class App {
                 regi=rset2.getString("country.Region");
             }
             long cityout= citytotal-cityin;
+            int percentin=(int)(cityin*100/citytotal);
+            int percentout=100-percentin;
 
             Populationcities popul=new Populationcities();
             popul.setRegion(regi);
             popul.setPopulationtotal(citytotal);
-            popul.setPopulationin(cityin);
-            popul.setPopulationout(cityout);
+            popul.setPopulationin(percentin);
+            popul.setPopulationout(percentout);
 
             pop.add(popul);
             return  pop;
@@ -1229,12 +1232,15 @@ public class App {
                 ctname=rset2.getString("country.Name");
             }
             long cityout= citytotal-cityin;
+            int percentin=(int)(cityin*100/citytotal);
+            int percentout=100-percentin;
+
 
             Populationcities popul=new Populationcities();
             popul.setName(ctname);
             popul.setPopulationtotal(citytotal);
-            popul.setPopulationin(cityin);
-            popul.setPopulationout(cityout);
+            popul.setPopulationin(percentin);
+            popul.setPopulationout(percentout);
 
             pop.add(popul);
             return  pop;
@@ -1251,7 +1257,7 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Country","Population Total","People living in Cities","People not living in cities "));
+        System.out.println(String.format("%-15s %-23s  %-23s %-18s ","Country","Population Total","People living in Cities","People not living in cities"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (Populationcities populat : popul) {
@@ -1259,8 +1265,8 @@ public class App {
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-23s  %-18s ",
-                            populat.getName(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+                    String.format("%-15s %-23s  %-3s%% %20s %-3s%%",
+                            populat.getName(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -1280,8 +1286,8 @@ public class App {
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-23s  %-18s ",
-                            populat.getRegion(), populat.getPopulationtotal(), populat.getPopulationin(),populat.getPopulationout());
+                    String.format("%-15s %-23s  %-3s%% %20s %-3s%% ",
+                            populat.getRegion(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
