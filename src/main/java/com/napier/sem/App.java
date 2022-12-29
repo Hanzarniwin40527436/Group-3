@@ -1026,7 +1026,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Region ,SUM(Population) "+ "FROM country "+ "GROUP BY LocalName";
+                    "SELECT LocalName ,SUM(Population) "+ "FROM country "+ "GROUP BY LocalName";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cocou = new ArrayList<Country>();
