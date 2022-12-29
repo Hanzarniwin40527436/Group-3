@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import java.awt.event.MouseWheelEvent;
 import java.sql.*;
 import java.util.ArrayList;
 import java.io.*;
@@ -25,9 +26,9 @@ public class App {
       //  ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
-        // ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
-        // ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
-        //  ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
+         ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+         ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+         ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
 
 
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
@@ -39,6 +40,10 @@ public class App {
 
         /** The top N populated cities provided by the user*/
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
+        ArrayList<City> ctyn1 =  app.getTopNPopulatedCityInTheContinent();
+        ArrayList<City> ctyn2 = app.getTopNPopulatedCityInTheRegion();
+        ArrayList<City> ctyn3 = app.getTopNPopulatedCityInTheCountry();
+        ArrayList<City> ctyn4 = app.getTopNPopulatedCityInTheDistrict();
 
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
         ArrayList<City> capty = app.getcapitalcitiesintheworld();
@@ -50,10 +55,13 @@ public class App {
         ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
         ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
 
+
+
         /** Population from World/Continent/Region  */
         //ArrayList<Country> wcou = app.WorldPopulation();
         //ArrayList<Country> ccou = app.ContinentPoupulation();
         //ArrayList<Country> recou = app.RegionPoupulation();
+
 
 
         /** display country*/
@@ -64,11 +72,12 @@ public class App {
         //System.out.println("3# Display country in the region");
         //app.displayCountry(cou2);
         //System.out.println("4# Top N populated countries in the world");
-        //app.displayCountry(coun);
+        app.displayCountry(coun);
         //System.out.println("4# Top N populated countries in the continent");
-        // app.displayCountry(coun1);
+        app.displayCountry(coun1);
         //System.out.println("5# Top N populated countries in the region");
-        //app.displayCountry(coun2);
+        app.displayCountry(coun2);
+
 
 
         /** display city*/
@@ -84,6 +93,14 @@ public class App {
         app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
         app.displayCity(ctyn);
+        System.out.println("# Top N populated cities in the Continent");
+        app.displayCity(ctyn1);
+        System.out.println("# Top N populated cities in the region");
+        app.displayCity(ctyn2);
+        System.out.println("# Top N populated countries in the country");
+        app.displayCity(ctyn3);
+        System.out.println("# Top N populated countries in the district");
+        app.displayCity(ctyn4);
 
 
         /** display capital city */
@@ -241,7 +258,7 @@ public class App {
     /**
      *
      * @return The top N populated countries in the world where N is provided by the user.
-
+    */
     public ArrayList<Country> getTopNPopulatedCountriesInTheWorld()
     {
         try {
@@ -249,21 +266,21 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
+                            "FROM country, city "+ "Where country.Capital = city.ID " +
+                            "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
@@ -272,67 +289,67 @@ public class App {
             System.out.println("Failed to get details of populated countries in the world");
             return null;
         }
-    }  */
+    }
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * @return The top N populated countries in a continent where N is provided by the user.
-
+    */
     public ArrayList<Country> getTopNPopulatedCountriesInTheContinent() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+"WHERE Continent = 'North America' "+
-                            "ORDER BY Population DESC "+ "LIMIT 5";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
+                            "FROM country, city "+ "Where country.Capital = city.ID AND country.Continent = 'Asia' " +
+                            "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get details of populated countries in the contient");
+            System.out.println("Failed to get details of populated countries in the continent");
             return null;
         }
-    }  */
+    }
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
      * The top N populated countries in a region where N is provided by the user..
-
+    */
     public ArrayList<Country> getTopNPopulatedCountriesInTheRegion() {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Code, Name, Continent, Region, Population, Capital "+
-                            "FROM country "+"WHERE Region='Southern Europe' "+ "ORDER BY Population DESC "+
-                             "LIMIT 5";
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
+                            "FROM country, city "+ "Where country.Capital = city.ID AND Region= 'Southeast Asia' " +
+                            "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             ArrayList<Country> cou = new ArrayList<Country>();
             while (rset.next()) {
                 Country ct = new Country();
-                ct.setCode(rset.getString("Code"));
-                ct.setName(rset.getString("Name"));
-                ct.setContinent(rset.getString("Continent"));
-                ct.setRegion(rset.getString("Region"));
-                ct.setPopulation(rset.getLong("Population"));
-                ct.setCapital(rset.getInt("Capital"));
+                ct.setCode(rset.getString("country.Code"));
+                ct.setName(rset.getString("country.Name"));
+                ct.setContinent(rset.getString("country.Continent"));
+                ct.setRegion(rset.getString("country.Region"));
+                ct.setPopulation(rset.getLong("country.Population"));
+                ct.setCapital(rset.getString("city.Name"));
                 cou.add(ct);
             }
             return cou;
@@ -342,8 +359,10 @@ public class App {
             return null;
         }
     }
-     */
+
     //-------------------------------------------------------------------------------------------------------------------
+
+
     /**
      *
      * Display Country function
@@ -560,19 +579,19 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ID, Name, Population, District "+
-                            "FROM city " +
-                            "ORDER BY Population DESC " + "LIMIT 5";
+                    "SELECT city.Name, country.Name, city.Population, city.District "+
+                            "FROM city, country " + "WHERE city.CountryCode = country.Code " +
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
 
             ArrayList<City> cty = new ArrayList<City>();
             while (rset.next()) {
                 City ct = new City();
-                ct.setID(rset.getInt("ID"));
-                ct.setName(rset.getString("Name"));
-                ct.setDistrict(rset.getString("District"));
-                ct.setPopulation(rset.getInt("Population"));
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
                 cty.add(ct);
             }
             return cty;
@@ -583,6 +602,143 @@ public class App {
         }
     }
     //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the continent where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheContinent() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population, city.District "+
+                            "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' " +
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the Region where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population, city.District "+
+                            "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region = 'Southern and Central Asia' " +
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the Country where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheCountry() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population, city.District "+
+                            "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Name = 'China' " +
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * The top N populated cities in the Discrict where N is provided by the user.
+     */
+    public ArrayList<City> getTopNPopulatedCityInTheDistrict() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.Population, city.District "+
+                            "FROM city, country " + "WHERE city.CountryCode = country.Code AND city.District = 'Gelderland' " +
+                            "ORDER BY city.Population DESC " + "LIMIT 5";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            ArrayList<City> cty = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("city.Name"));
+                ct.setCountryCode(rset.getString("country.Name"));
+                ct.setDistrict(rset.getString("city.District"));
+                ct.setPopulation(rset.getInt("city.Population"));
+                cty.add(ct);
+            }
+            return cty;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get details of populated cities in the world");
+            return null;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------
+
     /**
      *
      * Display city function
