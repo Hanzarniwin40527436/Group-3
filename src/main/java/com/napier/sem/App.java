@@ -164,7 +164,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, FORMAT(country.Population, 3), city.Name "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population , city.Name "
                             + "FROM country, city "
                             + "WHERE city.ID= country.Capital "
                             + "ORDER BY country.Population DESC";
@@ -202,7 +202,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, FORMAT(country.Population, 3), city.Name "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population , city.Name "
                             + "FROM country, city "
                             + "WHERE city.ID= country.Capital AND Continent = 'North America' "
                             + "ORDER BY country.Population DESC";
@@ -238,7 +238,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT country.Code, country.Name, country.Continent, country.Region, FORMAT(country.Population, 3) city.Name "
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name "
                             + "FROM country, city "
                             + "WHERE city.ID= country.Capital AND Region = 'Southern Europe' "
                             + "ORDER BY country.Population DESC";
@@ -418,7 +418,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, FORMAT(city.Population, 3) "
+                    "SELECT city.Name, country.Name, city.District, city.Population  "
                             + "FROM city, country "
                             + "WHERE city.CountryCode = country.Code "
                             + "ORDER BY city.Population DESC";
@@ -452,7 +452,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, FORMAT(city.Population, 3) "
+                    "SELECT city.Name, country.Name, city.District, city.Population "
                             + "FROM city, country "
                             + "WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' "
                             + "ORDER BY city.Population DESC";
@@ -486,7 +486,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, FORMAT(city.Population, 3) "
+                    "SELECT city.Name, country.Name, city.District, city.Population "
                             + "FROM city, country "
                             + "WHERE city.CountryCode = country.Code AND country.Region = 'Middle East' "
                             + "ORDER BY city.Population DESC";
@@ -520,7 +520,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, FORMAT(city.Population, 3) "
+                    "SELECT city.Name, country.Name, city.District, city.Population  "
                             + "FROM city, country "
                             + "WHERE city.CountryCode = country.Code AND country.Name = 'United States' "
                             + "ORDER BY city.Population DESC";
@@ -554,7 +554,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.Name, country.Name, city.District, FORMAT(city.Population, 3) "
+                    "SELECT city.Name, country.Name, city.District, city.Population  "
                             + "FROM city, country "
                             + "WHERE city.CountryCode = country.Code AND city.District = 'Buenos Aires' "
                             + "ORDER BY city.Population DESC";

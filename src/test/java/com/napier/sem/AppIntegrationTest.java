@@ -109,7 +109,7 @@ public class AppIntegrationTest
 
     /** Integration Testing Capital Cities in the world */
     @Test
-    void Testworldcapitalcities() {
+    void Worldcapitalcitiestest() {
         ArrayList<City> capty = app.getcapitalcitiesintheworld();
         City capt=capty.get(1);
         assertEquals(capt.getName(),"Jakarta");
@@ -118,7 +118,7 @@ public class AppIntegrationTest
     }
     /** Integration Testing Capital Cities in the conti */
     @Test
-    void Testcontinentcapitalcities(){
+    void Continentcapitalcitiestest(){
         ArrayList<City> capty = app.getcapitalcitiesinthecontinent();
         City capt=capty.get(2);
         assertEquals(capt.getName(),"Berlin");
@@ -126,7 +126,7 @@ public class AppIntegrationTest
         assertEquals(capt.getCountryCode(),"Germany");
     }
     @Test
-    void Testregioncapitalcities(){
+    void Regioncapitalcitiestest(){
         ArrayList<City> capty = app.getcapitalcitiesintheregion();
         City capt=capty.get(0);
         assertEquals(capt.getName(),"Madrid");
@@ -134,7 +134,7 @@ public class AppIntegrationTest
         assertEquals(capt.getCountryCode(),"Spain");
     }
     @Test
-    void Testtopnworldcapitalcities() {
+    void Topnworldcapitalcitiestest() {
         ArrayList<City> capty = app.getTOPNcapitalcitiesintheworld();
         City capt=capty.get(4);
         assertEquals(capt.getName(),"Tokyo");
@@ -142,7 +142,7 @@ public class AppIntegrationTest
         assertEquals(capt.getCountryCode(),"Japan");
     }
     @Test
-    void Testtopncontinentcapitalcities(){
+    void Topncontinentcapitalcitiestest(){
         ArrayList<City> capty = app.getTOPNcapitalcitiesinthecontinent();
         City capt=capty.get(1);
         assertEquals(capt.getName(),"London");
@@ -151,12 +151,45 @@ public class AppIntegrationTest
     }
 
     @Test
-    void Testtopnregioncapitalcities(){
+    void Topnregioncapitalcitiestest(){
         ArrayList<City> capty = app.getTOPNcapitalcitiesintheregion();
         City capt=capty.get(1);
         assertEquals(capt.getName(),"Roma");
         assertEquals(capt.getPopulation(),2643581 );
         assertEquals(capt.getCountryCode(),"Italy");
     }
+    @Test
+    void Peoplelivingincitesincontienttest(){
+        ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
+        Populationcities popul=pop.get(0);
+        assertEquals(popul.getContinent(),"Asia");
+        assertEquals(popul.getPopulationtotal(), 3705025700L );
+        assertEquals(popul.getPopulationin(),18);
+        assertEquals(popul.getPopulationout(),82);
+    }
+    @Test
+    void Peoplelivingincitesinregiontest(){
+        ArrayList<Populationcities> pop = app.peopleliveincitiesinregion();
+        Populationcities popul=pop.get(0);
+        assertEquals(popul.getRegion(),"North America");
+        assertEquals(popul.getPopulationtotal(), 309632000L );
+        assertEquals(popul.getPopulationin(),29);
+        assertEquals(popul.getPopulationout(),71);
+    }
+    @Test
+    void Peoplelivingincitesincountrytest(){
+        ArrayList<Populationcities> pop = app.peopleliveincitiesincountry();
+        Populationcities popul=pop.get(0);
+        assertEquals(popul.getName(),"China");
+        assertEquals(popul.getPopulationtotal(), 1277558000L );
+        assertEquals(popul.getPopulationin(),13);
+        assertEquals(popul.getPopulationout(),87);
+    }
+
+
+
+
+
+
 
 }
