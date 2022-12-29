@@ -1040,7 +1040,7 @@ public class App {
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get Region Population details");
+            System.out.println("Failed to get Country Population details");
             return null;
         }
     }
