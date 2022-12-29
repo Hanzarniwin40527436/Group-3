@@ -61,6 +61,9 @@ public class App {
         //ArrayList<Country> wcou = app.WorldPopulation();
         //ArrayList<Country> ccou = app.ContinentPoupulation();
         //ArrayList<Country> recou = app.RegionPoupulation();
+        ArrayList<Country> cocou = app.CountryPoupulation();
+        ArrayList<City> dcou = app.DistrictPoupulation();
+        ArrayList<City> cicou = app.CityPoupulation();
 
 
 
@@ -124,6 +127,12 @@ public class App {
         //app.displayContinentPopulation(ccou);
         System.out.println("# Region Population");
         //app.displayRegionPopulation(recou);
+        System.out.println("# Country Population");
+        app.displayCountryPopulation(cocou);
+        System.out.println("# District Population");
+        app.displayDistrictPopulation(dcou);
+        System.out.println("# City Population");
+        app.displayCityPopulation(cicou);
 
 
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
@@ -1172,6 +1181,160 @@ public class App {
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
+
+    public ArrayList<Country> CountryPoupulation(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT LocalName ,SUM(Population) "+ "FROM country "+ "GROUP BY LocalName";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<Country> cocou = new ArrayList<Country>();
+            while (rset.next()) {
+                Country ct = new Country();
+                ct.setLocalName(rset.getString("LocalName"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
+                cocou.add(ct);
+            }
+            return cocou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country Population details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Country display.
+     */
+    public void displayCountryPopulation(ArrayList<Country> cocou){
+        if (cocou == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","LocalName","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (Country ct : cocou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getLocalName(),"|",ct.getPopulation(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
+    public ArrayList<City> DistrictPoupulation(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT District ,SUM(Population) "+ "FROM city "+ "GROUP BY District";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> dcou = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setDistrict(rset.getString("District"));
+                ct.setPopulation(rset.getInt("SUM(Population)"));
+                dcou.add(ct);
+            }
+            return dcou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get District Population details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Country display.
+     */
+    public void displayDistrictPopulation(ArrayList<City> dcou){
+        if (dcou == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","District","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (City ct : dcou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getDistrict(),"|",ct.getPopulation(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
+    public ArrayList<City> CityPoupulation(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Name ,SUM(Population) "+ "FROM city "+ "GROUP BY Name";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> cicou = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setName(rset.getString("Name"));
+                ct.setPopulation(rset.getInt("SUM(Population)"));
+                cicou.add(ct);
+            }
+            return cicou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City Population details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Country display.
+     */
+    public void displayCityPopulation(ArrayList<City> cicou){
+        if (cicou == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Name","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (City ct : cicou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getName(),"|",ct.getPopulation(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
 
     //-------------------------------------------------------------------------------------------------------------------
     /**

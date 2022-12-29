@@ -8,6 +8,7 @@ public class Country {
     private String Region;
     private String Capital;
     private Long Population;
+    private String LocalName;
 
 
 
@@ -27,13 +28,14 @@ public class Country {
         return Code;
     }
 
-    public Country(String code, String name, String continent, String region, String capital, Long population) {
+    public Country(String code, String name, String continent, String region, String capital, Long population, String localName) {
         Code = code;
         Name = name;
         Continent = continent;
         Region = region;
         Capital = capital;
         Population = population;
+        LocalName = localName;
     }
 
     public String getCapital() {
@@ -70,6 +72,14 @@ public class Country {
 
     public void setRegion(String region) {
         Region = region;
+    }
+
+    public String getLocalName() {
+        return LocalName;
+    }
+
+    public void setLocalName(String localName) {
+        LocalName = localName;
     }
 
     public Country() {
