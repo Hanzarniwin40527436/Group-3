@@ -23,7 +23,7 @@ public class AppIntegrationTest
 
     /** Integration Testing Country in the world */
     @Test
-    void testworldcountryTest() {
+    void countryWorldTest() {
         ArrayList<Country> cou=app.getCountryWorld();
         Country cty= cou.get(0);
         assertEquals(cty.getCode(),"CHN");
@@ -32,17 +32,39 @@ public class AppIntegrationTest
         assertEquals(cty.getRegion(),"Eastern Asia");
         assertEquals(cty.getCapital(),"Peking");
     }
-
-    /** Integration Testing City in the world
+    /** Integration Testing Country in the world */
     @Test
-    void testworldcityTest() {
+    void countryContinentTest() {
+        ArrayList<Country> cou=app.getCountryContinent();
+        Country cty= cou.get(0);
+        assertEquals(cty.getCode(),"USA");
+        assertEquals(cty.getName(),"United States");
+        assertEquals(cty.getContinent(),"North America");
+        assertEquals(cty.getRegion(),"NorthAmerica");
+        assertEquals(cty.getCapital(),"Peking");
+    }
+    /** Integration Testing Country in the region */
+    @Test
+    void countryRegionTest() {
+        ArrayList<Country> cou=app.getCountryRegion();
+        Country cty= cou.get(0);
+        assertEquals(cty.getCode(),"ITA");
+        assertEquals(cty.getName(),"Italy");
+        assertEquals(cty.getContinent(),"Europe");
+        assertEquals(cty.getRegion(),"Southern Europe");
+        assertEquals(cty.getCapital(),"Roma");
+    }
+
+    /** Integration Testing City in the world */
+    @Test
+    void cityWorldTest() {
         ArrayList<City> cty = app.getCityWorld();
         City city = cty.get(0);
-        assertEquals(city.getID(),1024);
-        assertEquals(city.getName(),"Mumbai (Bombay)");
+        assertEquals(city.getName(),1024);
+        assertEquals(city.getCountryCode(),"Mumbai (Bombay)");
         assertEquals(city.getDistrict(),"Maharashtra");
         assertEquals(city.getPopulation(),10500000);
-    }*/
+    }
 
 
     /** Integration Testing Capital Cities in the world */
