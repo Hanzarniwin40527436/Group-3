@@ -1,7 +1,8 @@
 name: Workflow for World App
 on:
   push:
-
+    - master
+    - develop
 jobs:
   UnitTests:
     name: Unit Tests
