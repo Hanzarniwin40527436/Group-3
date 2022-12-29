@@ -75,17 +75,17 @@ public class App {
 
         /** display city*/
         System.out.println("# Display city in the world");
-       // app.displayCity(cty);
+        app.displayCity(cty);
         System.out.println("# Display city in a continent");
-        // app.displayCity(cty1);
+         app.displayCity(cty1);
         System.out.println("# Display city in a region");
-        // app.displayCity(cty2);
+         app.displayCity(cty2);
         System.out.println("# Display city in a country");
-        //app.displayCity(cty3);
+        app.displayCity(cty3);
         System.out.println("# Display city in a district");
-        //app.displayCity(cty4);
+        app.displayCity(cty4);
         System.out.println("# Top N populated cities in the world");
-        //app.displayCity(ctyn);
+        app.displayCity(ctyn);
 
 
         /** display capital city */
