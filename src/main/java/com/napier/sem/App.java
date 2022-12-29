@@ -55,6 +55,7 @@ public class App {
         //ArrayList<Country> ccou = app.ContinentPoupulation();
         //ArrayList<Country> recou = app.RegionPoupulation();
         ArrayList<Country> cocou = app.CountryPoupulation();
+        ArrayList<City> dcou = app.DistrictPoupulation();
 
 
         /** display country*/
@@ -110,6 +111,8 @@ public class App {
         //app.displayRegionPopulation(recou);
         System.out.println("# Country Population");
         app.displayCountryPopulation(cocou);
+        System.out.println("# District Population");
+        app.displayDistrictPopulation(dcou);
 
 
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
@@ -1071,6 +1074,56 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
 
+    public ArrayList<City> DistrictPoupulation(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT District ,SUM(Population) "+ "FROM city "+ "GROUP BY District";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<City> dcou = new ArrayList<City>();
+            while (rset.next()) {
+                City ct = new City();
+                ct.setDistrict(rset.getString("District"));
+                ct.setPopulation(rset.getInt("SUM(Population)"));
+                dcou.add(ct);
+            }
+            return dcou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get District Population details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return Population of the Country display.
+     */
+    public void displayDistrictPopulation(ArrayList<City> dcou){
+        if (dcou == null)
+        {
+            System.out.println("No Population");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","District","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (City ct : dcou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getDistrict(),"|",ct.getPopulation(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
