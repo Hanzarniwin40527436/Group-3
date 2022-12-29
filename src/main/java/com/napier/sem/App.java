@@ -17,8 +17,6 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        ArrayList<City> ctya = app.outputcity();
-        app.displayoutput(ctya,"City.md");
 
 
         /** All the countries in the world/continent/region organised by largest population to smallest. */
@@ -129,70 +127,6 @@ public class App {
      */
     private Connection con = null;
 
-    public ArrayList<City> outputcity() {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT city.Name, country.Name, city.District, city.Population "
-                            + "FROM city, country "
-                            + "WHERE city.CountryCode = country.Code "
-                            + "Limit 10";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-
-            ArrayList<City> cty = new ArrayList<City>();
-            while (rset.next()) {
-                City ct = new City();
-                ct.setName(rset.getString("city.Name"));
-                ct.setCountryCode(rset.getString("country.Name"));
-                ct.setDistrict(rset.getString("city.District"));
-                ct.setPopulation(rset.getInt("city.Population"));
-                cty.add(ct);
-            }
-            return cty;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
-        }
-    }
-    public void displayoutput(ArrayList<City> cty,String filename) {
-        if (cty == null) {
-            System.out.println("No City");
-            return;
-        }
-        if(cty.isEmpty()){
-            System.out.println("Array List is Empty");
-            return;
-
-        }
-        /** if(cty.contains(null)){
-         System.out.println("Array List contain Null");
-         return;
-         }*/
-        System.out.println(String.format("%-1s %-31s %-1s %-38s %-1s %-20s %-1s %-10s %-1s", "|", "Name", "|", "Country", "|", "District", "|", "Population", "|"));
-
-        //
-        for (City ct : cty) {
-            if (ct == null)
-                continue;
-            String city_string =
-                    String.format("%-1s %-31s %-1s %-38s %-1s %-20s %-1s %-10s %-1s",
-                            "|", ct.getName(),"|", ct.getCountryCode(),"|", ct.getDistrict(),"|", ct.getPopulation(),"|");
-            System.out.println(city_string);
-        }
-        try {
-            new File("./reports/").mkdir();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
-            writer.write(cty.toString());
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     /**
      *
