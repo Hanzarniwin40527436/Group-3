@@ -1382,7 +1382,7 @@ public class App {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                    String.format("%-1s %-35s %-1s %-38s %-1s %-38s ",
                             "|",ct.getLanguage(),"|",ct.getPopulation(),"|",ct.getPercentage(),"|");
             System.out.println(emp_string);
 
