@@ -1375,7 +1375,7 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Language","|","Total Population","|","Percentage","|"));
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s %-38s ","|","Language","|","Total Population","|","Percentage","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
         // Loop over all employees in the list
         for (CountryLanguage ct : lcou) {
