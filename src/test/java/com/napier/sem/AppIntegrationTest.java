@@ -290,6 +290,38 @@ public class AppIntegrationTest
         assertEquals((long)cou.getPopulation(),38140000L);
     }
 
+    @Test
+    void TestCountryPopulation() {
+        ArrayList<Country> cocou = app.CountryPoupulation();
+        Country cou = cocou.get(0);
+        assertEquals(cou.getLocalName(),"Aruba");
+        assertEquals((long)cou.getPopulation(),103000L);
+    }
+
+    @Test
+    void TestDistrictPopulation() {
+        ArrayList<City> dcou = app.DistrictPoupulation();
+        City ct = dcou.get(0);
+        assertEquals(ct.getDistrict(),"Kabol");
+        assertEquals(ct.getPopulation(),1780000);
+    }
+
+    @Test
+    void TestCityPopulation() {
+        ArrayList<City> cicou = app.CityPoupulation();
+        City ct = cicou.get(0);
+        assertEquals(ct.getName(),"Kabul");
+        assertEquals(ct.getPopulation(), 1780000);
+    }
+
+    @Test
+    void TestLanguageSpoken() {
+        ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
+        CountryLanguage ct = lcou.get(0);
+        assertEquals(ct.getLanguage(),"Chinese");
+        assertEquals((long)ct.getPopulation(),1968265500L);
+        assertEquals((long)ct.getPercentage(),12L);
+    }
 
 
 }
