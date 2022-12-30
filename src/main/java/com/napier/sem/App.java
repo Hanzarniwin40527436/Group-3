@@ -21,9 +21,9 @@ public class App {
 
 
         /** All the countries in the world/continent/region organised by largest population to smallest. */
-       // ArrayList<Country> cou = app.getCountryWorld();
-       // ArrayList<Country> cou1 = app.getCountryContinent();
-      //  ArrayList<Country> cou2 = app.getCountryRegion();
+       ArrayList<Country> cou = app.getCountryWorld();
+       ArrayList<Country> cou1 = app.getCountryContinent();
+      ArrayList<Country> cou2 = app.getCountryRegion();
 
         /** the top N populated countries in the world/continent/region by the user. */
          ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
@@ -58,91 +58,96 @@ public class App {
 
 
         /** Population from World/Continent/Region  */
-        //ArrayList<Country> wcou = app.WorldPopulation();
-        //ArrayList<Country> ccou = app.ContinentPoupulation();
-        //ArrayList<Country> recou = app.RegionPoupulation();
-        //ArrayList<Country> cocou = app.CountryPoupulation();
-        //ArrayList<City> dcou = app.DistrictPoupulation();
-        //ArrayList<City> cicou = app.CityPoupulation();
+        ArrayList<Country> wcou = app.WorldPopulation();
+        ArrayList<Country> ccou = app.ContinentPoupulation();
+        ArrayList<Country> recou = app.RegionPoupulation();
+        ArrayList<Country> cocou = app.CountryPoupulation();
+        ArrayList<City> dcou = app.DistrictPoupulation();
+        ArrayList<City> cicou = app.CityPoupulation();
         ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
 
 
 
         /** display country*/
-        //System.out.println("1# Display country in the world");
-        //app.displayCountry(cou);
-        //System.out.println("2# Display country in the continent");
-        //app.displayCountry(cou1);
-        //System.out.println("3# Display country in the region");
-        //app.displayCountry(cou2);
-        //System.out.println("4# Top N populated countries in the world");
+        System.out.println("1# Display country in the world");
+        app.displayCountry(cou);
+        System.out.println("2# Display country in the continent");
+        app.displayCountry(cou1);
+        System.out.println("3# Display country in the region");
+        app.displayCountry(cou2);
+        System.out.println("4# Top N populated countries in the world");
         app.displayCountry(coun);
-        //System.out.println("4# Top N populated countries in the continent");
+        System.out.println("5# Top N populated countries in the continent");
         app.displayCountry(coun1);
-        //System.out.println("5# Top N populated countries in the region");
+        System.out.println("6# Top N populated countries in the region");
         app.displayCountry(coun2);
 
 
 
         /** display city*/
-        System.out.println("# Display city in the world");
+        System.out.println("7# Display city in the world");
         app.displayCity(cty);
-        System.out.println("# Display city in a continent");
+        System.out.println("8# Display city in a continent");
          app.displayCity(cty1);
-        System.out.println("# Display city in a region");
+        System.out.println("9# Display city in a region");
          app.displayCity(cty2);
-        System.out.println("# Display city in a country");
+        System.out.println("10# Display city in a country");
         app.displayCity(cty3);
-        System.out.println("# Display city in a district");
+        System.out.println("11# Display city in a district");
         app.displayCity(cty4);
-        System.out.println("# Top N populated cities in the world");
+        System.out.println("12# Top N populated cities in the world");
         app.displayCity(ctyn);
-        System.out.println("# Top N populated cities in the Continent");
+        System.out.println("13 Top N populated cities in the Continent");
         app.displayCity(ctyn1);
-        System.out.println("# Top N populated cities in the region");
+        System.out.println("14# Top N populated cities in the region");
         app.displayCity(ctyn2);
-        System.out.println("# Top N populated countries in the country");
+        System.out.println("15# Top N populated countries in the country");
         app.displayCity(ctyn3);
-        System.out.println("# Top N populated countries in the district");
+        System.out.println("16# Top N populated countries in the district");
         app.displayCity(ctyn4);
 
 
         /** display capital city */
-        //System.out.println("# Display capital city in a world");
-        //app.displaycapitalcity(capty);
-        //System.out.println("# Display capital city in the Continent");
-       // app.displaycapitalcity(capty1);
-        // System.out.println("# Display capital city in the Region");
-       // app.displaycapitalcity(capty2);
-        /// System.out.println("# Top N populated capital cities in the world");
-        //app.displaycapitalcity(captyn);
-        // System.out.println("# Top N populated capital cities in the Continent");
-        //app.displaycapitalcity(captyn1);
-        // System.out.println("# Top N populated capital cities in the Region");
-       // app.displaycapitalcity(captyn2);
+        System.out.println("17# Display capital city in a world");
+        app.displaycapitalcity(capty);
+        System.out.println("18# Display capital city in the Continent");
+        app.displaycapitalcity(capty1);
+         System.out.println("19# Display capital city in the Region");
+        app.displaycapitalcity(capty2);
+         System.out.println("20# Top N populated capital cities in the world");
+        app.displaycapitalcity(captyn);
+         System.out.println("21# Top N populated capital cities in the Continent");
+        app.displaycapitalcity(captyn1);
+         System.out.println("22# Top N populated capital cities in the Region");
+       app.displaycapitalcity(captyn2);
 
         /** display population */
-        System.out.println("# World Population");
-        //app.displayPopulation(wcou);
-        System.out.println("# Continent Population");
-        //app.displayContinentPopulation(ccou);
-        System.out.println("# Region Population");
-        //app.displayRegionPopulation(recou);
-        System.out.println("# Country Population");
-        //app.displayCountryPopulation(cocou);
-        System.out.println("# District Population");
-        //app.displayDistrictPopulation(dcou);
-        System.out.println("# City Population");
-        //app.displayCityPopulation(cicou);
-        System.out.println("# Language Spoken");
+        System.out.println("23# World Population");
+        app.displayPopulation(wcou);
+        System.out.println("24# Continent Population");
+        app.displayContinentPopulation(ccou);
+        System.out.println("25# Region Population");
+        app.displayRegionPopulation(recou);
+        System.out.println("26# Country Population");
+        app.displayCountryPopulation(cocou);
+        System.out.println("27# District Population");
+        app.displayDistrictPopulation(dcou);
+        System.out.println("28# City Population");
+        app.displayCityPopulation(cicou);
+        System.out.println("29# Language Spoken");
         app.displayLanguageSpoken(lcou);
 
-
+        /** the report of the population of people, people living in cities, and people not living in cities in each country. */
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
         ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
         ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
+
+        /** Display of the population of people */
+        System.out.println("30# The report of the population of people, people living in cities, and people not living in cities in each country");
         app.displaypopulationlivingincitiesornotcountry(pop2);
+        System.out.println("31# The report of the population of people, people living in cities, and people not living in cities in each continent");
         app.displaypopulationlivingincitiesornotcontinent(pop);
+        System.out.println("32# The report of the population of people, people living in cities, and people not living in cities in each region");
         app.displaypopulationlivingincitiesornotregion(pop1);
 
 
@@ -390,10 +395,10 @@ public class App {
             return;
 
         }
-       /** if(cou.contains(null)){
+        if(cou.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        } */
+        }
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-4s %-1s %-45s %-1s %-15s %-1s %-25s %-1s %-38s %-1s %-12s %-1s","|", "Code", "|","Name", "|","Continent","|", "Region", "|","Capital","|", "Population","|"));
         System.out.println("|------------------------------------------------------------------------------------------------------------------------------------------------------------|");
@@ -765,10 +770,10 @@ public class App {
             return;
 
         }
-       /** if(cty.contains(null)){
+       if(cty.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        }*/
+        }
         System.out.println("|--------------------------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-31s %-1s %-38s %-1s %-20s %-1s %-10s %-1s", "|", "Name", "|", "Country", "|", "District", "|", "Population", "|"));
         System.out.println("|--------------------------------------------------------------------------------------------------------------|");
@@ -1001,10 +1006,10 @@ public class App {
             return;
 
         }
-       /** if(cty.contains(null)){
+        if(cty.contains(null)){
             System.out.println("Array List contain Null");
             return;
-        } */
+        }
         System.out.println("|-------------------------------------------------------------------------------------------|");
         System.out.println(String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s","|","Population","|","City","|","Country","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -1062,7 +1067,7 @@ public class App {
         System.out.println("|-------------------------------------------------------------------------------------------|");
         System.out.println(String.format( "%-35s","Total Population of the World"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        // Loop over all country in the list
         for (Country ct : wcou) {
             if(ct==null)
                 continue;
@@ -1114,20 +1119,20 @@ public class App {
             System.out.println("No Population");
             return;
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s","|","Continent","|","Total Population","|"));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        System.out.println("|-------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-20s %-1s","|","Continent","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------|");
+        // Loop over all country in the list
         for (Country ct : ccou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s",
+                    String.format("%-1s %-35s %-1s %-20s %-1s",
                             "|",ct.getContinent(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println("|-------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
     /**
@@ -1169,21 +1174,22 @@ public class App {
             System.out.println("No Population");
             return;
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Region","|","Total Population","|"));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        System.out.println("|-------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-20s %-1s ","|","Region","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------|");
+        // Loop over all country in the list
         for (Country ct : recou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                    String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getRegion(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
+    //-------------------------------------------------------------------------------------------------------------------
 
     public ArrayList<Country> CountryPoupulation(){
         try {
@@ -1220,22 +1226,22 @@ public class App {
             System.out.println("No Population");
             return;
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","LocalName","|","Total Population","|"));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        System.out.println("|-------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-20s %-1s ","|","LocalName","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------|");
+        // Loop over all country in the list
         for (Country ct : cocou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                    String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getLocalName(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println("|-------------------------------------------------------------------|");
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<City> DistrictPoupulation(){
         try {
             // Create an SQL statement
@@ -1271,22 +1277,22 @@ public class App {
             System.out.println("No Population");
             return;
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","District","|","Total Population","|"));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        System.out.println("|-------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-20s %-1s ","|","District","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------|");
+        // Loop over all City in the list
         for (City ct : dcou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                    String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getDistrict(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println("|-------------------------------------------------------------------|");
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<City> CityPoupulation(){
         try {
             // Create an SQL statement
@@ -1322,22 +1328,22 @@ public class App {
             System.out.println("No Population");
             return;
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Name","|","Total Population","|"));
-        System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        System.out.println("|-------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-20s %-1s ","|","Name","|","Total Population","|"));
+        System.out.println("|-------------------------------------------------------------------|");
+        // Loop over all city in the list
         for (City ct : cicou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                    String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getName(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
 
         }
-        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println("|-------------------------------------------------------------------|");
     }
-
+    //-------------------------------------------------------------------------------------------------------------------
     public ArrayList<CountryLanguage> LanguageSpoken(){
         try {
             // Create an SQL statement
@@ -1375,14 +1381,14 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s %-38s ","|","Language","|","Total Population","|","Percentage","|"));
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s %-9s  %-1s","|","Language","|","Total Population","|","Percentage","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        // Loop over all languages in the list
         for (CountryLanguage ct : lcou) {
             if(ct==null)
                 continue;
             String emp_string =
-                    String.format("%-1s %-35s %-1s %-38s %-1s %-38s ",
+                    String.format("%-1s %-35s %-1s %-38s %-1s %-9s%% %-1s ",
                             "|",ct.getLanguage(),"|",ct.getPopulation(),"|",ct.getPercentage(),"|");
             System.out.println(emp_string);
 
@@ -1441,6 +1447,7 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public void displaypopulationlivingincitiesornotcontinent(ArrayList<Populationcities> popul){
         if (popul == null)
         {
@@ -1448,16 +1455,16 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Continent","Population Total","People living in Cities","People not living in cities "));
+        System.out.println(String.format("%-1s %-14s %-19s  %-23s  %-20s %-1s ","|","Continent","Population Total","People living in Cities","People not living in cities ","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        // Loop over all Population in the list
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-3s%% %20s %-3s%% ",
-                             populat.getContinent(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
+                    String.format("%-1s %-14s %-19s  %-3s%% %20s %-3s%% %-22s %-1s",
+                             '|',populat.getContinent(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout(),"",'|');
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
@@ -1558,6 +1565,7 @@ public class App {
             return null;
         }
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public void displaypopulationlivingincitiesornotcountry(ArrayList<Populationcities> popul){
         if (popul == null)
         {
@@ -1565,20 +1573,21 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s %-18s ","Country","Population Total","People living in Cities","People not living in cities"));
+        System.out.println(String.format("%-1s %-14s %-19s  %-23s  %-20s %-1s ","|","Country","Population Total","People living in Cities","People not living in cities","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        // Loop over all Population in the list
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-3s%% %20s %-3s%%",
-                            populat.getName(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
+                    String.format("%-1s %-14s %-19s  %-3s%% %20s %-3s%% %22s %-1s",
+                            "|",populat.getName(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout(),"","|");
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
+    //-------------------------------------------------------------------------------------------------------------------
     public void displaypopulationlivingincitiesornotregion(ArrayList<Populationcities> popul){
         if (popul == null)
         {
@@ -1586,28 +1595,20 @@ public class App {
             return;
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        System.out.println(String.format("%-15s %-23s  %-23s  %-18s ","Region","Population Total","People living in Cities","People not living in cities "));
+        System.out.println(String.format("%-1s %-14s %-19s  %-23s  %-20s %-1s  ","|","Region","Population Total","People living in Cities","People not living in cities ","|"));
         System.out.println("|-------------------------------------------------------------------------------------------|");
-        // Loop over all employees in the list
+        // Loop over all Population in the list
         for (Populationcities populat : popul) {
             if(populat==null)
                 continue;
 
             String emp_string =
-                    String.format("%-15s %-23s  %-3s%% %20s %-3s%% ",
-                            populat.getRegion(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout());
+                    String.format("%-1s %-14s %-19s  %-3s%% %20s %-3s%% %22s %-1s",
+                            "|",populat.getRegion(), populat.getPopulationtotal(), populat.getPopulationin(),"",populat.getPopulationout(),"","|");
             System.out.println(emp_string);
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
-
-
-
-
-
-
-
-
 
 
 //-------------------------------------------------------------------------------------------------------------------
