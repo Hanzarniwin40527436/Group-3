@@ -17,46 +17,34 @@ public class App {
         } else {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
-
-
-
         /** All the countries in the world/continent/region organised by largest population to smallest. */
        ArrayList<Country> cou = app.getCountryWorld();
        ArrayList<Country> cou1 = app.getCountryContinent();
       ArrayList<Country> cou2 = app.getCountryRegion();
-
         /** the top N populated countries in the world/continent/region by the user. */
          ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
          ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
          ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
-
-
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
         ArrayList<City> cty = app.getCityWorld();
         ArrayList<City> cty1 = app.getCityContinent();
         ArrayList<City> cty2 = app.getCityRegion();
         ArrayList<City> cty3 = app.getCityCountry();
         ArrayList<City> cty4 = app.getCityDistrict();
-
         /** The top N populated cities provided by the user*/
         ArrayList<City> ctyn = app.getTopNPopulatedCityInTheWorld();
         ArrayList<City> ctyn1 =  app.getTopNPopulatedCityInTheContinent();
         ArrayList<City> ctyn2 = app.getTopNPopulatedCityInTheRegion();
         ArrayList<City> ctyn3 = app.getTopNPopulatedCityInTheCountry();
         ArrayList<City> ctyn4 = app.getTopNPopulatedCityInTheDistrict();
-
         /** All the capital cities in the world/continent/region organized by largest population to smallest */
         ArrayList<City> capty = app.getcapitalcitiesintheworld();
         ArrayList<City> capty1 = app.getcapitalcitiesinthecontinent();
         ArrayList<City> capty2 = app.getcapitalcitiesintheregion();
-
         /** the top N populated capital cities in the world/continent/region where N is provided by the user. */
         ArrayList<City> captyn = app.getTOPNcapitalcitiesintheworld();
         ArrayList<City> captyn1 = app.getTOPNcapitalcitiesinthecontinent();
         ArrayList<City> captyn2 = app.getTOPNcapitalcitiesintheregion();
-
-
-
         /** Population from World/Continent/Region  */
         ArrayList<Country> wcou = app.WorldPopulation();
         ArrayList<Country> ccou = app.ContinentPoupulation();
@@ -65,9 +53,10 @@ public class App {
         ArrayList<City> dcou = app.DistrictPoupulation();
         ArrayList<City> cicou = app.CityPoupulation();
         ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
-
-
-
+        /** the report of the population of people, people living in cities, and people not living in cities in each country. */
+        ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
+        ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
+        ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
         /** display country*/
         System.out.println("1# Display country in the world");
         app.displayCountry(cou);
@@ -81,9 +70,6 @@ public class App {
         app.displayCountry(coun1);
         System.out.println("6# Top N populated countries in the region");
         app.displayCountry(coun2);
-
-
-
         /** display city*/
         System.out.println("7# Display city in the world");
         app.displayCity(cty);
@@ -105,8 +91,6 @@ public class App {
         app.displayCity(ctyn3);
         System.out.println("16# Top N populated countries in the district");
         app.displayCity(ctyn4);
-
-
         /** display capital city */
         System.out.println("17# Display capital city in a world");
         app.displaycapitalcity(capty);
@@ -120,7 +104,6 @@ public class App {
         app.displaycapitalcity(captyn1);
          System.out.println("22# Top N populated capital cities in the Region");
        app.displaycapitalcity(captyn2);
-
         /** display population */
         System.out.println("23# World Population");
         app.displayPopulation(wcou);
@@ -136,12 +119,6 @@ public class App {
         app.displayCityPopulation(cicou);
         System.out.println("29# Language Spoken");
         app.displayLanguageSpoken(lcou);
-
-        /** the report of the population of people, people living in cities, and people not living in cities in each country. */
-        ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
-        ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
-        ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
-
         /** Display of the population of people */
         System.out.println("30# The report of the population of people, people living in cities, and people not living in cities in each country");
         app.displaypopulationlivingincitiesornotcountry(pop2);
@@ -149,8 +126,6 @@ public class App {
         app.displaypopulationlivingincitiesornotcontinent(pop);
         System.out.println("32# The report of the population of people, people living in cities, and people not living in cities in each region");
         app.displaypopulationlivingincitiesornotregion(pop1);
-
-
         /** Disconnect from database */
         app.disconnect();
     }
@@ -1004,7 +979,6 @@ public class App {
         if(cty.isEmpty()){
             System.out.println("Array List is Empty");
             return;
-
         }
         if(cty.contains(null)){
             System.out.println("Array List contain Null");
@@ -1021,7 +995,6 @@ public class App {
                     String.format("%-1s %-10s %-1s %-35s %-1s %-38s %-1s",
                             "|",ct.getPopulation(),"|",ct.getName(),"|",ct.getCountryCode(),"|");
             System.out.println(emp_string);
-
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
