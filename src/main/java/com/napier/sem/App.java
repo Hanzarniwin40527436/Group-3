@@ -61,9 +61,10 @@ public class App {
         //ArrayList<Country> wcou = app.WorldPopulation();
         //ArrayList<Country> ccou = app.ContinentPoupulation();
         //ArrayList<Country> recou = app.RegionPoupulation();
-        ArrayList<Country> cocou = app.CountryPoupulation();
-        ArrayList<City> dcou = app.DistrictPoupulation();
-        ArrayList<City> cicou = app.CityPoupulation();
+        //ArrayList<Country> cocou = app.CountryPoupulation();
+        //ArrayList<City> dcou = app.DistrictPoupulation();
+        //ArrayList<City> cicou = app.CityPoupulation();
+        ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
 
 
 
@@ -128,11 +129,13 @@ public class App {
         System.out.println("# Region Population");
         //app.displayRegionPopulation(recou);
         System.out.println("# Country Population");
-        app.displayCountryPopulation(cocou);
+        //app.displayCountryPopulation(cocou);
         System.out.println("# District Population");
-        app.displayDistrictPopulation(dcou);
+        //app.displayDistrictPopulation(dcou);
         System.out.println("# City Population");
-        app.displayCityPopulation(cicou);
+        //app.displayCityPopulation(cicou);
+        System.out.println("# Language Spoken");
+        app.displayLanguageSpoken(lcou);
 
 
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
@@ -1329,6 +1332,58 @@ public class App {
             String emp_string =
                     String.format("%-1s %-35s %-1s %-38s %-1s ",
                             "|",ct.getName(),"|",ct.getPopulation(),"|");
+            System.out.println(emp_string);
+
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+    }
+
+    public ArrayList<CountryLanguage> LanguageSpoken(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Language ,SUM(Population), AVG(Percentage) "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')"+"GROUP BY Language ORDER BY SUM(Population) DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            ArrayList<CountryLanguage> lcou = new ArrayList<CountryLanguage>();
+            while (rset.next()) {
+                CountryLanguage ct = new CountryLanguage();
+                ct.setLanguage(rset.getString("Language"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
+                ct.setPercentage(rset.getLong("AVG(Percentage)"));
+                lcou.add(ct);
+            }
+            return lcou;
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Spoken Language details");
+            return null;
+        }
+    }
+    //-------------------------------------------------------------------------------------------------------------------
+    /**
+     *
+     * @return the language spoken
+     */
+    public void displayLanguageSpoken(ArrayList<CountryLanguage> lcou){
+        if (lcou == null)
+        {
+            System.out.println("No Language");
+            return;
+        }
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        System.out.println(String.format("%-1s %-35s %-1s %-38s %-1s ","|","Language","|","Total Population","|","Percentage","|"));
+        System.out.println("|-------------------------------------------------------------------------------------------|");
+        // Loop over all employees in the list
+        for (CountryLanguage ct : lcou) {
+            if(ct==null)
+                continue;
+            String emp_string =
+                    String.format("%-1s %-35s %-1s %-38s %-1s ",
+                            "|",ct.getLanguage(),"|",ct.getPopulation(),"|",ct.getPercentage(),"|");
             System.out.println(emp_string);
 
         }
