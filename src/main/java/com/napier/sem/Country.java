@@ -7,8 +7,12 @@ public class Country {
     private String Continent;
     private String Region;
     private String Capital;
-    private Long Population;
+
     private String LocalName;
+
+    private Long Population;
+
+
 
 
 
