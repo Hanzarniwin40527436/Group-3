@@ -2,8 +2,8 @@ package com.napier.sem;
 
 public class Populationcities {
     private long populationtotal;
-    private int populationin;
-    private int populationout;
+    private long populationin;
+    private long populationout;
     private String Name;
     private String Continent;
     private String Region;
@@ -40,19 +40,19 @@ public class Populationcities {
         this.populationtotal = populationtotal;
     }
 
-    public int getPopulationin() {
+    public long getPopulationin() {
         return populationin;
     }
 
-    public void setPopulationin(int populationin) {
+    public void setPopulationin(long populationin) {
         this.populationin = populationin;
     }
 
-    public int getPopulationout() {
+    public long getPopulationout() {
         return populationout;
     }
 
-    public void setPopulationout(int populationout) {
+    public void setPopulationout(long populationout) {
         this.populationout = populationout;
     }
 }
