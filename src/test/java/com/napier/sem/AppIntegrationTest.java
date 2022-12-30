@@ -266,8 +266,20 @@ public class AppIntegrationTest
         assertEquals(city.getPopulation(),101574);
     }
 
+    @Test
+    void TestWorldPopulation() {
+        ArrayList<Country> wcou = app.WorldPopulation();
+        Country cou = wcou.get(0);
+        assertEquals(cou.getPopulation(),"6078749450");
+    }
 
-
+    @Test
+    void TestContinentPopulation() {
+        ArrayList<Country> ccou = app.ContinentPoupulation();
+        Country cou = ccou.get(0);
+        assertEquals(cou.getContinent(), "North America");
+        assertEquals(cou.getPopulation(),"482993000");
+    }
 
 
 
