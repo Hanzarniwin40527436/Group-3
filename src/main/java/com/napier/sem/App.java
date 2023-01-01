@@ -7,6 +7,7 @@ import java.io.*;
 
 
 public class App {
+
     public static void main(String[] args) {
         /** Create new Application */
         App app = new App();
@@ -174,6 +175,7 @@ public class App {
             return null;
         }
     }
+
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -1429,15 +1431,15 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each continent.
      */
-    private String selcontinent="Asia " ;
+    private String continent="Asia";
     public ArrayList<Populationcities> peopleliveincitiesincontinent() {
         try {
             // Create an SQL statement
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent= " + selcontinent+ "'\n";
-            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent= " + selcontinent+ "'\n";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent" + continent;
+            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent" + continent;
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
             ResultSet rset2 = stmt2.executeQuery(strSelect2);
