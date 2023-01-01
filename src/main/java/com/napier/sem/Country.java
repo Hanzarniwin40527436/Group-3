@@ -13,9 +13,6 @@ public class Country {
     private Long Population;
 
 
-
-
-
     public Long getPopulation() {
         return Population;
     }
@@ -23,10 +20,6 @@ public class Country {
     public void setPopulation(Long population) {
         Population = population;
     }
-
-
-
-
 
     public String getCode() {
         return Code;

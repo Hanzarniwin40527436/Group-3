@@ -18,13 +18,13 @@ public class App {
             app.connect(args[0], Integer.parseInt(args[1]));
         }
         /** All the countries in the world/continent/region organised by largest population to smallest. */
-       ArrayList<Country> cou = app.getCountryWorld();
-       ArrayList<Country> cou1 = app.getCountryContinent();
-      ArrayList<Country> cou2 = app.getCountryRegion();
+        ArrayList<Country> cou = app.getCountryWorld();
+        ArrayList<Country> cou1 = app.getCountryContinent();
+        ArrayList<Country> cou2 = app.getCountryRegion();
         /** the top N populated countries in the world/continent/region by the user. */
-         ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
-         ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
-         ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
+        ArrayList<Country> coun = app.getTopNPopulatedCountriesInTheWorld();
+        ArrayList<Country> coun1 = app.getTopNPopulatedCountriesInTheContinent();
+        ArrayList<Country> coun2 = app.getTopNPopulatedCountriesInTheRegion();
         /** All the cities in the world/continent/region/country/district organised by largest population to smallest. */
         ArrayList<City> cty = app.getCityWorld();
         ArrayList<City> cty1 = app.getCityContinent();
@@ -54,6 +54,7 @@ public class App {
         ArrayList<City> cicou = app.CityPoupulation();
         ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
         /** the report of the population of people, people living in cities, and people not living in cities in each country. */
+
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
         ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
         ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
@@ -74,9 +75,9 @@ public class App {
         System.out.println("7# Display city in the world");
         app.displayCity(cty);
         System.out.println("8# Display city in a continent");
-         app.displayCity(cty1);
+        app.displayCity(cty1);
         System.out.println("9# Display city in a region");
-         app.displayCity(cty2);
+        app.displayCity(cty2);
         System.out.println("10# Display city in a country");
         app.displayCity(cty3);
         System.out.println("11# Display city in a district");
@@ -96,14 +97,14 @@ public class App {
         app.displaycapitalcity(capty);
         System.out.println("18# Display capital city in the Continent");
         app.displaycapitalcity(capty1);
-         System.out.println("19# Display capital city in the Region");
+        System.out.println("19# Display capital city in the Region");
         app.displaycapitalcity(capty2);
-         System.out.println("20# Top N populated capital cities in the world");
+        System.out.println("20# Top N populated capital cities in the world");
         app.displaycapitalcity(captyn);
-         System.out.println("21# Top N populated capital cities in the Continent");
+        System.out.println("21# Top N populated capital cities in the Continent");
         app.displaycapitalcity(captyn1);
-         System.out.println("22# Top N populated capital cities in the Region");
-       app.displaycapitalcity(captyn2);
+        System.out.println("22# Top N populated capital cities in the Region");
+        app.displaycapitalcity(captyn2);
         /** display population */
         System.out.println("23# World Population");
         app.displayPopulation(wcou);
@@ -136,7 +137,6 @@ public class App {
      */
     private Connection con = null;
 
-
     /**
      *
      * @return All the countries in the world organised by largest population to smallest.
@@ -153,8 +153,10 @@ public class App {
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
 
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -172,8 +174,6 @@ public class App {
             return null;
         }
     }
-
-
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -191,8 +191,9 @@ public class App {
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -227,8 +228,9 @@ public class App {
                             + "ORDER BY country.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -263,8 +265,9 @@ public class App {
                             "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -298,7 +301,9 @@ public class App {
                             "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -333,7 +338,9 @@ public class App {
                             "ORDER BY country.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> cou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setCode(rset.getString("country.Code"));
@@ -351,9 +358,7 @@ public class App {
             return null;
         }
     }
-
     //-------------------------------------------------------------------------------------------------------------------
-
 
     /**
      *
@@ -407,8 +412,9 @@ public class App {
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -441,8 +447,9 @@ public class App {
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -475,8 +482,9 @@ public class App {
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -509,8 +517,9 @@ public class App {
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -543,8 +552,9 @@ public class App {
                             + "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -576,8 +586,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -609,8 +620,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -643,8 +655,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -677,8 +690,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -711,8 +725,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -728,9 +743,7 @@ public class App {
             return null;
         }
     }
-
     //-------------------------------------------------------------------------------------------------------------------
-
     /**
      *
      * Display city function
@@ -781,7 +794,9 @@ public class App {
                     "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -797,7 +812,6 @@ public class App {
             return null;
         }
     }
-
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -813,10 +827,11 @@ public class App {
                             "FROM city, country "+
                             "WHERE city.ID= country.Capital AND country.Continent='Europe' "+
                             "ORDER BY city.Population DESC";
-
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -850,7 +865,9 @@ public class App {
                             "ORDER BY city.Population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -859,7 +876,6 @@ public class App {
                 cty.add(ct);
             }
             return cty;
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Capital Cities details");
@@ -883,7 +899,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -892,7 +910,6 @@ public class App {
                 cty.add(ct);
             }
             return cty;
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Capital Cities details");
@@ -916,7 +933,9 @@ public class App {
                             "ORDER BY city.Population DESC "+ "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -949,7 +968,9 @@ public class App {
                             "ORDER BY city.Population DESC " + "LIMIT 5";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cty = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("city.Name"));
@@ -958,7 +979,6 @@ public class App {
                 cty.add(ct);
             }
             return cty;
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Capital Cities details");
@@ -1012,7 +1032,9 @@ public class App {
                     "SELECT SUM(Population) "+ "FROM country";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> wcou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setPopulation(rset.getLong("SUM(Population)"));
@@ -1066,7 +1088,9 @@ public class App {
                     "SELECT Continent ,SUM(Population) "+ "FROM country "+ "GROUP BY Continent ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> ccou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setContinent(rset.getString("Continent"));
@@ -1121,7 +1145,9 @@ public class App {
                     "SELECT Region ,SUM(Population) "+ "FROM country "+ "GROUP BY Region";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> recou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setRegion(rset.getString("Region"));
@@ -1173,7 +1199,9 @@ public class App {
                     "SELECT LocalName ,SUM(Population) "+ "FROM country "+ "GROUP BY LocalName";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<Country> cocou = new ArrayList<Country>();
+            //While loop for SQL
             while (rset.next()) {
                 Country ct = new Country();
                 ct.setLocalName(rset.getString("LocalName"));
@@ -1210,7 +1238,6 @@ public class App {
                     String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getLocalName(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
-
         }
         System.out.println("|-------------------------------------------------------------------|");
     }
@@ -1224,7 +1251,9 @@ public class App {
                     "SELECT District ,SUM(Population) "+ "FROM city "+ "GROUP BY District";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> dcou = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setDistrict(rset.getString("District"));
@@ -1232,7 +1261,6 @@ public class App {
                 dcou.add(ct);
             }
             return dcou;
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get District Population details");
@@ -1261,7 +1289,6 @@ public class App {
                     String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getDistrict(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
-
         }
         System.out.println("|-------------------------------------------------------------------|");
     }
@@ -1275,7 +1302,9 @@ public class App {
                     "SELECT Name ,SUM(Population) "+ "FROM city "+ "GROUP BY Name";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<City> cicou = new ArrayList<City>();
+            //While loop for SQL
             while (rset.next()) {
                 City ct = new City();
                 ct.setName(rset.getString("Name"));
@@ -1283,7 +1312,6 @@ public class App {
                 cicou.add(ct);
             }
             return cicou;
-
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get City Population details");
@@ -1312,12 +1340,11 @@ public class App {
                     String.format("%-1s %-35s %-1s %-20s %-1s ",
                             "|",ct.getName(),"|",ct.getPopulation(),"|");
             System.out.println(emp_string);
-
         }
         System.out.println("|-------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
-    public ArrayList<CountryLanguage> LanguageSpoken(){
+    /** public ArrayList<CountryLanguage> LanguageSpoken(){
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -1326,7 +1353,9 @@ public class App {
                     "SELECT Language ,SUM(Population), AVG(Percentage) "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')"+"GROUP BY Language ORDER BY SUM(Population) DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
             ArrayList<CountryLanguage> lcou = new ArrayList<CountryLanguage>();
+            //While loop for SQL
             while (rset.next()) {
                 CountryLanguage ct = new CountryLanguage();
                 ct.setLanguage(rset.getString("Language"));
@@ -1335,13 +1364,39 @@ public class App {
                 lcou.add(ct);
             }
             return lcou;
-
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Spoken Language details");
+            return null;
+        }
+    } */
+    public ArrayList<CountryLanguage> LanguageSpoken(){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT Language ,SUM(Population) ,SUM(Population*Percentage)/6078749450 "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')"+"GROUP BY Language ORDER BY SUM(Population) DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // create new arraylist
+            ArrayList<CountryLanguage> lcou = new ArrayList<CountryLanguage>();
+            //While loop for SQL
+            while (rset.next()) {
+                CountryLanguage ct = new CountryLanguage();
+                ct.setLanguage(rset.getString("Language"));
+                ct.setPopulation(rset.getLong("SUM(Population)"));
+                ct.setPercentage(rset.getLong("AVG(Percentage)"));
+                lcou.add(ct);
+            }
+            return lcou;
         }catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Spoken Language details");
             return null;
         }
     }
+
     //-------------------------------------------------------------------------------------------------------------------
     /**
      *
@@ -1364,7 +1419,6 @@ public class App {
                     String.format("%-1s %-35s %-1s %-38s %-1s %-9s%% %-1s ",
                             "|",ct.getLanguage(),"|",ct.getPopulation(),"|",ct.getPercentage(),"|");
             System.out.println(emp_string);
-
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
@@ -1375,19 +1429,19 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each continent.
      */
+    private String contients="Asia";
     public ArrayList<Populationcities> peopleliveincitiesincontinent() {
         try {
             // Create an SQL statement
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent='Asia'";
-            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent='Asia'";
-
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent=" + contients;
+            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent="+contients;
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
             ResultSet rset2 = stmt2.executeQuery(strSelect2);
-
+            // create new arraylist
             ArrayList<Populationcities> pop = new ArrayList<>();
             long citytotal=0;
             long cityin=0;
@@ -1402,6 +1456,7 @@ public class App {
                 conti=rset2.getString("Country.Continent");
 
             }
+
             long cityout= citytotal-cityin;
             int percentin=(int)(cityin*100/citytotal);
             int percentout=100-percentin;
@@ -1582,8 +1637,6 @@ public class App {
         }
         System.out.println("|-------------------------------------------------------------------------------------------|");
     }
-
-
 //-------------------------------------------------------------------------------------------------------------------
     /**
      * Connect to the MySQL database.

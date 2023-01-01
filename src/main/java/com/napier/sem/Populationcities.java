@@ -52,7 +52,8 @@ public class Populationcities {
         return populationout;
     }
 
-    public void setPopulationout(long populationout) {
-        this.populationout = populationout;
+    public void setPopulationout(long getPopulationout) {
+        this.populationout = getPopulationout;
     }
+
 }

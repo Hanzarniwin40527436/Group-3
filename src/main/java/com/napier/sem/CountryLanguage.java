@@ -7,7 +7,6 @@ public class CountryLanguage {
 
     private Long Percentage;
 
-
     public String getLanguage() {
         return Language;
     }
@@ -31,14 +30,5 @@ public class CountryLanguage {
     public void setPercentage(Long percentage) {
         Percentage = percentage;
     }
-    public CountryLanguage(String language, Long population, Long percentage) {
-        Language = language;
-        Population = population;
-        Percentage = percentage;
-    }
 
-
-    public CountryLanguage(){
-
-    }
 }
