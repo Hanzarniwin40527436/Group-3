@@ -59,11 +59,6 @@ public class City
      * City's code
      */
     private String CountryCode;
-
-    public int getID() {
-        return ID;
-    }
-
     public City(int ID, String name, String district, int population, String countryCode) {
         this.ID = ID;
         Name = name;
