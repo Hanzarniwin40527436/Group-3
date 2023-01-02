@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import javax.swing.plaf.synth.Region;
 import java.awt.event.MouseWheelEvent;
 import java.sql.*;
 import java.util.ArrayList;
@@ -55,7 +56,6 @@ public class App {
         ArrayList<City> cicou = app.CityPoupulation();
         ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
         /** the report of the population of people, people living in cities, and people not living in cities in each country. */
-
         ArrayList<Populationcities> pop = app.peopleliveincitiesincontinent();
         ArrayList<Populationcities> pop1 = app.peopleliveincitiesinregion();
         ArrayList<Populationcities> pop2 = app.peopleliveincitiesincountry();
@@ -137,7 +137,7 @@ public class App {
      * Connection
      */
     private Connection con = null;
-
+    private int Limit=5;
     /**
      *
      * @return All the countries in the world organised by largest population to smallest.
@@ -264,7 +264,7 @@ public class App {
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
                             "FROM country, city "+ "Where country.Capital = city.ID " +
-                            "ORDER BY country.Population DESC "+ "LIMIT 5";
+                            "ORDER BY country.Population DESC "+ "LIMIT "+ Limit ;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -300,7 +300,7 @@ public class App {
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
                             "FROM country, city "+ "Where country.Capital = city.ID AND country.Continent = 'Asia' " +
-                            "ORDER BY country.Population DESC "+ "LIMIT 5";
+                            "ORDER BY country.Population DESC "+ "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -337,7 +337,7 @@ public class App {
             String strSelect =
                     "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital, city.ID, city.Name "+
                             "FROM country, city "+ "Where country.Capital = city.ID AND Region= 'Southeast Asia' " +
-                            "ORDER BY country.Population DESC "+ "LIMIT 5";
+                            "ORDER BY country.Population DESC "+ "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -585,7 +585,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population, city.District "+
                             "FROM city, country " + "WHERE city.CountryCode = country.Code " +
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -619,7 +619,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population, city.District "+
                             "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Continent = 'Asia' " +
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -654,7 +654,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population, city.District "+
                             "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region = 'Southern and Central Asia' " +
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -689,7 +689,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population, city.District "+
                             "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Name = 'China' " +
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -724,7 +724,7 @@ public class App {
             String strSelect =
                     "SELECT city.Name, country.Name, city.Population, city.District "+
                             "FROM city, country " + "WHERE city.CountryCode = country.Code AND city.District = 'Gelderland' " +
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -898,7 +898,7 @@ public class App {
                     "SELECT city.population, city.Name ,country.Name "+
                             "FROM city, country "+
                             "WHERE city.ID= country.Capital "+
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT  "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -932,7 +932,7 @@ public class App {
                     "SELECT city.population, city.Name ,country.Name "+
                             "FROM city, country "+
                             "WHERE city.ID= country.Capital AND country.Region='Southern Europe' "+
-                            "ORDER BY city.Population DESC "+ "LIMIT 5";
+                            "ORDER BY city.Population DESC "+ "LIMIT  "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -967,7 +967,7 @@ public class App {
                     "SELECT city.population, city.Name ,country.Name "+
                             "FROM city, country "+
                             "WHERE city.ID= country.Capital AND country.Continent='Europe' "+
-                            "ORDER BY city.Population DESC " + "LIMIT 5";
+                            "ORDER BY city.Population DESC " + "LIMIT  "+ Limit;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -1378,7 +1378,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT Language ,SUM(Population) ,SUM(Population*Percentage)/6078749450 "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')"+"GROUP BY Language ORDER BY SUM(Population) DESC";
+                    "SELECT Language ,SUM(Population) ,SUM(Population*Percentage)/ 6078749450 "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic') "+"GROUP BY Language ORDER BY SUM(Population) DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // create new arraylist
@@ -1388,7 +1388,7 @@ public class App {
                 CountryLanguage ct = new CountryLanguage();
                 ct.setLanguage(rset.getString("Language"));
                 ct.setPopulation(rset.getLong("SUM(Population)"));
-                ct.setPercentage(rset.getLong("AVG(Percentage)"));
+                ct.setPercentage(rset.getLong("SUM(Population*Percentage)/ 6078749450"));
                 lcou.add(ct);
             }
             return lcou;
@@ -1431,15 +1431,19 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each continent.
      */
+
     private String continent="Asia";
+    private  String region="North America";
+    private String country="China";
+
     public ArrayList<Populationcities> peopleliveincitiesincontinent() {
         try {
             // Create an SQL statement
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent= ' "+ continent + "'";
-            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent= ' "+ continent + "'";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE continent= "+ "'"+ continent + "'";
+            String strSelect2 = "SELECT country.Continent,SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.continent= "+ "'"+ continent + "'";
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
             ResultSet rset2 = stmt2.executeQuery(strSelect2);
@@ -1504,14 +1508,16 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each region.
      */
+
+
     public ArrayList<Populationcities> peopleliveincitiesinregion() {
         try {
             // Create an SQL statement
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Region='North America'";
-            String strSelect2 = "SELECT country.Region, SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region='North America'";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Region= "+ "'"+ region  + "'";
+            String strSelect2 = "SELECT country.Region, SUM(city.Population) " + "FROM city, country " + "WHERE city.CountryCode = country.Code AND country.Region= "+ "'"+ region + "'";
 
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);
@@ -1552,14 +1558,15 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each country.
      */
+
     public ArrayList<Populationcities> peopleliveincitiesincountry() {
         try {
             // Create an SQL statement
             Statement stmt1 = con.createStatement();
             Statement stmt2 = con.createStatement();
             // Create string for SQL statement
-            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Name='China'";
-            String strSelect2 = "SELECT country.Name,sum(city.Population) "+"FROM city,country "+"WHERE city.CountryCode = country.Code AND country.Name='China'";
+            String strSelect1 = "SELECT SUM(Population) " + "FROM country "+ "WHERE country.Name= "+ "'"+ country  + "'";
+            String strSelect2 = "SELECT country.Name,sum(city.Population) "+"FROM city,country "+"WHERE city.CountryCode = country.Code AND country.Name= "+ "'"+ country  + "'";
 
             // Execute SQL statement
             ResultSet rset1 = stmt1.executeQuery(strSelect1);

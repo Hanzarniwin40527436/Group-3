@@ -1,12 +1,35 @@
 package com.napier.sem;
 
 public class Populationcities {
+    /**
+     * People living in cities total
+     */
     private long populationtotal;
+    /**
+     * People living in cities
+     */
     private long populationin;
+    /**
+     * People not living in cities
+     */
     private long populationout;
+
+    /**
+     * Cities name
+     */
     private String Name;
+    /**
+     * contient
+     */
     private String Continent;
+    /**
+     * Region
+     */
     private String Region;
+
+    /**
+     * Getter Setter
+     */
 
     public String getName() {
         return Name;

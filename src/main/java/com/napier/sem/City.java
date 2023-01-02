@@ -5,24 +5,22 @@ public class City
      * City ID
      */
     private int ID;
-
     /**
      * City's name
      */
     private String Name;
-
-
     /**
      * City's District
      */
     private String District;
-
     /**
      * City's Population
      */
     private int Population;
 
-
+    /**
+     * Getter Setter
+     */
     public String getName() {
         return Name;
     }
@@ -55,8 +53,12 @@ public class City
         CountryCode = countryCode;
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     /**
-     * City's code
+     * Country Code
      */
     private String CountryCode;
     public City(int ID, String name, String district, int population, String countryCode) {
@@ -66,11 +68,6 @@ public class City
         Population = population;
         CountryCode = countryCode;
     }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
 
     public City(){
 

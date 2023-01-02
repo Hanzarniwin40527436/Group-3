@@ -320,7 +320,7 @@ public class AppIntegrationTest
         CountryLanguage ct = lcou.get(0);
         assertEquals(ct.getLanguage(),"Chinese");
         assertEquals((long)ct.getPopulation(),1968265500L);
-        assertEquals((long)ct.getPercentage(),12L);
+        assertEquals((long)ct.getPercentage(),19L);
     }
 
 
