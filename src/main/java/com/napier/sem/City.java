@@ -1,10 +1,7 @@
 package com.napier.sem;
 public class City
 {
-    /**
-     * City ID
-     */
-    private int ID;
+
     /**
      * City's name
      */
@@ -17,6 +14,10 @@ public class City
      * City's Population
      */
     private int Population;
+    /**
+     * Country Code
+     */
+    private String CountryCode;
 
     /**
      * Getter Setter
@@ -53,23 +54,6 @@ public class City
         CountryCode = countryCode;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
-    /**
-     * Country Code
-     */
-    private String CountryCode;
-    public City(int ID, String name, String district, int population, String countryCode) {
-        this.ID = ID;
-        Name = name;
-        District = district;
-        Population = population;
-        CountryCode = countryCode;
-    }
 
-    public City(){
-
-    }
 }

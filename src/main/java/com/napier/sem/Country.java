@@ -24,13 +24,11 @@ public class Country {
     /**
      * Country's Local Name
      */
-
     private String LocalName;
     /**
      * Country's Population
      */
     private Long Population;
-
     /**
      * Getter and Setter
      */
