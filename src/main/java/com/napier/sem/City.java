@@ -2,26 +2,25 @@ package com.napier.sem;
 public class City
 {
     /**
-     * City ID
-     */
-    private int ID;
-
-    /**
      * City's name
      */
     private String Name;
-
-
     /**
      * City's District
      */
     private String District;
-
     /**
      * City's Population
      */
     private int Population;
+    /**
+     * Country Code
+     */
+    private String CountryCode;
 
+    /**
+     * Getter Setter
+     */
     public String getName() {
         return Name;
     }
@@ -54,29 +53,5 @@ public class City
         CountryCode = countryCode;
     }
 
-    /**
-     * City's code
-     */
-    private String CountryCode;
 
-    public int getID() {
-        return ID;
-    }
-
-    public City(int ID, String name, String district, int population, String countryCode) {
-        this.ID = ID;
-        Name = name;
-        District = district;
-        Population = population;
-        CountryCode = countryCode;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-
-    public City(){
-
-    }
 }

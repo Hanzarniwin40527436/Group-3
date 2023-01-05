@@ -2,9 +2,9 @@ package com.napier.sem;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
-import java.nio.charset.CoderResult;
+
+
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -185,11 +185,143 @@ public class AppIntegrationTest
         assertEquals(popul.getPopulationin(),13);
         assertEquals(popul.getPopulationout(),87);
     }
+    /** Top N Populated Country In The World / Continent/ Region */
+    @Test
+    void TestTopNPopulatedCountriesInTheWorld(){
+        ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheWorld();
+        Country cty= cou.get(0);
+        assertEquals(cty.getCode(),"CHN");
+        assertEquals(cty.getName(), "China");
+        assertEquals(cty.getContinent(),"Asia");
+        assertEquals(cty.getRegion(),"Eastern Asia");
+        assertEquals(cty.getCapital(),"Peking");
+    }
+    @Test
+    void TestTopNPopulatedCountriesInTheContinent(){
+        ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheContinent();
+        Country cty= cou.get(1);
+        assertEquals(cty.getCode(),"IND");
+        assertEquals(cty.getName(), "India");
+        assertEquals(cty.getContinent(),"Asia");
+        assertEquals(cty.getRegion(),"Southern and Central Asia");
+        assertEquals(cty.getCapital(),"New Delhi");
+    }
+    @Test
+    void TestTopNPopulatedCountriesInTheRegion(){
+        ArrayList<Country> cou = app.getTopNPopulatedCountriesInTheRegion();
+        Country cty= cou.get(2);
+        assertEquals(cty.getCode(),"PHL");
+        assertEquals(cty.getName(), "Philippines");
+        assertEquals(cty.getContinent(),"Asia");
+        assertEquals(cty.getRegion(),"Southeast Asia");
+        assertEquals(cty.getCapital(),"Manila");
+
+    }
 
 
+    /** Top N Populated City In The World / Continent/ Region/ Country/ district  */
+    @Test
+    void TestTopNPopulatedCityInTheWorld() {
+        ArrayList<City> cty = app.getTopNPopulatedCityInTheWorld();
+        City city = cty.get(0);
+        assertEquals(city.getName(),"Mumbai (Bombay)");
+        assertEquals(city.getCountryCode(),"India");
+        assertEquals(city.getDistrict(),"Maharashtra");
+        assertEquals(city.getPopulation(),10500000);
+    }
+    @Test
+    void TestTopNPopulatedCityInTheContinent() {
+        ArrayList<City> cty = app.getTopNPopulatedCityInTheContinent();
+        City city = cty.get(1);
+        assertEquals(city.getName(),"Seoul");
+        assertEquals(city.getCountryCode(),"South Korea");
+        assertEquals(city.getDistrict(),"Seoul");
+        assertEquals(city.getPopulation(),9981619);
+    }
+    @Test
+    void TestTopNPopulatedCityInTheRegion() {
+        ArrayList<City> cty = app.getTopNPopulatedCityInTheRegion();
+        City city = cty.get(2);
+        assertEquals(city.getName(),"Delhi");
+        assertEquals(city.getCountryCode(),"India");
+        assertEquals(city.getDistrict(),"Delhi");
+        assertEquals(city.getPopulation(),7206704);
+    }
+    @Test
+    void TestTopNPopulatedCityInTheCountry() {
+        ArrayList<City> cty = app.getTopNPopulatedCityInTheCountry();
+        City city = cty.get(3);
+        assertEquals(city.getName(),"Tianjin");
+        assertEquals(city.getCountryCode(),"China");
+        assertEquals(city.getDistrict(),"Tianjin");
+        assertEquals(city.getPopulation(),5286800);
+    }
+    @Test
+    void TestTopNPopulatedCityInTheDistrict() {
+        ArrayList<City> cty = app.getTopNPopulatedCityInTheDistrict();
+        City city = cty.get(3);
+        assertEquals(city.getName(),"Ede");
+        assertEquals(city.getCountryCode(),"Netherlands");
+        assertEquals(city.getDistrict(),"Gelderland");
+        assertEquals(city.getPopulation(),101574);
+    }
 
+    @Test
+    void TestWorldPopulation() {
+        ArrayList<Country> wcou = app.WorldPopulation();
+        Country cou = wcou.get(0);
+        assertEquals((long)cou.getPopulation() ,6078749450L );
 
+    }
 
+    @Test
+    void TestContinentPopulation() {
+        ArrayList<Country> ccou = app.ContinentPoupulation();
+        Country cou = ccou.get(0);
+        assertEquals(cou.getContinent(), "North America");
+        assertEquals((long)cou.getPopulation(),482993000L);
+    }
+
+    @Test
+    void TestRegionPopulation() {
+        ArrayList<Country> recou = app.RegionPoupulation();
+        Country cou = recou.get(0);
+        assertEquals(cou.getRegion(),"Caribbean");
+        assertEquals((long)cou.getPopulation(),38140000L);
+    }
+
+    @Test
+    void TestCountryPopulation() {
+        ArrayList<Country> cocou = app.CountryPoupulation();
+        Country cou = cocou.get(0);
+        assertEquals(cou.getLocalName(),"Aruba");
+        assertEquals((long)cou.getPopulation(),103000L);
+    }
+
+    @Test
+    void TestDistrictPopulation() {
+        ArrayList<City> dcou = app.DistrictPoupulation();
+        City ct = dcou.get(0);
+        assertEquals(ct.getDistrict(),"Kabol");
+        assertEquals(ct.getPopulation(),1780000);
+    }
+
+    @Test
+    void TestCityPopulation() {
+        ArrayList<City> cicou = app.CityPoupulation();
+        City ct = cicou.get(0);
+        assertEquals(ct.getName(),"Kabul");
+        assertEquals(ct.getPopulation(), 1780000);
+    }
+
+    @Test
+    void TestLanguageSpoken() {
+        ArrayList<CountryLanguage> lcou = app.LanguageSpoken();
+        CountryLanguage ct = lcou.get(0);
+        assertEquals(ct.getLanguage(),"Chinese");
+        assertEquals((long)ct.getPopulation(),1968265500L);
+        assertEquals((long)ct.getPercentage(),19L);
+    }
 
 
 }

@@ -1,13 +1,21 @@
 package com.napier.sem;
 
 public class CountryLanguage {
+    /**
+     * Country Language's
+     */
     private String Language;
-
+    /**
+     * Country's Population
+     */
     private Long Population;
-
+    /**
+     * Country Language's Percentage
+     */
     private Long Percentage;
-
-
+    /**
+     * Getter Setter
+     */
     public String getLanguage() {
         return Language;
     }
@@ -31,14 +39,5 @@ public class CountryLanguage {
     public void setPercentage(Long percentage) {
         Percentage = percentage;
     }
-    public CountryLanguage(String language, Long population, Long percentage) {
-        Language = language;
-        Population = population;
-        Percentage = percentage;
-    }
 
-
-    public CountryLanguage(){
-
-    }
 }
