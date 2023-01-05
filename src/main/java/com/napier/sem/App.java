@@ -1346,32 +1346,6 @@ public class App {
         System.out.println("|-------------------------------------------------------------------|");
     }
     //-------------------------------------------------------------------------------------------------------------------
-    /** public ArrayList<CountryLanguage> LanguageSpoken(){
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT Language ,SUM(Population), AVG(Percentage) "+ "FROM countrylanguage, country "+"WHERE countrylanguage.CountryCode = country.Code AND Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')"+"GROUP BY Language ORDER BY SUM(Population) DESC";
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // create new arraylist
-            ArrayList<CountryLanguage> lcou = new ArrayList<CountryLanguage>();
-            //While loop for SQL
-            while (rset.next()) {
-                CountryLanguage ct = new CountryLanguage();
-                ct.setLanguage(rset.getString("Language"));
-                ct.setPopulation(rset.getLong("SUM(Population)"));
-                ct.setPercentage(rset.getLong("AVG(Percentage)"));
-                lcou.add(ct);
-            }
-            return lcou;
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get Spoken Language details");
-            return null;
-        }
-    } */
     public ArrayList<CountryLanguage> LanguageSpoken(){
         try {
             // Create an SQL statement
@@ -1452,21 +1426,20 @@ public class App {
             long citytotal=0;
             long cityin=0;
             String conti="";
-
+            // While loop for SQL 1
             while (rset1.next()) {
                 citytotal=rset1.getLong("SUM(Population)");
-
             }
+            // While loop for sql 2
             while (rset2.next()) {
                 cityin=rset2.getLong("SUM(city.Population)");
                 conti=rset2.getString("Country.Continent");
 
             }
-
-            long cityout= citytotal-cityin;
+            // Find people living in clities and out
             int percentin=(int)(cityin*100/citytotal);
             int percentout=100-percentin;
-
+            // Set data for output
             Populationcities popul=new Populationcities();
            popul.setContinent(conti);
             popul.setPopulationtotal(citytotal);
@@ -1508,8 +1481,6 @@ public class App {
      *
      * @return the report of the population of people, people living in cities, and people not living in cities in each region.
      */
-
-
     public ArrayList<Populationcities> peopleliveincitiesinregion() {
         try {
             // Create an SQL statement
