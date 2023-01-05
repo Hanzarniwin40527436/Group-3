@@ -1,7 +1,7 @@
 Group-3<br>
-Master Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/master)
+Master Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/:master/%20Workflow%20for%20World%20App?style=flat-square))
 <br>
-Develop Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/develop/Workflow%20for%20World%20App?style=flat-square)
+Develop Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/develop/%20Workflow%20for%20World%20App?style=flat-square)
 <br>
 Codecov [![codecov](https://codecov.io/gh/Hanzarniwin40527436/Group-3/branch/master/graph/badge.svg?token=iQIPjfryiX)](https://codecov.io/gh/Hanzarniwin40527436/Group-3)
 <br>
