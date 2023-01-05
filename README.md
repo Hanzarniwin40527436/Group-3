@@ -1,4 +1,5 @@
-Group-3<br>
-Work Flow - ![workflow](https://github.com/Hanzarniwin40527436/Group-3/actions/workflows/main.yml/badge.svg)
-<br>
-Releases - [![Releases](https://img.shields.io/github/release/Hanzarniwin40527436/Group-3/all.svg?style=flat-square)](https://github.com/Hanzarniwin40527436/Group-3/releases)
+29 requirements of 32 have been implemented, which is 90.625%.
+
+| ID  |              Name                                                              |  Met  | Screenshot        |
+|-----|--------------------------------------------------------------------------------|-------|-------------------|
+ | 1  |All the countries in the world organised by largest population to smallest.     | Yes| ![image info](Images/1.png) |
