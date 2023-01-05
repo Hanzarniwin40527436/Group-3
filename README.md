@@ -1,6 +1,6 @@
 /github/actions/workflow/status/:user/:repo/:workflow+?branch=main
 Group-3<br>
-Master Build Status - [![Build Status](/appveyor/build/Hanzarniwin40527436/Group-3/:master)
+Master Build Status - [![Build Status](/travis/Hanzarniwin40527436/Group-3/master)
 <br>
 Develop Build Status - [![Build Status]
 <br>
