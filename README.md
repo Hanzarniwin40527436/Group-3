@@ -1,4 +1,19 @@
-29 requirements of 32 have been implemented, which is 90.625%.
+/github/actions/workflow/status/:user/:repo/:workflow+?branch=main
+Group-3<br>
+Master Build Status - [![Build Status](/appveyor/build/Hanzarniwin40527436/Group-3/:master)
+<br>
+Develop Build Status - [![Build Status]
+<br>
+Code Coverage - [![codecov]
+<br>
+
+Workflow-![workflow](https://github.com/Hanzarniwin40527436/Group-3/actions/workflows/main.yml/badge.svg)
+<br>
+Release-[![Releases](https://img.shields.io/github/release/Hanzarniwin40527436/Group-3/all.svg?style=flat-square)](https://github.com/Hanzarniwin40527436/Group-3/releases)
+
+
+
+32 requirements of 32 have been implemented, which is 100%
 
 | ID  | Name                                                                          |  Met  | Screenshot                   |
 |-----|-------------------------------------------------------------------------------|-------|------------------------------|
