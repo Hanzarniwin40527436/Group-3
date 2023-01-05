@@ -1,6 +1,5 @@
-/github/actions/workflow/status/:user/:repo/:workflow+?branch=main
 Group-3<br>
-Master Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/master/Workflow%20for%20World%20App?style=flat-square)
+Master Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/master)
 <br>
 Develop Build Status - ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Hanzarniwin40527436/Group-3/develop/Workflow%20for%20World%20App?style=flat-square)
 <br>
