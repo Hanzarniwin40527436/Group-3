@@ -2,4 +2,4 @@
 
 | ID  |              Name                                                              |  Met  | Screenshot        |
 |-----|--------------------------------------------------------------------------------|-------|-------------------|
- | 1  |All the countries in the world organised by largest population to smallest.     | Yes| ![](Images/1.png) |
+ | 1  |All the countries in the world organised by largest population to smallest.     | Yes| ![image info](Images/1.png) |
