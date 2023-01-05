@@ -31,3 +31,6 @@
 | 27  | The population of a district.     | Yes| ![image info](Images/27.png) |
 | 28  | The population of a city.     | Yes| ![image info](Images/28.png) |
 | 29  |  the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population   | Yes| ![image info](Images/29.png) |
+| 30  | The population of people, people living in cities, and people not living in cities in each continent.     | Yes| ![image info](Images/30.png) |
+| 31  | The population of people, people living in cities, and people not living in cities in each region.     | Yes| ![image info](Images/31.png) |
+| 32  | The population of people, people living in cities, and people not living in cities in each country.     | Yes| ![image info](Images/32.png) |
