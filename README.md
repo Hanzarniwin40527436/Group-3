@@ -1,4 +1,19 @@
-29 requirements of 32 have been implemented, which is 90.625%.
+Group-3<br>
+Master Build Status - ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Hanzarniwin40527436/Group-3/main.yml?branch=master)
+<br>
+Develop Build Status - ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Hanzarniwin40527436/Group-3/main.yml?branch=develop)
+<br>
+Codecov [![codecov](https://codecov.io/gh/Hanzarniwin40527436/Group-3/branch/master/graph/badge.svg?token=iQIPjfryiX)](https://codecov.io/gh/Hanzarniwin40527436/Group-3)
+<br>
+License ![GitHub](https://img.shields.io/github/license/Hanzarniwin40527436/Group-3?style=flat-square)
+<br>
+Release-[![Releases](https://img.shields.io/github/release/Hanzarniwin40527436/Group-3/all.svg?style=flat-square)](https://github.com/Hanzarniwin40527436/Group-3/releases)
+
+
+
+
+
+32 requirements of 32 have been implemented, which is 100%
 
 | ID  | Name                                                                          |  Met  | Screenshot                   |
 |-----|-------------------------------------------------------------------------------|-------|------------------------------|
@@ -31,3 +46,6 @@
 | 27  | The population of a district.     | Yes| ![image info](Images/27.png) |
 | 28  | The population of a city.     | Yes| ![image info](Images/28.png) |
 | 29  |  the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population   | Yes| ![image info](Images/29.png) |
+| 30  | The population of people, people living in cities, and people not living in cities in each continent.     | Yes| ![image info](Images/30.png) |
+| 31  | The population of people, people living in cities, and people not living in cities in each region.     | Yes| ![image info](Images/31.png) |
+| 32  | The population of people, people living in cities, and people not living in cities in each country.     | Yes| ![image info](Images/32.png) |
