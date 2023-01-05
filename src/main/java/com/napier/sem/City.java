@@ -2,10 +2,6 @@ package com.napier.sem;
 public class City
 {
     /**
-     * City ID
-     */
-    private int ID;
-    /**
      * City's name
      */
     private String Name;
@@ -57,8 +53,5 @@ public class City
         CountryCode = countryCode;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
 }

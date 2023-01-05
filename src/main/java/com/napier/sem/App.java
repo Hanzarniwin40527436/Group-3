@@ -1,12 +1,6 @@
 package com.napier.sem;
-
-import javax.swing.plaf.synth.Region;
-import java.awt.event.MouseWheelEvent;
 import java.sql.*;
 import java.util.ArrayList;
-import java.io.*;
-
-
 public class App {
 
     public static void main(String[] args) {
@@ -137,6 +131,7 @@ public class App {
      * Connection
      */
     private Connection con = null;
+    //Set limitation for the TOP N Population
     private int Limit=5;
     /**
      *
@@ -1505,7 +1500,7 @@ public class App {
                 cityin=rset2.getLong("SUM(city.Population)");
                 regi=rset2.getString("country.Region");
             }
-            long cityout= citytotal-cityin;
+
             int percentin=(int)(cityin*100/citytotal);
             int percentout=100-percentin;
 
@@ -1554,7 +1549,7 @@ public class App {
                 cityin=rset2.getLong("SUM(city.Population)");
                 ctname=rset2.getString("country.Name");
             }
-            long cityout= citytotal-cityin;
+
             int percentin=(int)(cityin*100/citytotal);
             int percentout=100-percentin;
 
